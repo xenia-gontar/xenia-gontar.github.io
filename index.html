@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title> Ксения Гонтарь | Интерактивное портфолио</title>
+    <title>Системный аналитик | Портфолио</title>
     <style>
         * {
             margin: 0;
@@ -11,47 +11,99 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
-            background: #f8fafc;
+            background: #f1f5f9;
             color: #0f172a;
         }
         h1 {
             font-size: 2rem;
             margin-bottom: 0.25rem;
-            color: #0f172a;
         }
         .subhead {
             color: #475569;
             margin-bottom: 2rem;
             border-left: 4px solid #3b82f6;
             padding-left: 1rem;
+            font-size: 0.9rem;
         }
         h2 {
-            font-size: 1.5rem;
-            margin: 2rem 0 1rem 0;
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
             color: #1e293b;
         }
         
-        /* Консоль */
-        .console {
-            background: #1e293b;
+        /* Таблица навыков — компактная */
+        .skills-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
             border-radius: 12px;
             overflow: hidden;
-            margin-top: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .skills-table th {
+            background: #1e293b;
+            color: white;
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .skills-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        .skills-table tr:hover {
+            background: #f8fafc;
+        }
+        
+        /* Ячейка навыка — компактно */
+        .skill-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+        .competence {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 0.15rem 0.4rem;
+            border-radius: 10px;
+            font-size: 0.6rem;
+            font-family: monospace;
+            margin: 0.15rem 0.15rem 0 0;
+        }
+        
+        /* Ячейка проекта */
+        .project-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1e3a5f;
+            margin-bottom: 0.2rem;
+        }
+        .project-desc {
+            font-size: 0.7rem;
+            color: #475569;
+        }
+        
+        /* КОНСОЛЬ — компактная и интерактивная */
+        .console {
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
         }
         .console-header {
             background: #0f172a;
-            padding: 0.5rem 0.75rem;
+            padding: 0.4rem 0.6rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            border-bottom: 1px solid #334155;
+            gap: 0.4rem;
         }
         .console-dot {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
         }
         .console-dot.red { background: #ef4444; }
@@ -59,53 +111,54 @@
         .console-dot.green { background: #22c55e; }
         .console-title {
             color: #94a3b8;
-            font-size: 0.7rem;
-            margin-left: 0.5rem;
+            font-size: 0.6rem;
+            margin-left: 0.3rem;
         }
         .console-body {
-            padding: 0.75rem;
+            padding: 0.6rem;
         }
-        .query-selector {
+        .query-row {
             display: flex;
             gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
         }
         select {
-            flex: 2;
-            padding: 0.4rem 0.75rem;
+            flex: 1;
+            padding: 0.35rem 0.6rem;
             background: #0f172a;
             color: #e2e8f0;
             border: 1px solid #334155;
             border-radius: 6px;
             font-family: monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             cursor: pointer;
         }
-        button {
-            padding: 0.4rem 1rem;
+        .run-btn {
+            padding: 0.35rem 1rem;
             background: #3b82f6;
             color: white;
             border: none;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.1s;
         }
-        button:hover {
+        .run-btn:active {
+            transform: scale(0.97);
             background: #2563eb;
         }
         .query-display {
             background: #0f172a;
-            padding: 0.6rem;
+            padding: 0.5rem;
             border-radius: 6px;
             font-family: monospace;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: #e2e8f0;
             overflow-x: auto;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.6rem;
             border: 1px solid #334155;
+            line-height: 1.3;
         }
         .result-table {
             width: 100%;
@@ -113,82 +166,44 @@
             background: white;
             border-radius: 6px;
             overflow: hidden;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
         .result-table th {
             background: #3b82f6;
             color: white;
-            padding: 5px 8px;
-            text-align: left;
+            padding: 4px 6px;
+            font-size: 0.6rem;
         }
         .result-table td {
             border: 1px solid #e2e8f0;
-            padding: 5px 8px;
-        }
-        .result-table tr:nth-child(even) {
-            background: #f8fafc;
+            padding: 4px 6px;
         }
         .result-stats {
-            margin-top: 0.4rem;
-            font-size: 0.6rem;
-            color: #64748b;
+            margin-top: 0.3rem;
+            font-size: 0.55rem;
+            color: #94a3b8;
         }
         
-        /* Таблица навыков — 3 колонки */
-        .skills-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .skills-table th {
-            background: #1e293b;
-            color: white;
-            padding: 0.75rem 1rem;
-            text-align: left;
-            font-size: 0.8rem;
-        }
-        .skills-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-            vertical-align: top;
-        }
-        .skills-table tr:hover {
+        /* Обычное превью для других навыков */
+        .preview-card {
             background: #f1f5f9;
+            border-radius: 8px;
+            padding: 0.5rem;
+            font-size: 0.7rem;
+            border-left: 3px solid #3b82f6;
         }
-        .skill-name {
-            font-weight: 700;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .competence {
-            display: inline-block;
+        .preview-card code {
             background: #e2e8f0;
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
+            padding: 0.1rem 0.3rem;
+            border-radius: 4px;
             font-size: 0.65rem;
-            font-family: monospace;
-            margin: 0.2rem 0.2rem 0 0;
         }
-        .project-title {
-            font-weight: 600;
-            color: #1e3a5f;
-            margin-bottom: 0.25rem;
-        }
-        .project-desc {
-            font-size: 0.75rem;
-            color: #475569;
-        }
-        .preview-cell {
-            width: 500px;
-        }
+        
         footer {
             margin-top: 2rem;
             padding-top: 1rem;
             text-align: center;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #64748b;
             border-top: 1px solid #e2e8f0;
         }
@@ -196,7 +211,9 @@
             color: #3b82f6;
             text-decoration: none;
         }
-        @media (max-width: 900px) {
+        
+        @media (max-width: 800px) {
+            body { padding: 1rem; }
             .skills-table, .skills-table tbody, .skills-table tr, .skills-table td {
                 display: block;
             }
@@ -208,13 +225,14 @@
             }
             .skills-table td {
                 display: flex;
-                padding: 0.75rem;
+                padding: 0.6rem;
             }
             .skills-table td::before {
                 content: attr(data-label);
                 font-weight: 700;
-                width: 100px;
+                width: 90px;
                 flex-shrink: 0;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -223,7 +241,7 @@
 
 <h1>📋 Системный аналитик</h1>
 <div class="subhead">
-    3 года 4 месяца опыта · SQL · BPMN · REST API · Python · PostgreSQL
+    3 года 4 месяца · SQL · BPMN · REST API · Python · PostgreSQL
 </div>
 
 <h2>🛠 Навыки</h2>
@@ -231,48 +249,47 @@
 <table class="skills-table">
     <thead>
         <tr>
-            <th>Навык и компетенции</th>
-            <th>Пример проекта</th>
-            <th>Превью / Демо</th>
+            <th style="width: 25%">Навык</th>
+            <th style="width: 30%">Проект</th>
+            <th style="width: 45%">Превью / Демо</th>
         </tr>
     </thead>
     <tbody>
 
-        <!-- SQL с консолью -->
+        <!-- SQL — с интерактивной консолью -->
         <tr>
             <td data-label="Навык">
                 <div class="skill-name">📊 SQL</div>
-                <span class="competence">CASE WHEN</span>
-                <span class="competence">GROUP BY</span>
+                <span class="competence">CASE</span>
                 <span class="competence">LAG()</span>
                 <span class="competence">CTE</span>
                 <span class="competence">подзапросы</span>
             </td>
             <td data-label="Проект">
                 <div class="project-title">Битрикс24: аналитика сделок</div>
-                <div class="project-desc">Воронка, рейтинг менеджеров, прогноз, конверсия между стадиями</div>
+                <div class="project-desc">Воронка, рейтинг, прогноз, конверсия</div>
             </td>
-            <td class="preview-cell" data-label="Превью">
+            <td data-label="Демо">
                 <div class="console">
                     <div class="console-header">
                         <div class="console-dot red"></div>
                         <div class="console-dot yellow"></div>
                         <div class="console-dot green"></div>
-                        <span class="console-title">sql-console — выберите запрос</span>
+                        <span class="console-title">▶ выбери запрос и нажми «Выполнить»</span>
                     </div>
                     <div class="console-body">
-                        <div class="query-selector">
+                        <div class="query-row">
                             <select id="querySelect">
-                                <option value="1">📊 Воронка продаж — CASE WHEN + GROUP BY</option>
-                                <option value="2">👥 Рейтинг менеджеров — CASE WHEN в SUM</option>
-                                <option value="3">📈 Динамика по месяцам — TO_CHAR + GROUP BY</option>
+                                <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
+                                <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
+                                <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
                                 <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
-                                <option value="5">🔄 Конверсия — оконная функция LAG</option>
+                                <option value="5">🔄 Конверсия — LAG оконная</option>
                                 <option value="6">📉 Проигрыши — подзапрос IN</option>
                             </select>
-                            <button id="runQuery">▶ Выполнить</button>
+                            <button class="run-btn" id="runQuery">▶ Выполнить</button>
                         </div>
-                        <div class="query-display" id="queryDisplay"></div>
+                        <div class="query-display" id="queryDisplay">SELECT * FROM deals;</div>
                         <div id="resultArea"></div>
                     </div>
                 </div>
@@ -283,20 +300,19 @@
         <tr>
             <td data-label="Навык">
                 <div class="skill-name">🔄 BPMN 2.0</div>
-                <span class="competence">пулы/дорожки</span>
+                <span class="competence">пулы</span>
                 <span class="competence">шлюзы</span>
-                <span class="competence">события</span>
-                <span class="competence">AS-IS / TO-BE</span>
+                <span class="competence">AS-IS/TO-BE</span>
             </td>
             <td data-label="Проект">
                 <div class="project-title">Промбезопасность: согласование заявок</div>
                 <div class="project-desc">Оптимизация процесса, сокращение ручного ввода</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.75rem;">
-                    <span style="background:#e2e8f0; padding:0.1rem 0.4rem; border-radius:10px; font-size:0.65rem;">AS-IS</span> 3 отдела, 2 согласования, 5 дней<br>
-                    <span style="background:#e2e8f0; padding:0.1rem 0.4rem; border-radius:10px; font-size:0.65rem;">TO-BE</span> 1 автоматический шлюз, 1 день<br>
-                    🎯 Узкое место: отдел закупок (70% задержек)
+            <td data-label="Демо">
+                <div class="preview-card">
+                    <span style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:8px; font-size:0.6rem;">AS-IS</span> 3 отдела, 5 дней<br>
+                    <span style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:8px; font-size:0.6rem;">TO-BE</span> 1 шлюз, 1 день<br>
+                    🎯 Узкое место: закупки (70% задержек)
                 </div>
             </td>
         </tr>
@@ -304,21 +320,20 @@
         <!-- REST API -->
         <tr>
             <td data-label="Навык">
-                <div class="skill-name">🔌 REST API / OpenAPI</div>
-                <span class="competence">OpenAPI 3.0</span>
+                <div class="skill-name">🔌 REST API</div>
+                <span class="competence">OpenAPI</span>
                 <span class="competence">Swagger</span>
                 <span class="competence">JSON</span>
-                <span class="competence">CRUD</span>
             </td>
             <td data-label="Проект">
                 <div class="project-title">Учётная система КБ + склад</div>
                 <div class="project-desc">Интеграция с CRM через REST API</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.7rem;">
-                    <code style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:4px;">POST /orders</code> создание заказа → 201 Created<br>
-                    <code style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:4px;">GET /materials</code> получение остатков → JSON<br>
-                    <code style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:4px;">PUT /status</code> обновление статуса отгрузки
+            <td data-label="Демо">
+                <div class="preview-card">
+                    <code>POST /orders</code> → 201 Created<br>
+                    <code>GET /materials</code> → JSON остатки<br>
+                    <code>PUT /status</code> → обновление
                 </div>
             </td>
         </tr>
@@ -328,18 +343,18 @@
             <td data-label="Навык">
                 <div class="skill-name">📮 Postman</div>
                 <span class="competence">коллекции</span>
-                <span class="competence">env variables</span>
+                <span class="competence">env</span>
                 <span class="competence">тесты</span>
             </td>
             <td data-label="Проект">
                 <div class="project-title">Тестирование интеграций</div>
-                <div class="project-desc">Сценарии: создание заказа, обновление статуса, ошибки</div>
+                <div class="project-desc">Сценарии: заказ, статус, ошибки</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.7rem;">
+            <td data-label="Демо">
+                <div class="preview-card">
                     ✅ POST /order → 200 OK<br>
-                    ❌ неверный ID → 404 Not Found<br>
-                    🔄 переменная {{order_id}} передаётся между запросами
+                    ❌ неверный ID → 404<br>
+                    🔄 {{order_id}} между запросами
                 </div>
             </td>
         </tr>
@@ -356,11 +371,11 @@
                 <div class="project-title">Автоматизация выгрузок</div>
                 <div class="project-desc">API → PostgreSQL по расписанию</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.7rem;">
-                    <code style="background:#0f172a; color:#e2e8f0; padding:0.1rem 0.3rem; border-radius:4px;">requests.get(url, headers=api_key)</code><br>
-                    → JSON → pandas → <code style="background:#0f172a; color:#e2e8f0; padding:0.1rem 0.3rem; border-radius:4px;">df.to_sql('orders')</code><br>
-                    ⏰ Еженощный запуск через schedule
+            <td data-label="Демо">
+                <div class="preview-card">
+                    <code>requests.get(url, headers)</code><br>
+                    → pandas → <code>df.to_sql()</code><br>
+                    ⏰ еженощно через schedule
                 </div>
             </td>
         </tr>
@@ -371,38 +386,38 @@
                 <div class="skill-name">🗄️ PostgreSQL</div>
                 <span class="competence">DDL</span>
                 <span class="competence">индексы</span>
-                <span class="competence">внешние ключи</span>
+                <span class="competence">FK</span>
             </td>
             <td data-label="Проект">
                 <div class="project-title">Модель данных для склада</div>
-                <div class="project-desc">Учёт материалов, поставок, остатков</div>
+                <div class="project-desc">товары → поставки → остатки</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.7rem;">
-                    📦 <strong>products</strong> (id, name, code)<br>
-                    🚚 <strong>shipments</strong> (id, product_id, quantity, date)<br>
-                    📊 <strong>stock</strong> (product_id, balance) — материализованное представление
+            <td data-label="Демо">
+                <div class="preview-card">
+                    📦 products (id, name, code)<br>
+                    🚚 shipments (product_id, qty, date)<br>
+                    📊 stock — материализованное представление
                 </div>
             </td>
         </tr>
 
-        <!-- Управление требованиями -->
+        <!-- Требования -->
         <tr>
             <td data-label="Навык">
-                <div class="skill-name">📋 Управление требованиями</div>
+                <div class="skill-name">📋 Требования</div>
                 <span class="competence">SRS</span>
                 <span class="competence">User Stories</span>
                 <span class="competence">Use Cases</span>
             </td>
             <td data-label="Проект">
                 <div class="project-title">Учёт материалов КБ</div>
-                <div class="project-desc">Полная документация требований</div>
+                <div class="project-desc">Полная документация</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.7rem;">
-                    📄 <strong>SRS</strong>: 23 функциональных требования<br>
-                    👥 <strong>Use Case</strong>: "Конструктор создаёт заявку"<br>
-                    🎯 <strong>MoSCoW</strong>: MUST — учёт остатков
+            <td data-label="Демо">
+                <div class="preview-card">
+                    📄 23 функциональных требования<br>
+                    👥 "Конструктор создаёт заявку"<br>
+                    🎯 MoSCoW: MUST — учёт остатков
                 </div>
             </td>
         </tr>
@@ -410,20 +425,20 @@
         <!-- Git -->
         <tr>
             <td data-label="Навык">
-                <div class="skill-name">🐙 Git / GitHub</div>
+                <div class="skill-name">🐙 Git</div>
                 <span class="competence">commits</span>
                 <span class="competence">branches</span>
-                <span class="competence">GitHub Pages</span>
+                <span class="competence">Pages</span>
             </td>
             <td data-label="Проект">
-                <div class="project-title">Версионирование всего</div>
+                <div class="project-title">Версионирование</div>
                 <div class="project-desc">Документация + скрипты + портфолио</div>
             </td>
-            <td data-label="Превью">
-                <div class="preview-card" style="background:#f1f5f9; border-left:3px solid #3b82f6; padding:0.6rem; border-radius:8px; font-size:0.7rem;">
+            <td data-label="Демо">
+                <div class="preview-card">
                     🌿 main → production<br>
                     🌿 dev → разработка<br>
-                    🚀 GitHub Pages — этот сайт
+                    🚀 <a href="#" style="font-size:0.7rem;">GitHub Pages</a>
                 </div>
             </td>
         </tr>
@@ -433,73 +448,57 @@
 
 <h2>📬 Контакты</h2>
 <table class="skills-table" style="margin-top: 0;">
-    <tr><td style="font-weight: 600;">📧 Email</td><td><a href="mailto:your@email.com">ksugont@email.com</a></td></tr>
+    <tr><td style="width: 25%; font-weight: 600;">📧 Email</td><td><a href="mailto:your@email.com">ksugont@email.com</a></td></tr>
     <tr><td style="font-weight: 600;">💬 Telegram</td><td><a href="#">@xenia_gontar</a></td></tr>
     <tr><td style="font-weight: 600;">🐙 GitHub</td><td><a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a></td></tr>
 </table>
 
-<footer>🚀 GitHub Pages | Интерактивная SQL-консоль — 6 реальных запросов с разными техниками</footer>
+<footer>🚀 GitHub Pages | SQL-консоль интерактивная — нажми «Выполнить»</footer>
 
 <script>
     const results = {
-        1: {
-            columns: ["Статус", "Количество сделок", "Общая сумма (₽)"],
-            rows: [["В работе", 15, "5 500 000"], ["Успешно", 10, "2 750 000"], ["Проиграно", 6, "1 900 000"]],
-            sql: "SELECT CASE STAGE_SEMANTIC_ID\n      WHEN 'P' THEN 'В работе'\n      WHEN 'S' THEN 'Успешно'\n      ELSE 'Проиграно'\n   END AS status,\n   COUNT(*) AS deals_count,\n   ROUND(SUM(OPPORTUNITY), 0) AS total_amount\nFROM crm_deal\nGROUP BY STAGE_SEMANTIC_ID;"
-        },
-        2: {
-            columns: ["Менеджер", "Сделок всего", "Выручка (₽)"],
-            rows: [["Анна Смирнова", 6, "1 200 000"], ["Елена Козлова", 5, "1 100 000"], ["Иван Петров", 5, "500 000"], ["Ольга Новикова", 4, "400 000"], ["Дмитрий Сидоров", 3, "120 000"]],
-            sql: "SELECT ASSIGNED_BY_NAME AS manager,\n   COUNT(*) AS deals_count,\n   ROUND(SUM(CASE WHEN STAGE_SEMANTIC_ID = 'S' THEN OPPORTUNITY ELSE 0 END), 0) AS revenue\nFROM crm_deal\nGROUP BY ASSIGNED_BY_NAME\nORDER BY revenue DESC;"
-        },
-        3: {
-            columns: ["Месяц", "Новых сделок", "Выручка (₽)"],
-            rows: [["2025-01", 8, "1 500 000"], ["2025-02", 10, "1 000 000"], ["2025-03", 12, "250 000"]],
-            sql: "SELECT TO_CHAR(DATE_CREATE, 'YYYY-MM') AS month,\n   COUNT(*) AS new_deals,\n   ROUND(SUM(CASE WHEN STAGE_SEMANTIC_ID = 'S' THEN OPPORTUNITY ELSE 0 END), 0) AS revenue\nFROM crm_deal\nGROUP BY TO_CHAR(DATE_CREATE, 'YYYY-MM')\nORDER BY month;"
-        },
-        4: {
-            columns: ["Период", "Сделок в работе", "Средний чек", "Ожидаемая выручка"],
-            rows: [["Прогноз на апрель 2025", 15, "366 667 ₽", "2 750 000 ₽"]],
-            sql: "WITH active_deals AS (\n   SELECT OPPORTUNITY, PROBABILITY/100 AS weight\n   FROM crm_deal\n   WHERE STAGE_SEMANTIC_ID = 'P'\n)\nSELECT 'Прогноз на апрель 2025' AS period,\n   COUNT(*) AS pipeline_deals,\n   ROUND(AVG(OPPORTUNITY), 0) AS avg_deal,\n   ROUND(SUM(OPPORTUNITY * weight), 0) AS expected_revenue\nFROM active_deals;"
-        },
-        5: {
-            columns: ["Со стадии", "На стадию", "Количество переходов"],
-            rows: [["Новая", "Контакт", 25], ["Контакт", "В работе", 20], ["В работе", "Переговоры", 15], ["Переговоры", "Успешно", 10], ["Переговоры", "Проиграно", 5]],
-            sql: "WITH transitions AS (\n   SELECT DEAL_ID, STAGE_NAME,\n      LAG(STAGE_NAME) OVER (PARTITION BY DEAL_ID ORDER BY DATE_CREATE) AS prev_stage\n   FROM crm_deal_stage_history\n)\nSELECT prev_stage AS from_stage,\n   STAGE_NAME AS to_stage,\n   COUNT(*) AS transitions\nFROM transitions\nWHERE prev_stage IS NOT NULL\nGROUP BY prev_stage, STAGE_NAME\nORDER BY transitions DESC;"
-        },
-        6: {
-            columns: ["Стадия", "Потеряно сделок", "Среднее дней на стадии"],
-            rows: [["Переговоры", 3, "7.2"], ["Счёт", 2, "5.5"], ["В работе", 1, "12.0"]],
-            sql: "SELECT STAGE_NAME,\n   COUNT(*) AS lose_count,\n   ROUND(AVG(DAYS_IN_STAGE), 1) AS avg_days\nFROM crm_deal_stage_history\nWHERE DEAL_ID IN (\n   SELECT DEAL_ID FROM crm_deal WHERE STAGE_SEMANTIC_ID = 'F'\n)\nGROUP BY STAGE_NAME\nORDER BY lose_count DESC;"
-        }
+        1: { cols: ["Статус", "Сделок", "Сумма (₽)"], rows: [["В работе", 15, "5.5M"], ["Успешно", 10, "2.75M"], ["Проиграно", 6, "1.9M"]],
+            sql: "SELECT CASE STAGE_SEMANTIC_ID\n      WHEN 'P' THEN 'В работе'\n      WHEN 'S' THEN 'Успешно'\n      ELSE 'Проиграно'\n   END AS status,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY),0) AS amount\nFROM crm_deal\nGROUP BY STAGE_SEMANTIC_ID;" },
+        2: { cols: ["Менеджер", "Сделок", "Выручка"], rows: [["Анна Смирнова", 6, "1.2M"], ["Елена Козлова", 5, "1.1M"], ["Иван Петров", 5, "0.5M"]],
+            sql: "SELECT ASSIGNED_BY_NAME,\n   SUM(CASE WHEN STAGE_SEMANTIC_ID='S' THEN OPPORTUNITY ELSE 0 END) AS revenue\nFROM crm_deal\nGROUP BY ASSIGNED_BY_NAME\nORDER BY revenue DESC;" },
+        3: { cols: ["Месяц", "Новых", "Выручка"], rows: [["2025-01", 8, "1.5M"], ["2025-02", 10, "1.0M"], ["2025-03", 12, "0.25M"]],
+            sql: "SELECT TO_CHAR(DATE_CREATE, 'YYYY-MM') AS month,\n   COUNT(*) AS new_deals,\n   SUM(OPPORTUNITY) AS revenue\nFROM crm_deal\nGROUP BY TO_CHAR(DATE_CREATE, 'YYYY-MM')\nORDER BY month;" },
+        4: { cols: ["Период", "В работе", "Прогноз"], rows: [["Апрель 2025", 15, "2.75M₽"]],
+            sql: "WITH active AS (\n   SELECT OPPORTUNITY, PROBABILITY/100 AS w\n   FROM crm_deal WHERE STAGE_SEMANTIC_ID='P'\n)\nSELECT 'Апрель 2025' AS period,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY * w),0) AS forecast\nFROM active;" },
+        5: { cols: ["Со стадии", "На стадию", "Переходов"], rows: [["Новая", "Контакт", 25], ["Контакт", "В работе", 20], ["В работе", "Переговоры", 15]],
+            sql: "WITH t AS (\n   SELECT DEAL_ID, STAGE_NAME,\n      LAG(STAGE_NAME) OVER (PARTITION BY DEAL_ID ORDER BY DATE_CREATE) AS prev\n   FROM crm_deal_stage_history\n)\nSELECT prev, STAGE_NAME, COUNT(*)\nFROM t WHERE prev IS NOT NULL\nGROUP BY prev, STAGE_NAME\nORDER BY 3 DESC;" },
+        6: { cols: ["Стадия", "Потерь", "Дней"], rows: [["Переговоры", 3, "7.2"], ["Счёт", 2, "5.5"], ["В работе", 1, "12.0"]],
+            sql: "SELECT STAGE_NAME, COUNT(*), ROUND(AVG(DAYS_IN_STAGE),1)\nFROM crm_deal_stage_history\nWHERE DEAL_ID IN (SELECT DEAL_ID FROM crm_deal WHERE STAGE_SEMANTIC_ID='F')\nGROUP BY STAGE_NAME\nORDER BY 2 DESC;" }
     };
 
-    function renderTable(columns, rows) {
+    function renderTable(cols, rows) {
         let html = '<table class="result-table"><thead><tr>';
-        columns.forEach(col => html += `<th>${col}</th>`);
+        cols.forEach(c => html += `<th>${c}</th>`);
         html += '</tr></thead><tbody>';
-        rows.forEach(row => {
-            html += '<tr>';
-            row.forEach(cell => html += `<td>${cell}</td>`);
-            html += '</tr>';
-        });
+        rows.forEach(r => { html += '<tr>'; r.forEach(c => html += `<td>${c}</td>`); html += '</tr>'; });
         html += '</tbody></table>';
         return html;
     }
 
-    function updateResult() {
-        const val = document.getElementById('querySelect').value;
+    const select = document.getElementById('querySelect');
+    const runBtn = document.getElementById('runQuery');
+    const queryDisplay = document.getElementById('queryDisplay');
+    const resultArea = document.getElementById('resultArea');
+
+    function update() {
+        const val = select.value;
         const data = results[val];
         if (data) {
-            document.getElementById('queryDisplay').innerHTML = data.sql.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
-            document.getElementById('resultArea').innerHTML = renderTable(data.columns, data.rows) + `<div class="result-stats">📊 ${data.rows.length} строк(и) возвращено</div>`;
+            queryDisplay.innerHTML = data.sql.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
+            resultArea.innerHTML = renderTable(data.cols, data.rows) + `<div class="result-stats">📊 ${data.rows.length} строк</div>`;
         }
     }
 
-    document.getElementById('runQuery').addEventListener('click', updateResult);
-    document.getElementById('querySelect').addEventListener('change', updateResult);
-    updateResult();
+    runBtn.addEventListener('click', update);
+    select.addEventListener('change', update);
+    update();
 </script>
 
 </body>
+</html>
 </html>
