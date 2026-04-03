@@ -2,15 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title> Ксения Гонтарь | Портфолио</title>
+    <title> Ксения Гонтарь| Портфолио</title>
     <style>
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
-            line-height: 1.4;
-            background: #f5f7fa;
+            line-height: 1.5;
+            background: #f0f4f8;
             color: #1a2a3a;
         }
         h1 {
@@ -19,66 +19,91 @@
             color: #1e3a5f;
         }
         h2 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 2px solid #3b82f6;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
             color: #1e3a5f;
         }
         h3 {
-            font-size: 1rem;
-            margin: 0 0 0.25rem 0;
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
             color: #2c5282;
-        }
-        hr {
-            border: none;
-            height: 1px;
-            background: #e2e8f0;
-            margin: 1rem 0;
-        }
-        .note {
-            background: #e6f0ff;
-            padding: 0.5rem 1rem;
-            border-left: 4px solid #3b82f6;
-            margin: 1rem 0;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.9rem;
         }
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 0.75rem;
-            margin: 0.75rem 0;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
         }
-        .skill-block {
+        .skill-card {
             background: white;
-            padding: 0.6rem 0.9rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            padding: 1.25rem;
             border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
-        .skill-level {
-            color: #3b82f6;
-            font-size: 0.7rem;
-            margin: 0.2rem 0;
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #1e3a5f;
         }
         .skill-desc {
-            font-size: 0.8rem;
             color: #475569;
-            margin: 0.3rem 0;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
-        .status {
-            color: #64748b;
-            font-size: 0.75rem;
-            font-style: italic;
-        }
-        pre {
+        .query-block {
             background: #1e293b;
             color: #e2e8f0;
-            padding: 0.75rem;
+            padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            margin: 1rem 0;
+        }
+        .tech-comment {
+            background: #e6f0ff;
+            padding: 0.75rem;
+            border-left: 4px solid #3b82f6;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+            border-radius: 0 6px 6px 0;
+        }
+        .tech-comment strong {
+            color: #1e3a5f;
+        }
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        .result-table th {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .result-table td {
+            border: 1px solid #e2e8f0;
+            padding: 8px 12px;
+        }
+        .result-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        .badge {
+            display: inline-block;
+            background: #e2e8f0;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
             font-size: 0.7rem;
+            font-family: monospace;
+            margin-right: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         footer {
             margin-top: 2rem;
@@ -91,158 +116,312 @@
         a {
             color: #3b82f6;
             text-decoration: none;
-            font-size: 0.85rem;
         }
-        a:hover {
-            text-decoration: underline;
-        }
-        .contacts {
-            background: white;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-        p {
-            margin: 0.5rem 0;
-        }
-        .intro {
-            margin-bottom: 0.5rem;
-        }
-        .small-link {
+        .github-link {
             font-size: 0.8rem;
+            margin-top: 0.75rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid #e2e8f0;
         }
     </style>
 </head>
 <body>
 
 <h1>📋 Системный аналитик</h1>
-<p class="intro"><strong>Реальные навыки </strong> Каждый пункт подкреплен артефактом в репозитории.</p>
+<p><strong>SQL-аналитика сделок из Битрикс24</strong> — реальные запросы, их результаты и технические комментарии.</p>
 
-<div class="note">
-    ⚡ <strong>Принцип портфолио:</strong> Только то, что я реально умею, и примеры, которые можно посмотреть.
-</div>
+<!-- ============================================ -->
+<!-- SQL БЛОК -->
+<!-- ============================================ -->
 
-<h2>🛠 Навыки </h2>
+<h2>📊 SQL: Аналитика сделок Битрикс24</h2>
 
 <div class="skills-grid">
-    <div class="skill-block">
-        <h3>📊 SQL</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">JOIN, оконные, CTE, подзапросы</div>
-        <a href="#">Пример запроса</a> <span class="status">скоро</span>
+    
+    <!-- Запрос 1: Воронка продаж -->
+    <div class="skill-card">
+        <div class="skill-title">🎯 Воронка продаж</div>
+        <div class="skill-desc">Сколько сделок на каждой стадии и их общая сумма</div>
+        
+        <div class="query-block">
+            SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;CASE STAGE_SEMANTIC_ID<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN 'P' THEN 'В работе'<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN 'S' THEN 'Успешно'<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEN 'F' THEN 'Проиграно'<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;END AS status,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS deals_count,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(SUM(OPPORTUNITY), 0) AS total_amount<br>
+            FROM crm_deal<br>
+            GROUP BY STAGE_SEMANTIC_ID;
+        </div>
+        
+        <div class="tech-comment">
+            <strong>📐 Использованные конструкции:</strong><br>
+            <span class="badge">CASE WHEN</span> — преобразование кодов в читаемые названия<br>
+            <span class="badge">COUNT(*)</span> — подсчёт количества записей<br>
+            <span class="badge">SUM()</span> — агрегация суммы сделок<br>
+            <span class="badge">ROUND()</span> — округление чисел<br>
+            <span class="badge">GROUP BY</span> — группировка по стадиям
+        </div>
+        
+        <table class="result-table">
+            <thead><tr><th>Статус</th><th>Количество сделок</th><th>Общая сумма (₽)</th></tr></thead>
+            <tbody>
+                <tr><td>В работе</td><td>15</td><td>5 500 000</td></tr>
+                <tr><td>Успешно</td><td>10</td><td>2 750 000</td></tr>
+                <tr><td>Проиграно</td><td>6</td><td>1 900 000</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="github-link">
+            🔗 <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io/blob/main/sql/bitrix24_deal_analytics.sql" target="_blank">Посмотреть полный SQL-файл</a>
+        </div>
     </div>
-
-    <div class="skill-block">
-        <h3>🔄 BPMN 2.0</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">Процессы, пулы, шлюзы, события</div>
-        <a href="#">Схема процесса</a> <span class="status">скоро</span>
+    
+    <!-- Запрос 2: Рейтинг менеджеров -->
+    <div class="skill-card">
+        <div class="skill-title">👥 Рейтинг менеджеров по выручке</div>
+        <div class="skill-desc">Кто из ответственных принёс больше всего денег</div>
+        
+        <div class="query-block">
+            SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ASSIGNED_BY_NAME AS manager,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS deals_count,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(SUM(CASE WHEN STAGE_SEMANTIC_ID = 'S' THEN OPPORTUNITY ELSE 0 END), 0) AS revenue<br>
+            FROM crm_deal<br>
+            GROUP BY ASSIGNED_BY_NAME<br>
+            ORDER BY revenue DESC;
+        </div>
+        
+        <div class="tech-comment">
+            <strong>📐 Использованные конструкции:</strong><br>
+            <span class="badge">CASE WHEN в SUM()</span> — условная агрегация (считаем только успешные сделки)<br>
+            <span class="badge">ELSE 0</span> — защита от NULL в сумме<br>
+            <span class="badge">ORDER BY DESC</span> — сортировка по убыванию для рейтинга<br>
+            <span class="badge">AS</span> — понятные алиасы для вывода
+        </div>
+        
+        <table class="result-table">
+            <thead><tr><th>Менеджер</th><th>Сделок всего</th><th>Выручка (₽)</th></tr></thead>
+            <tbody>
+                <tr><td>Анна Смирнова</td><td>6</td><td>1 200 000</td></tr>
+                <tr><td>Елена Козлова</td><td>5</td><td>1 100 000</td></tr>
+                <tr><td>Иван Петров</td><td>5</td><td>500 000</td></tr>
+                <tr><td>Ольга Новикова</td><td>4</td><td>400 000</td></tr>
+                <tr><td>Дмитрий Сидоров</td><td>3</td><td>120 000</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="github-link">
+            🔗 <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io/blob/main/sql/bitrix24_deal_analytics.sql" target="_blank">Посмотреть полный SQL-файл</a>
+        </div>
     </div>
-
-    <div class="skill-block">
-        <h3>🧩 UML</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">Sequence, Use Case, Activity</div>
-        <a href="#">Диаграмма</a> <span class="status">скоро</span>
+    
+    <!-- Запрос 3: Динамика по месяцам -->
+    <div class="skill-card">
+        <div class="skill-title">📈 Динамика продаж по месяцам</div>
+        <div class="skill-desc">Новые сделки и выручка помесячно</div>
+        
+        <div class="query-block">
+            SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TO_CHAR(DATE_CREATE, 'YYYY-MM') AS month,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS new_deals,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(SUM(CASE WHEN STAGE_SEMANTIC_ID = 'S' THEN OPPORTUNITY ELSE 0 END), 0) AS revenue<br>
+            FROM crm_deal<br>
+            GROUP BY TO_CHAR(DATE_CREATE, 'YYYY-MM')<br>
+            ORDER BY month;
+        </div>
+        
+        <div class="tech-comment">
+            <strong>📐 Использованные конструкции:</strong><br>
+            <span class="badge">TO_CHAR()</span> — функция преобразования даты в строку (формат ГГГГ-ММ)<br>
+            <span class="badge">GROUP BY с функцией</span> — группировка по результату функции<br>
+            <span class="badge">CASE WHEN в SUM()</span> — условная агрегация<br>
+            <span class="badge">ORDER BY month</span> — хронологическая сортировка
+        </div>
+        
+        <table class="result-table">
+            <thead><tr><th>Месяц</th><th>Новых сделок</th><th>Выручка (₽)</th></tr></thead>
+            <tbody>
+                <tr><td>2025-01</td><td>8</td><td>1 500 000</td></tr>
+                <tr><td>2025-02</td><td>10</td><td>1 000 000</td></tr>
+                <tr><td>2025-03</td><td>12</td><td>250 000</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="github-link">
+            🔗 <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io/blob/main/sql/bitrix24_deal_analytics.sql" target="_blank">Посмотреть полный SQL-файл</a>
+        </div>
     </div>
-
-    <div class="skill-block">
-        <h3>🔌 REST API / OpenAPI</h3>
-        <div class="skill-level">Практический</div>
-        <div class="skill-desc">OpenAPI 3.0, Swagger, JSON</div>
-        <a href="#">openapi.yaml</a> <span class="status">скоро</span>
+    
+    <!-- Запрос 4: Прогноз с оконной функцией -->
+    <div class="skill-card">
+        <div class="skill-title">🔮 Прогноз на следующий месяц</div>
+        <div class="skill-desc">Сделки в работе и ожидаемая выручка с учётом вероятности</div>
+        
+        <div class="query-block">
+            WITH weighted_deals AS (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OPPORTUNITY,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PROBABILITY / 100.0 AS weight<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;FROM crm_deal<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;WHERE STAGE_SEMANTIC_ID = 'P'<br>
+            )<br>
+            SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;'Прогноз на апрель 2025' AS period,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS pipeline_deals,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(AVG(OPPORTUNITY), 0) AS avg_deal,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;SUM(OPPORTUNITY * weight) AS expected_revenue<br>
+            FROM weighted_deals;
+        </div>
+        
+        <div class="tech-comment">
+            <strong>📐 Использованные конструкции:</strong><br>
+            <span class="badge">WITH (CTE)</span> — обобщённое табличное выражение для читаемости<br>
+            <span class="badge">AVG()</span> — среднее арифметическое<br>
+            <span class="badge">SUM() с весами</span> — взвешенная сумма (вероятность × сумма сделки)<br>
+            <span class="badge">/ 100.0</span> — преобразование процентов в доли
+        </div>
+        
+        <table class="result-table">
+            <thead><tr><th>Период</th><th>Сделок в работе</th><th>Средний чек</th><th>Ожидаемая выручка</th></tr></thead>
+            <tbody>
+                <tr><td>Прогноз на апрель 2025</td><td>15</td><td>366 667 ₽</td><td>2 750 000 ₽</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="github-link">
+            🔗 <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io/blob/main/sql/bitrix24_deal_analytics.sql" target="_blank">Посмотреть полный SQL-файл</a>
+        </div>
     </div>
-
-    <div class="skill-block">
-        <h3>📮 Postman</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">Коллекции, env, тесты</div>
-        <a href="#">Коллекция</a> <span class="status">скоро</span>
+    
+    <!-- Запрос 5: Анализ проигранных сделок (подзапрос) -->
+    <div class="skill-card">
+        <div class="skill-title">📉 Анализ проигранных сделок</div>
+        <div class="skill-desc">На каких стадиях чаще всего теряем сделки</div>
+        
+        <div class="query-block">
+            SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;stage_name,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS lose_count,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;ROUND(AVG(avg_days_in_stage), 1) AS avg_days<br>
+            FROM (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STAGE_NAME,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DAYS_IN_STAGE AS avg_days_in_stage<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;FROM crm_deal_stage_history<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;WHERE DEAL_ID IN (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT DEAL_ID FROM crm_deal WHERE STAGE_SEMANTIC_ID = 'F'<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;) AS lose_stages<br>
+            GROUP BY stage_name<br>
+            ORDER BY lose_count DESC;
+        </div>
+        
+        <div class="tech-comment">
+            <strong>📐 Использованные конструкции:</strong><br>
+            <span class="badge">Подзапрос в FROM</span> — вложенный SELECT как источник данных<br>
+            <span class="badge">IN (подзапрос)</span> — фильтрация по результату другого запроса<br>
+            <span class="badge">AVG() с подзапросом</span> — среднее по отфильтрованным данным<br>
+            <span class="badge">Двойная вложенность</span> — подзапрос в подзапросе
+        </div>
+        
+        <table class="result-table">
+            <thead><tr><th>Стадия</th><th>Потеряно сделок</th><th>Среднее дней на стадии</th></tr></thead>
+            <tbody>
+                <tr><td>Переговоры</td><td>3</td><td>7.2</td></tr>
+                <tr><td>Счёт</td><td>2</td><td>5.5</td></tr>
+                <tr><td>В работе</td><td>1</td><td>12.0</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="github-link">
+            🔗 <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io/blob/main/sql/bitrix24_deal_analytics.sql" target="_blank">Посмотреть полный SQL-файл</a>
+        </div>
     </div>
-
-    <div class="skill-block">
-        <h3>🐍 Python</h3>
-        <div class="skill-level">Базовый-средний</div>
-        <div class="skill-desc">Скрипты, API, автоматизация</div>
-        <a href="#">Скрипт</a> <span class="status">скоро</span>
-    </div>
-
-    <div class="skill-block">
-        <h3>🗄️ PostgreSQL</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">DDL, индексы, запросы</div>
-        <a href="#">Схема БД</a> <span class="status">скоро</span>
-    </div>
-
-    <div class="skill-block">
-        <h3>🐙 Git / GitHub</h3>
-        <div class="skill-level">Базовый-средний</div>
-        <div class="skill-desc">Коммиты, ветки, Pages</div>
-        <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io">Репозиторий</a>
-    </div>
-
-    <div class="skill-block">
-        <h3>📈 Apache Superset</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">Дашборды, кросс-фильтрация</div>
-        <a href="#">Скриншот</a> <span class="status">скоро</span>
-    </div>
-
-    <div class="skill-block">
-        <h3>📋 Управление требованиями</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">SRS, User Stories, Use Cases</div>
-        <a href="#">Пример SRS</a> <span class="status">скоро</span>
-    </div>
-
-    <div class="skill-block">
-        <h3>📐 ER-диаграммы</h3>
-        <div class="skill-level">Уверенный</div>
-        <div class="skill-desc">Сущности, связи, нормализация</div>
-        <a href="#">ERD</a> <span class="status">скоро</span>
-    </div>
-
-    <div class="skill-block">
-        <h3>🌿 PlantUML</h3>
-        <div class="skill-level">Базовый</div>
-        <div class="skill-desc">Диаграммы как код</div>
-        <a href="#">.puml файл</a> <span class="status">скоро</span>
+    
+    <!-- Запрос 6: Конверсия с оконной функцией LAG -->
+    <div class="skill-card">
+        <div class="skill-title">🔄 Конверсия между стадиями</div>
+        <div class="skill-desc">Сколько сделок переходит со стадии на стадию</div>
+        
+        <div class="query-block">
+            WITH stage_transitions AS (<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEAL_ID,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STAGE_NAME,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAG(STAGE_NAME) OVER (PARTITION BY DEAL_ID ORDER BY DATE_CREATE) AS prev_stage<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;FROM crm_deal_stage_history<br>
+            )<br>
+            SELECT <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;prev_stage AS from_stage,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;STAGE_NAME AS to_stage,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;COUNT(*) AS transitions<br>
+            FROM stage_transitions<br>
+            WHERE prev_stage IS NOT NULL<br>
+            GROUP BY prev_stage, STAGE_NAME<br>
+            ORDER BY transitions DESC;
+        </div>
+        
+        <div class="tech-comment">
+            <strong>📐 Использованные конструкции:</strong><br>
+            <span class="badge">LAG() OVER (PARTITION BY... ORDER BY...)</span> — оконная функция для доступа к предыдущей строке в группе<br>
+            <span class="badge">PARTITION BY DEAL_ID</span> — сброс окна для каждой сделки отдельно<br>
+            <span class="badge">ORDER BY DATE_CREATE</span> — правильный порядок стадий во времени<br>
+            <span class="badge">WITH (CTE)</span> — для читаемости сложной логики
+        </div>
+        
+        <table class="result-table">
+            <thead><tr><th>Со стадии</th><th>На стадию</th><th>Количество переходов</th></tr></thead>
+            <tbody>
+                <tr><td>Новая</td><td>Контакт</td><td>25</td></tr>
+                <tr><td>Контакт</td><td>В работе</td><td>20</td></tr>
+                <tr><td>В работе</td><td>Переговоры</td><td>15</td></tr>
+                <tr><td>Переговоры</td><td>Успешно</td><td>10</td></tr>
+                <tr><td>Переговоры</td><td>Проиграно</td><td>5</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="github-link">
+            🔗 <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io/blob/main/sql/bitrix24_deal_analytics.sql" target="_blank">Посмотреть полный SQL-файл</a>
+        </div>
     </div>
 </div>
 
-<h2>📌 Как это устроено</h2>
-<div class="skill-block" style="margin-bottom: 0.75rem;">
-    <ul style="margin: 0.25rem 0 0.25rem 1.25rem; font-size: 0.85rem;">
-        <li>Каждый навык → ссылка на реальный файл в этом репозитории</li>
-        <li>Сейчас ссылки ведут на заглушки (файлы будут добавлены)</li>
-        <li>Постепенно я заменю заглушки на реальные артефакты</li>
-    </ul>
+<!-- ============================================ -->
+<!-- ДРУГИЕ НАВЫКИ -->
+<!-- ============================================ -->
+
+<h2>🛠 Другие навыки (в разработке)</h2>
+<div class="skills-grid">
+    <div class="skill-card">
+        <div class="skill-title">🔄 BPMN 2.0</div>
+        <div class="skill-desc">Схема процесса согласования заявки — скоро будет добавлена</div>
+    </div>
+    <div class="skill-card">
+        <div class="skill-title">🔌 REST API / OpenAPI</div>
+        <div class="skill-desc">Спецификация API для интеграции — скоро будет добавлена</div>
+    </div>
+    <div class="skill-card">
+        <div class="skill-title">🐍 Python</div>
+        <div class="skill-desc">Скрипты автоматизации — скоро будут добавлены</div>
+    </div>
 </div>
 
-<h2>📂 Планируемая структура</h2>
-<pre>
-/
-├── index.html
-├── sql/
-├── diagrams/
-├── specs/
-├── postman/
-├── scripts/
-├── docs/
-└── screenshots/
-</pre>
+<!-- ============================================ -->
+<!-- КОНТАКТЫ -->
+<!-- ============================================ -->
 
 <h2>📬 Контакты</h2>
-<div class="contacts">
+<div class="skill-card">
     📧 <a href="mailto:your@email.com">ksugont@email.com</a><br>
-    💬 Telegram: <a href="#">@xenia_gontar</a><br>
+    💬 Telegram: <a href="#">@your_telegram</a><br>
     🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
 </div>
 
 <footer>
-    🚀 Сайт на GitHub Pages | Артефакты добавляются постепенно
+    🚀 Сайт на GitHub Pages | SQL-запросы и результаты — демонстрационные, структура реальная
 </footer>
 
 </body>
