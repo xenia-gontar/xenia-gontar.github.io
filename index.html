@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title> Ксения Гонтарь | Портфолио</title>
+    <title>Ксения Гонтарь | Портфолио</title>
     <style>
         * {
             margin: 0;
@@ -23,72 +23,104 @@
         }
         .subhead {
             color: #475569;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             border-left: 4px solid #3b82f6;
             padding-left: 1rem;
             font-size: 0.9rem;
         }
+        
+        /* Дисклеймер */
+        .disclaimer {
+            background: #fef9c3;
+            border-left: 4px solid #eab308;
+            padding: 0.75rem 1rem;
+            margin: 1rem 0 1.5rem 0;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: #854d0e;
+            line-height: 1.4;
+        }
+        .disclaimer strong {
+            color: #a16207;
+        }
+        .disclaimer a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        
         h2 {
             font-size: 1.3rem;
             margin: 1.5rem 0 1rem 0;
             color: #1e293b;
         }
         
+        /* Таблица с заголовками */
+        .skills-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #1e293b;
+            border-radius: 12px 12px 0 0;
+            padding: 0.7rem 1rem;
+            margin-top: 1rem;
+        }
+        .skills-header span {
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
         /* Карточка навыка */
         .skill-card {
             background: white;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-        .skill-header {
-            display: flex;
-            align-items: center;
-            padding: 0.7rem 1rem;
-            background: #fafcff;
             border-bottom: 1px solid #e2e8f0;
-            gap: 1rem;
-            flex-wrap: wrap;
         }
-        .skill-icon {
-            font-size: 1.3rem;
+        .skill-card:last-child {
+            border-radius: 0 0 12px 12px;
+        }
+        .skill-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0.8rem 1rem;
+            gap: 1rem;
+            align-items: flex-start;
         }
         .skill-info {
-            flex: 2;
+            padding-right: 1rem;
         }
         .skill-name {
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #0f172a;
+            margin-bottom: 0.3rem;
         }
         .competence {
             display: inline-block;
             background: #e2e8f0;
-            padding: 0.1rem 0.4rem;
+            padding: 0.15rem 0.5rem;
             border-radius: 20px;
             font-size: 0.6rem;
             font-family: monospace;
-            margin: 0.15rem 0.15rem 0 0;
-        }
-        .project-info {
-            flex: 3;
+            margin: 0.2rem 0.2rem 0 0;
         }
         .project-title {
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #1e3a5f;
+            margin-bottom: 0.2rem;
         }
         .project-desc {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             color: #475569;
         }
         
         /* ГОРИЗОНТАЛЬНАЯ КОНСОЛЬ */
+        .console-wrapper {
+            background: #1e293b;
+            border-top: 1px solid #e2e8f0;
+        }
         .console-horizontal {
             background: #1e293b;
-            padding: 0.6rem 0.8rem;
+            padding: 0.6rem 1rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -118,7 +150,7 @@
         
         select {
             flex: 2;
-            min-width: 200px;
+            min-width: 220px;
             padding: 0.4rem 0.6rem;
             background: #0f172a;
             color: #e2e8f0;
@@ -159,15 +191,41 @@
             white-space: nowrap;
         }
         
-        /* Результат выполнения — выпадающая область */
+        /* Панель с результатом */
         .result-panel {
             background: #0f172a;
             border-top: 1px solid #334155;
             padding: 0.8rem;
-            display: none;
         }
-        .result-panel.show {
-            display: block;
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        .toggle-btn {
+            background: #334155;
+            color: #e2e8f0;
+            border: none;
+            border-radius: 6px;
+            padding: 0.25rem 0.8rem;
+            font-size: 0.65rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle-btn:hover {
+            background: #475569;
+        }
+        .query-display {
+            background: #0f172a;
+            padding: 0.5rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.6rem;
+            color: #94a3b8;
+            margin-bottom: 0.8rem;
+            border: 1px solid #334155;
+            overflow-x: auto;
         }
         .result-table {
             width: 100%;
@@ -197,7 +255,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem;
+            padding: 0.3rem;
             color: #94a3b8;
             font-size: 0.7rem;
         }
@@ -220,7 +278,7 @@
             padding: 0.6rem;
             font-size: 0.7rem;
             border-left: 3px solid #3b82f6;
-            margin: 0.6rem 0.8rem;
+            margin: 0.6rem 1rem 0.8rem 1rem;
         }
         .preview-card code {
             background: #e2e8f0;
@@ -242,7 +300,14 @@
             text-decoration: none;
         }
         
-        @media (max-width: 900px) {
+        @media (max-width: 800px) {
+            .skill-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .skills-header {
+                display: none;
+            }
             .console-horizontal {
                 flex-direction: column;
                 align-items: stretch;
@@ -263,67 +328,84 @@
     3 года 4 месяца · SQL · BPMN · REST API · Python · PostgreSQL
 </div>
 
+<!-- ДИСКЛЕЙМЕР -->
+<div class="disclaimer">
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.<br>
+    Исходные данные являются <strong>синтетическими (демонстрационными)</strong> или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.<br>
+    🔗 Код, схемы и спецификации можно посмотреть в <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io" target="_blank">репозитории GitHub</a>.
+</div>
+
 <h2>🛠 Навыки</h2>
 
-<!-- ========== SQL КАРТОЧКА С ГОРИЗОНТАЛЬНОЙ КОНСОЛЬЮ ========== -->
+<!-- Заголовки столбиков -->
+<div class="skills-header">
+    <span>📌 Навыки и компетенции</span>
+    <span>📁 Пример проекта</span>
+</div>
+
+<!-- ========== SQL КАРТОЧКА ========== -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">📊</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">SQL</div>
+            <div class="skill-name">📊 SQL</div>
             <span class="competence">CASE WHEN</span>
             <span class="competence">LAG()</span>
             <span class="competence">CTE</span>
             <span class="competence">подзапросы</span>
+            <span class="competence">оконные функции</span>
         </div>
         <div class="project-info">
             <div class="project-title">Битрикс24: аналитика сделок</div>
-            <div class="project-desc">Воронка, рейтинг, прогноз, конверсия</div>
+            <div class="project-desc">Воронка продаж, рейтинг менеджеров, прогноз, конверсия между стадиями</div>
         </div>
     </div>
     
-    <!-- Горизонтальная консоль -->
-    <div class="console-horizontal">
-        <div class="console-label">
-            <div class="console-dot red"></div>
-            <div class="console-dot yellow"></div>
-            <div class="console-dot green"></div>
-            <span>SQL&gt;</span>
+    <div class="console-wrapper">
+        <div class="console-horizontal">
+            <div class="console-label">
+                <div class="console-dot red"></div>
+                <div class="console-dot yellow"></div>
+                <div class="console-dot green"></div>
+                <span>SQL&gt;</span>
+            </div>
+            <select id="querySelect">
+                <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
+                <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
+                <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
+                <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
+                <option value="5">🔄 Конверсия — LAG оконная</option>
+                <option value="6">📉 Проигрыши — подзапрос IN</option>
+            </select>
+            <button class="run-btn" id="runBtn">▶ Выполнить</button>
+            <div class="result-inline" id="resultInline">
+                ⚡ выбери запрос и нажми «Выполнить»
+            </div>
         </div>
-        <select id="querySelect">
-            <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
-            <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
-            <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
-            <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
-            <option value="5">🔄 Конверсия — LAG оконная</option>
-            <option value="6">📉 Проигрыши — подзапрос IN</option>
-        </select>
-        <button class="run-btn" id="runBtn">▶ Выполнить</button>
-        <div class="result-inline" id="resultInline">
-            готов к работе
+        
+        <div class="result-panel" id="resultPanel" style="display: none;">
+            <div class="result-header">
+                <span style="color:#94a3b8; font-size:0.7rem;">📋 Результат выполнения</span>
+                <button class="toggle-btn" id="toggleBtn">Скрыть</button>
+            </div>
+            <div class="query-display" id="queryDisplay"></div>
+            <div id="resultTableArea"></div>
         </div>
-    </div>
-    
-    <!-- Панель с полным результатом (появляется после выполнения) -->
-    <div class="result-panel" id="resultPanel">
-        <div class="query-display" id="queryDisplay" style="background:#0f172a; padding:0.5rem; border-radius:6px; font-family:monospace; font-size:0.6rem; color:#94a3b8; margin-bottom:0.8rem; border:1px solid #334155;"></div>
-        <div id="resultTableArea"></div>
     </div>
 </div>
 
 <!-- BPMN Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">🔄</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">BPMN 2.0</div>
+            <div class="skill-name">🔄 BPMN 2.0</div>
             <span class="competence">пулы/дорожки</span>
             <span class="competence">шлюзы</span>
+            <span class="competence">события</span>
             <span class="competence">AS-IS / TO-BE</span>
         </div>
         <div class="project-info">
             <div class="project-title">Промбезопасность: согласование заявок</div>
-            <div class="project-desc">Оптимизация процесса, сокращение ручного ввода</div>
+            <div class="project-desc">Оптимизация процесса согласования, сокращение ручного ввода</div>
         </div>
     </div>
     <div class="preview-card">
@@ -335,13 +417,13 @@
 
 <!-- REST API Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">🔌</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">REST API / OpenAPI</div>
+            <div class="skill-name">🔌 REST API / OpenAPI</div>
             <span class="competence">OpenAPI 3.0</span>
             <span class="competence">Swagger</span>
             <span class="competence">JSON</span>
+            <span class="competence">CRUD</span>
         </div>
         <div class="project-info">
             <div class="project-title">Учётная система КБ + склад</div>
@@ -357,13 +439,13 @@
 
 <!-- Postman Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">📮</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">Postman</div>
+            <div class="skill-name">📮 Postman</div>
             <span class="competence">коллекции</span>
             <span class="competence">env variables</span>
             <span class="competence">тесты</span>
+            <span class="competence">авторизация</span>
         </div>
         <div class="project-info">
             <div class="project-title">Тестирование интеграций</div>
@@ -379,13 +461,13 @@
 
 <!-- Python Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">🐍</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">Python</div>
+            <div class="skill-name">🐍 Python</div>
             <span class="competence">requests</span>
             <span class="competence">psycopg2</span>
             <span class="competence">schedule</span>
+            <span class="competence">pandas</span>
         </div>
         <div class="project-info">
             <div class="project-title">Автоматизация выгрузок</div>
@@ -401,13 +483,13 @@
 
 <!-- PostgreSQL Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">🗄️</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">PostgreSQL</div>
+            <div class="skill-name">🗄️ PostgreSQL</div>
             <span class="competence">DDL</span>
             <span class="competence">индексы</span>
             <span class="competence">внешние ключи</span>
+            <span class="competence">нормализация</span>
         </div>
         <div class="project-info">
             <div class="project-title">Модель данных для склада</div>
@@ -423,13 +505,13 @@
 
 <!-- Требования Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">📋</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">Управление требованиями</div>
+            <div class="skill-name">📋 Управление требованиями</div>
             <span class="competence">SRS</span>
             <span class="competence">User Stories</span>
             <span class="competence">Use Cases</span>
+            <span class="competence">MoSCoW</span>
         </div>
         <div class="project-info">
             <div class="project-title">Учёт материалов КБ</div>
@@ -438,20 +520,20 @@
     </div>
     <div class="preview-card">
         📄 <strong>SRS</strong>: 23 функциональных требования<br>
-        👥 <strong>Use Case</strong>: "Конструктор создаёт заявку"<br>
-        🎯 <strong>MoSCoW</strong>: MUST — учёт остатков
+        👥 <strong>Use Case</strong>: "Конструктор создаёт заявку на материал"<br>
+        🎯 <strong>MoSCoW</strong>: MUST — учёт остатков, COULD — автозаказ
     </div>
 </div>
 
 <!-- Git Карточка -->
 <div class="skill-card">
-    <div class="skill-header">
-        <div class="skill-icon">🐙</div>
+    <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">Git / GitHub</div>
+            <div class="skill-name">🐙 Git / GitHub</div>
             <span class="competence">commits</span>
             <span class="competence">branches</span>
-            <span class="competence">Pages</span>
+            <span class="competence">GitHub Pages</span>
+            <span class="competence">README</span>
         </div>
         <div class="project-info">
             <div class="project-title">Версионирование</div>
@@ -461,7 +543,7 @@
     <div class="preview-card">
         🌿 main → production<br>
         🌿 dev → разработка<br>
-        🚀 <a href="#" style="font-size:0.7rem;">GitHub Pages</a>
+        🚀 <a href="#" style="font-size:0.7rem;">GitHub Pages</a> — этот сайт
     </div>
 </div>
 
@@ -472,7 +554,7 @@
     🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
 </div>
 
-<footer>🚀 GitHub Pages | Горизонтальная SQL-консоль — выбери запрос и нажми «Выполнить»</footer>
+<footer>🚀 GitHub Pages | Горизонтальная SQL-консоль — выбери запрос, нажми «Выполнить», результат можно скрыть/раскрыть</footer>
 
 <script>
     const results = {
@@ -523,8 +605,10 @@
     const resultPanel = document.getElementById('resultPanel');
     const queryDisplay = document.getElementById('queryDisplay');
     const resultTableArea = document.getElementById('resultTableArea');
+    const toggleBtn = document.getElementById('toggleBtn');
 
     let isRunning = false;
+    let isPanelVisible = false;
 
     async function executeQuery() {
         if (isRunning) return;
@@ -532,9 +616,7 @@
         runBtn.classList.add('running');
         runBtn.textContent = '⏳ Выполнение...';
         resultInline.innerHTML = '<div class="loading"><div class="spinner"></div> Выполняется...</div>';
-        resultPanel.classList.remove('show');
         
-        // Имитация задержки выполнения
         await new Promise(resolve => setTimeout(resolve, 600));
         
         const val = select.value;
@@ -543,7 +625,9 @@
         if (data) {
             queryDisplay.innerHTML = data.sql.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
             resultTableArea.innerHTML = renderTable(data.cols, data.rows) + `<div class="result-stats">📊 ${data.rows.length} строк возвращено</div>`;
-            resultPanel.classList.add('show');
+            resultPanel.style.display = 'block';
+            isPanelVisible = true;
+            toggleBtn.textContent = 'Скрыть';
             resultInline.innerHTML = `✅ Готово — ${data.rows.length} строк`;
         } else {
             resultInline.innerHTML = '❌ Ошибка выполнения';
@@ -554,18 +638,32 @@
         isRunning = false;
     }
 
+    function togglePanel() {
+        if (isPanelVisible) {
+            resultPanel.style.display = 'none';
+            toggleBtn.textContent = 'Раскрыть';
+            isPanelVisible = false;
+        } else {
+            resultPanel.style.display = 'block';
+            toggleBtn.textContent = 'Скрыть';
+            isPanelVisible = true;
+        }
+    }
+
     runBtn.addEventListener('click', executeQuery);
+    toggleBtn.addEventListener('click', togglePanel);
     
-    // При смене запроса — сбрасываем результат
     select.addEventListener('change', () => {
-        resultPanel.classList.remove('show');
-        resultInline.innerHTML = '⚡ выбери запрос и нажми "Выполнить"';
+        if (isPanelVisible) {
+            resultPanel.style.display = 'none';
+            isPanelVisible = false;
+            toggleBtn.textContent = 'Раскрыть';
+        }
+        resultInline.innerHTML = '⚡ выбери запрос и нажми «Выполнить»';
         queryDisplay.innerHTML = '';
         resultTableArea.innerHTML = '';
     });
 </script>
 
-</body>
-</html>
 </body>
 </html>
