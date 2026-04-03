@@ -29,7 +29,6 @@
             font-size: 0.9rem;
         }
         
-        /* Дисклеймер */
         .disclaimer {
             background: #fef9c3;
             border-left: 4px solid #eab308;
@@ -47,7 +46,21 @@
             color: #1e293b;
         }
         
-        /* ========== АККОРДЕОН ========== */
+        /* ПОДСКАЗКА */
+        .hint {
+            background: #e2e8f0;
+            border-radius: 20px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.65rem;
+            color: #475569;
+            display: inline-block;
+            margin-bottom: 0.8rem;
+        }
+        .hint::before {
+            content: "💡 ";
+        }
+        
+        /* АККОРДЕОН */
         .accordion-item {
             background: white;
             border-radius: 12px;
@@ -65,6 +78,7 @@
             background: white;
             gap: 1rem;
             flex-wrap: wrap;
+            transition: background 0.2s;
         }
         .accordion-header:hover {
             background: #f8fafc;
@@ -73,7 +87,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            min-width: 140px;
+            min-width: 120px;
         }
         .skill-icon {
             font-size: 1.4rem;
@@ -104,6 +118,16 @@
         .project-preview strong {
             color: #1e3a5f;
         }
+        .expand-area {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .expand-hint {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            white-space: nowrap;
+        }
         .expand-btn {
             background: none;
             border: none;
@@ -116,9 +140,10 @@
         }
         .expand-btn:hover {
             background: #e2e8f0;
+            color: #3b82f6;
         }
         
-        /* Развернутая панель */
+        /* Плавное раскрытие */
         .accordion-content {
             display: none;
             border-top: 1px solid #e2e8f0;
@@ -126,12 +151,18 @@
         }
         .accordion-content.active {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         .content-inner {
             padding: 1rem;
         }
         
-        /* Консоль внутри аккордеона */
+        /* Консоль */
         .console-compact {
             background: #1e293b;
             border-radius: 10px;
@@ -286,8 +317,11 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .expand-btn {
+            .expand-area {
                 align-self: flex-end;
+            }
+            .expand-hint {
+                font-size: 0.55rem;
             }
         }
     </style>
@@ -300,10 +334,13 @@
 </div>
 
 <div class="disclaimer">
-    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на  <strong>реальном опыте</strong> работы в коммерческой разработке. Исходные данные являются синтетическими (демонстрационными) или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке. Исходные данные являются синтетическими (демонстрационными) или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.
 </div>
 
 <h2>🛠 Навыки</h2>
+
+<!-- ПОДСКАЗКА -->
+<div class="hint">Нажми на любой блок, чтобы раскрыть детали и интерактив</div>
 
 <!-- ===== SQL ===== -->
 <div class="accordion-item">
@@ -322,7 +359,10 @@
         <div class="project-preview">
             <strong>Битрикс24:</strong> воронка, рейтинг, прогноз, конверсия
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -368,7 +408,10 @@
         <div class="project-preview">
             <strong>Логистика:</strong> расчёт КП с 3 дней → 4 часа
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -403,7 +446,10 @@
         <div class="project-preview">
             <strong>Складской учёт:</strong> материалы, поставки, остатки
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -455,7 +501,10 @@
         <div class="project-preview">
             <strong>Учёт материалов КБ:</strong> полный цикл требований
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -502,7 +551,10 @@
         <div class="project-preview">
             <strong>КБ + склад:</strong> интеграция с CRM
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -530,7 +582,10 @@
         <div class="project-preview">
             <strong>Автоматизация:</strong> API → PostgreSQL по расписанию
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -558,7 +613,10 @@
         <div class="project-preview">
             <strong>Версионирование:</strong> код + документация
         </div>
-        <button class="expand-btn">▶</button>
+        <div class="expand-area">
+            <span class="expand-hint">нажми</span>
+            <button class="expand-btn">▶</button>
+        </div>
     </div>
     <div class="accordion-content">
         <div class="content-inner">
@@ -578,12 +636,12 @@
     🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
 </div>
 
-<footer>🚀 GitHub Pages | Нажми на навык → раскроется интерактив</footer>
+<footer>🚀 GitHub Pages | Нажми на любой блок — раскроются детали</footer>
 
 <script>
     // Функция раскрытия аккордеона
     function toggleAccordion(header) {
-        const item = header.parentElement;
+        const item = header.closest('.accordion-item');
         const content = item.querySelector('.accordion-content');
         const btn = header.querySelector('.expand-btn');
         
