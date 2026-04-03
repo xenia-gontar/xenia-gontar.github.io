@@ -289,8 +289,8 @@
             font-size: 0.65rem;
         }
         
-        /* Стили для диаграмм и схем */
-        .diagram-tab, .schema-tab {
+        /* Стили для вкладок */
+        .diagram-tab, .schema-tab, .req-tab {
             padding: 0.4rem 1.2rem;
             border: none;
             border-radius: 32px;
@@ -299,15 +299,15 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .diagram-tab.active, .schema-tab.active {
+        .diagram-tab.active, .schema-tab.active, .req-tab.active {
             background: #3b82f6;
             color: white;
         }
-        .diagram-tab:not(.active), .schema-tab:not(.active) {
+        .diagram-tab:not(.active), .schema-tab:not(.active), .req-tab:not(.active) {
             background: transparent;
             color: #475569;
         }
-        .diagram-tab:not(.active):hover, .schema-tab:not(.active):hover {
+        .diagram-tab:not(.active):hover, .schema-tab:not(.active):hover, .req-tab:not(.active):hover {
             background: #e2e8f0;
         }
         
@@ -354,7 +354,7 @@
 
 <!-- ДИСКЛЕЙМЕР -->
 <div class="disclaimer">
-    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке. <br>
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.<br>
     Исходные данные являются <strong>синтетическими (демонстрационными)</strong> или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.<br>
     🔗 Код, схемы и спецификации можно посмотреть в <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io" target="_blank">репозитории GitHub</a>.
 </div>
@@ -434,10 +434,10 @@
     
     <div style="padding: 0.5rem 1rem 0 1rem;">
         <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content;">
-            <button class="diagram-tab active" data-diagram="asis" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: all 0.2s; background: #3b82f6; color: white;">
+            <button class="diagram-tab active" data-diagram="asis" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: #3b82f6; color: white;">
                 📋 AS-IS (как было)
             </button>
-            <button class="diagram-tab" data-diagram="tobe" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: all 0.2s; background: transparent; color: #475569;">
+            <button class="diagram-tab" data-diagram="tobe" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
                 🚀 TO-BE (как стало)
             </button>
         </div>
@@ -516,7 +516,7 @@
                             id (PK) → int<br>
                             name → varchar(50)<br>
                             short_name → varchar(10)<br>
-                            dimension → varchar(20)<br>
+                            dimension → varchar(20) <span style="color: #64748b;">(шт / м² / кг / м)</span><br>
                             is_metric → boolean
                         </div>
                     </div>
@@ -525,7 +525,7 @@
                         <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
                             id (PK) → bigint<br>
                             material_id (FK) → bigint<br>
-                            type → varchar(20)<br>
+                            type → varchar(20) <span style="color: #64748b;">(income/outcome)</span><br>
                             quantity → numeric<br>
                             document_number → varchar(50)<br>
                             movement_date → date <span style="color: #3b82f6;">INDEX</span><br>
@@ -546,7 +546,78 @@
                 </div>
             </div>
             <div id="schemaCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
-                📊 <strong>4 таблицы</strong> — номенклатура (артикул, тип, ед.изм., остаток), справочник единиц, движения по складу, материализованное представление остатков
+                📊 <strong>4 таблицы</strong> — номенклатура (артикул, тип, ед.изм.), справочник единиц, движения по складу, материализованное представление остатков
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== УПРАВЛЕНИЕ ТРЕБОВАНИЯМИ ========== -->
+<div class="skill-card">
+    <div class="skill-row">
+        <div class="skill-info">
+            <div class="skill-name">📋 Управление требованиями</div>
+            <span class="competence">SRS</span>
+            <span class="competence">User Stories</span>
+            <span class="competence">Use Cases</span>
+            <span class="competence">MoSCoW</span>
+            <span class="competence">матрица трассировки</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Учёт материалов КБ: требования к системе</div>
+            <div class="project-desc">Полный цикл: сбор → документация → приоритизация → трассировка</div>
+        </div>
+    </div>
+    
+    <div style="padding: 0.5rem 1rem 0 1rem;">
+        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content; flex-wrap: wrap;">
+            <button class="req-tab active" data-req="user-stories" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: #3b82f6; color: white;">
+                📝 User Stories
+            </button>
+            <button class="req-tab" data-req="use-cases" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
+                🔄 Use Cases
+            </button>
+            <button class="req-tab" data-req="requirements" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
+                📋 Функциональные требования
+            </button>
+            <button class="req-tab" data-req="moscow" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
+                🎯 MoSCoW
+            </button>
+        </div>
+    </div>
+    
+    <div style="padding: 1rem;">
+        <div id="reqPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
+            <div id="reqContent" style="padding: 1rem;">
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #3b82f6;">
+                        <div style="font-weight: 600; font-size: 0.8rem;">US-01 | Приоритет: HIGH</div>
+                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                            <strong>Как</strong> конструктор, <strong>я хочу</strong> видеть текущие остатки материалов на складе, 
+                            <strong>чтобы</strong> понимать, что можно использовать в проекте без дополнительного заказа.
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: отображение остатков в реальном времени, фильтр по артикулу</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #22c55e;">
+                        <div style="font-weight: 600; font-size: 0.8rem;">US-02 | Приоритет: MEDIUM</div>
+                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                            <strong>Как</strong> кладовщик, <strong>я хочу</strong> фиксировать приход и расход материалов,
+                            <strong>чтобы</strong> остатки в системе всегда соответствовали реальному складу.
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: внесение движения за 30 секунд, автоматический пересчёт остатка</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #eab308;">
+                        <div style="font-weight: 600; font-size: 0.8rem;">US-03 | Приоритет: LOW</div>
+                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                            <strong>Как</strong> руководитель, <strong>я хочу</strong> получать уведомление о снижении остатков ниже минимума,
+                            <strong>чтобы</strong> вовремя инициировать закупку.
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: email-уведомление при min_stock, настраиваемый порог</div>
+                    </div>
+                </div>
+            </div>
+            <div id="reqCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
+                📝 <strong>User Stories</strong> — 3 ключевых сценария использования системы учёта материалов (конструктор, кладовщик, руководитель)
             </div>
         </div>
     </div>
@@ -616,27 +687,6 @@
     </div>
 </div>
 
-<!-- ========== УПРАВЛЕНИЕ ТРЕБОВАНИЯМИ ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">📋 Управление требованиями</div>
-            <span class="competence">SRS</span>
-            <span class="competence">User Stories</span>
-            <span class="competence">Use Cases</span>
-        </div>
-        <div class="project-info">
-            <div class="project-title">Учёт материалов КБ</div>
-            <div class="project-desc">Полная документация требований</div>
-        </div>
-    </div>
-    <div class="preview-card">
-        📄 <strong>SRS</strong>: 23 функциональных требования<br>
-        👥 <strong>Use Case</strong>: "Конструктор создаёт заявку на материал"<br>
-        🎯 <strong>MoSCoW</strong>: MUST — учёт остатков, COULD — автозаказ
-    </div>
-</div>
-
 <!-- ========== GIT ========== -->
 <div class="skill-card">
     <div class="skill-row">
@@ -665,7 +715,7 @@
     🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
 </div>
 
-<footer>🚀 GitHub Pages | SQL-консоль интерактивная — выбери запрос, нажми «Выполнить»</footer>
+<footer>🚀 GitHub Pages | Интерактивное портфолио системного аналитика</footer>
 
 <script>
     // ========== SQL ДАННЫЕ ==========
@@ -705,9 +755,9 @@
     function renderTable(cols, rows) {
         let html = '<table class="result-table"><thead><tr>';
         cols.forEach(c => html += `<th>${c}</th>`);
-        html += '<tr></thead><tbody>';
+        html += '</tr></thead><tbody>';
         rows.forEach(r => { html += '<tr>'; r.forEach(c => html += `<td>${c}</td>`); html += '</tr>'; });
-        html += '</tbody></tr>';
+        html += '</tbody></table>';
         return html;
     }
 
@@ -997,6 +1047,131 @@
     document.querySelectorAll('.schema-tab').forEach(btn => {
         btn.addEventListener('click', () => {
             switchSchemaView(btn.dataset.schema);
+        });
+    });
+
+    // ========== УПРАВЛЕНИЕ ТРЕБОВАНИЯМИ ==========
+    const reqData = {
+        "user-stories": {
+            content: `
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #3b82f6;">
+                        <div style="font-weight: 600; font-size: 0.8rem;">US-01 | Приоритет: HIGH</div>
+                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                            <strong>Как</strong> конструктор, <strong>я хочу</strong> видеть текущие остатки материалов на складе, 
+                            <strong>чтобы</strong> понимать, что можно использовать в проекте без дополнительного заказа.
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: отображение остатков в реальном времени, фильтр по артикулу</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #22c55e;">
+                        <div style="font-weight: 600; font-size: 0.8rem;">US-02 | Приоритет: MEDIUM</div>
+                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                            <strong>Как</strong> кладовщик, <strong>я хочу</strong> фиксировать приход и расход материалов,
+                            <strong>чтобы</strong> остатки в системе всегда соответствовали реальному складу.
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: внесение движения за 30 секунд, автоматический пересчёт остатка</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #eab308;">
+                        <div style="font-weight: 600; font-size: 0.8rem;">US-03 | Приоритет: LOW</div>
+                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
+                            <strong>Как</strong> руководитель, <strong>я хочу</strong> получать уведомление о снижении остатков ниже минимума,
+                            <strong>чтобы</strong> вовремя инициировать закупку.
+                        </div>
+                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: email-уведомление при min_stock, настраиваемый порог</div>
+                    </div>
+                </div>
+            `,
+            caption: "📝 <strong>User Stories</strong> — 3 ключевых сценария использования системы учёта материалов (конструктор, кладовщик, руководитель)"
+        },
+        "use-cases": {
+            content: `
+                <div style="background: white; border-radius: 8px; padding: 0.75rem;">
+                    <div style="font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">🔄 Use Case: Создание заявки на материал</div>
+                    <div style="font-size: 0.7rem; display: grid; grid-template-columns: 1fr 2fr; gap: 0.3rem;">
+                        <span style="color: #64748b;">Актор:</span><span>Конструктор</span>
+                        <span style="color: #64748b;">Предусловие:</span><span>Пользователь авторизован в системе</span>
+                        <span style="color: #64748b;">Постусловие:</span><span>Заявка создана, ответственный уведомлён</span>
+                        <span style="color: #64748b;">Основной сценарий:</span><span>1. Выбрать материал из справочника<br>2. Указать необходимое количество<br>3. Выбрать дату потребности<br>4. Нажать «Создать заявку»</span>
+                        <span style="color: #64748b;">Альтернативы:</span><span>• Если остаток есть → резервирование<br>• Если остатка нет → создание заказа на закупку</span>
+                    </div>
+                </div>
+            `,
+            caption: "🔄 <strong>Use Case</strong> — детальное описание сценария создания заявки на материал"
+        },
+        "requirements": {
+            content: `
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">FR-01 | Учёт остатков</div>
+                        <div style="font-size: 0.7rem;">Система должна хранить актуальный остаток каждого материала. При каждом движении остаток пересчитывается автоматически.</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">FR-02 | Поиск по артикулу</div>
+                        <div style="font-size: 0.7rem;">Система должна обеспечивать поиск материала по артикулу с автодополнением (по первым 3 символам).</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">FR-03 | История движений</div>
+                        <div style="font-size: 0.7rem;">Система должна хранить историю всех движений (приход/расход) с указанием даты, документа и автора.</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">NFR-01 | Производительность</div>
+                        <div style="font-size: 0.7rem;">Время отклика при поиске по артикулу — не более 0.5 секунд для 10 000+ записей.</div>
+                    </div>
+                </div>
+            `,
+            caption: "📋 <strong>Функциональные и нефункциональные требования</strong> — 4 ключевых требования к системе"
+        },
+        "moscow": {
+            content: `
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #ef4444;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">🔴 MUST HAVE (критически важно)</div>
+                        <div style="font-size: 0.7rem;">• Учёт остатков материалов в реальном времени<br>• Фиксация прихода и расхода<br>• Поиск по артикулу</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #eab308;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">🟡 SHOULD HAVE (важно, но можно позже)</div>
+                        <div style="font-size: 0.7rem;">• Уведомления о снижении остатков<br>• Экспорт отчётов в Excel<br>• История движений</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #3b82f6;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">🔵 COULD HAVE (было бы здорово)</div>
+                        <div style="font-size: 0.7rem;">• Автоматический заказ при мин. остатке<br>• Интеграция с 1С<br>• Мобильное приложение для кладовщика</div>
+                    </div>
+                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #22c55e;">
+                        <div style="font-weight: 600; font-size: 0.75rem;">🟢 WON'T HAVE (в текущей версии не делаем)</div>
+                        <div style="font-size: 0.7rem;">• Штрихкодирование<br>• Прогнозирование остатков на основе ИИ<br>• Интеграция с маркетплейсами</div>
+                    </div>
+                </div>
+            `,
+            caption: "🎯 <strong>MoSCoW</strong> — приоритизация требований для первой версии системы"
+        }
+    };
+
+    function switchReqView(type) {
+        const data = reqData[type];
+        const reqContent = document.getElementById('reqContent');
+        const reqCaption = document.getElementById('reqCaption');
+        
+        if (reqContent && reqCaption) {
+            reqContent.innerHTML = data.content;
+            reqCaption.innerHTML = data.caption;
+        }
+        
+        document.querySelectorAll('.req-tab').forEach(btn => {
+            if (btn.dataset.req === type) {
+                btn.classList.add('active');
+                btn.style.background = '#3b82f6';
+                btn.style.color = 'white';
+            } else {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.color = '#475569';
+            }
+        });
+    }
+
+    document.querySelectorAll('.req-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            switchReqView(btn.dataset.req);
         });
     });
 </script>
