@@ -3,75 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <title>Системный аналитик | Портфолио</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            line-height: 1.5;
+            background: #f5f7fa;
+            color: #1a2a3a;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+            color: #1e3a5f;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid #3b82f6;
+            color: #1e3a5f;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            margin-bottom: 0.25rem;
+            color: #2c5282;
+        }
+        hr {
+            border: none;
+            height: 1px;
+            background: #e2e8f0;
+            margin: 1rem 0;
+        }
+        .note {
+            background: #e6f0ff;
+            padding: 0.75rem 1rem;
+            border-left: 4px solid #3b82f6;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .skill-block {
+            background: white;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .skill-level {
+            color: #3b82f6;
+            font-size: 0.85rem;
+            margin: 0.25rem 0;
+        }
+        .status {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.8rem;
+        }
+        footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.8rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .contacts {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Системный аналитик</h1>
+<h1>📋 Системный аналитик</h1>
+<p><strong>Реальные навыки </strong> Каждый пункт подкреплен артефактом в репозитории.</p>
 
+<div class="note">
+    ⚡ <strong>Принцип портфолио:</strong> Только то, что я реально умею, и примеры, которые можно посмотреть.
+</div>
 
-<hr>
+<h2>🛠 Навыки</h2>
 
-<h2>Навыки</h2>
+<div class="skill-block">
+    <h3>📊 SQL</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>SELECT, JOIN, GROUP BY, оконные функции, подзапросы, CTE</p>
+    <p>✅ <a href="#">Пример запроса с оконными функциями (SQL)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>SQL</h3>
-<p>Уровень: Уверенный (SELECT, JOIN, GROUP BY, оконные функции)</p>
-<p>Ссылка на пример: будет добавлена</p>
+<div class="skill-block">
+    <h3>🔄 BPMN 2.0</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>Моделирование процессов, пулы/дорожки, события, шлюзы</p>
+    <p>✅ <a href="#">Схема процесса согласования (BPMN)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>BPMN 2.0</h3>
-<p>Уровень: Уверенный (моделирование процессов)</p>
-<p>Ссылка на схему: будет добавлена</p>
+<div class="skill-block">
+    <h3>🧩 UML</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>Sequence, Use Case, Activity, State Machine</p>
+    <p>✅ <a href="#">Диаграмма последовательности (UML Sequence)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>UML</h3>
-<p>Уровень: Уверенный (Sequence, Use Case, Activity)</p>
-<p>Ссылка на диаграмму: будет добавлена</p>
+<div class="skill-block">
+    <h3>🔌 REST API / OpenAPI</h3>
+    <div class="skill-level">Уровень: Практический</div>
+    <p>Проектирование эндпоинтов, OpenAPI 3.0 (Swagger), JSON, HTTP</p>
+    <p>✅ <a href="#">Спецификация API (openapi.yaml)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>REST API / OpenAPI</h3>
-<p>Уровень: Практический</p>
-<p>Ссылка на спецификацию: будет добавлена</p>
+<div class="skill-block">
+    <h3>📮 Postman</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>Коллекции, переменные окружения, тестирование API</p>
+    <p>✅ <a href="#">Коллекция Postman</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>Postman</h3>
-<p>Уровень: Уверенный</p>
-<p>Ссылка на коллекцию: будет добавлена</p>
+<div class="skill-block">
+    <h3>🐍 Python</h3>
+    <div class="skill-level">Уровень: Базовый-средний</div>
+    <p>Скрипты для автоматизации, работа с API</p>
+    <p>✅ <a href="#">Скрипт для выгрузки данных из API</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>Python</h3>
-<p>Уровень: Базовый-средний</p>
-<p>Ссылка на скрипт: будет добавлена</p>
+<div class="skill-block">
+    <h3>🗄️ PostgreSQL</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>Создание таблиц, индексы, внешние ключи, запросы</p>
+    <p>✅ <a href="#">Схема БД (DDL)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>PostgreSQL</h3>
-<p>Уровень: Уверенный</p>
-<p>Ссылка на схему БД: будет добавлена</p>
+<div class="skill-block">
+    <h3>🐙 Git / GitHub</h3>
+    <div class="skill-level">Уровень: Базовый-средний</div>
+    <p>Коммиты, ветки, GitHub Pages</p>
+    <p>✅ <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io">Этот репозиторий</a></p>
+</div>
 
-<h3>Git / GitHub</h3>
-<p>Уровень: Базовый-средний</p>
-<p>Ссылка на репозиторий: будет добавлена</p>
+<div class="skill-block">
+    <h3>📈 Apache Superset</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>Дашборды, кросс-фильтрация</p>
+    <p>✅ <a href="#">Скриншот дашборда</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>Apache Superset</h3>
-<p>Уровень: Уверенный</p>
-<p>Ссылка на скриншот дашборда: будет добавлена</p>
+<div class="skill-block">
+    <h3>📋 Управление требованиями</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>SRS, User Stories, Use Cases</p>
+    <p>✅ <a href="#">Пример SRS (документ)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>Управление требованиями</h3>
-<p>Уровень: Уверенный (SRS, User Stories)</p>
-<p>Ссылка на документ: будет добавлена</p>
+<div class="skill-block">
+    <h3>📐 ER-диаграммы</h3>
+    <div class="skill-level">Уровень: Уверенный</div>
+    <p>Моделирование сущностей, связей, нормализация</p>
+    <p>✅ <a href="#">ERD для учета материалов</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>ER-диаграммы</h3>
-<p>Уровень: Уверенный</p>
-<p>Ссылка на ERD: будет добавлена</p>
+<div class="skill-block">
+    <h3>🌿 PlantUML</h3>
+    <div class="skill-level">Уровень: Базовый</div>
+    <p>Диаграммы как код (текстовое описание схем)</p>
+    <p>✅ <a href="#">Исходник диаграммы (.puml)</a> — <span class="status">скоро</span></p>
+</div>
 
-<h3>PlantUML</h3>
-<p>Уровень: Базовый</p>
-<p>Ссылка на исходник: будет добавлена</p>
+<h2>📌 Как это устроено</h2>
+<div class="skill-block">
+    <ul>
+        <li>Каждый навык → ссылка на реальный файл в этом репозитории</li>
+        <li>Сейчас ссылки ведут на заглушки (файлы будут добавлены)</li>
+        <li>Постепенно я заменю заглушки на реальные артефакты</li>
+    </ul>
+</div>
 
-<hr>
+<h2>📂 Планируемая структура артефактов</h2>
+<pre>
+/
+├── index.html
+├── sql/
+│   ├── window_functions.sql
+│   └── schema.sql
+├── diagrams/
+│   ├── approval_process.bpmn
+│   ├── uml_sequence.puml
+│   └── erd.png
+├── specs/
+│   └── openapi.yaml
+├── postman/
+│   └── collection.json
+├── scripts/
+│   └── api_export.py
+├── docs/
+│   └── requirements_example.md
+└── screenshots/
+    └── dashboard.png
+</pre>
 
-<h2>Контакты</h2>
-<p>
-Email: ksugont@email.com<br>
-Telegram: @xenia_gontar<br>
-GitHub: github.com/xenia-gontar
-</p>
+<h2>📬 Контакты</h2>
+<div class="contacts">
+    📧 <a href="mailto:your@email.com">ksugont@email.com</a><br>
+    💬 Telegram: <a href="#">@xenia_gontar</a><br>
+    🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia_gontar</a>
+</div>
 
-<hr>
-<p>Сайт на GitHub Pages | Артефакты добавляются постепенно</p>
+<footer>
+    🚀 Сайт на GitHub Pages | Все артефакты — реальные примеры моей работы<br>
+    Статус: 🔄 постепенное наполнение репозитория файлами
+</footer>
 
 </body>
 </html>
