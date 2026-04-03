@@ -54,7 +54,7 @@
             color: #1e293b;
         }
         
-        /* ШАПКА ТАБЛИЦЫ — тёмно-синяя, отличается от консоли */
+        /* ШАПКА ТАБЛИЦЫ */
         .skills-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -70,7 +70,7 @@
             letter-spacing: 0.3px;
         }
         
-        /* Карточка навыка — белая */
+        /* Карточка навыка */
         .skill-card {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -114,7 +114,7 @@
             color: #475569;
         }
         
-        /* КОНСОЛЬ — тёмная, явно отличается от шапки */
+        /* КОНСОЛЬ — тёмная */
         .console-wrapper {
             background: #1e293b;
             border-top: 1px solid #334155;
@@ -192,7 +192,7 @@
             white-space: nowrap;
         }
         
-        /* Панель с результатом */
+        /* Панель с результатом SQL */
         .result-panel {
             background: #0f172a;
             border-top: 1px solid #334155;
@@ -272,7 +272,7 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Превью для диаграмм */
+        /* Превью для остальных навыков */
         .preview-card {
             background: #f1f5f9;
             border-radius: 8px;
@@ -288,14 +288,27 @@
             border-radius: 4px;
             font-size: 0.65rem;
         }
-        .diagram-placeholder {
-            background: #1e293b;
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            color: #64748b;
-            font-size: 0.7rem;
-            border: 1px dashed #475569;
+        
+        /* Стили для диаграмм (визуальный интерфейс) */
+        .diagram-tab {
+            padding: 0.4rem 1.2rem;
+            border: none;
+            border-radius: 32px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .diagram-tab.active {
+            background: #3b82f6;
+            color: white;
+        }
+        .diagram-tab:not(.active) {
+            background: transparent;
+            color: #475569;
+        }
+        .diagram-tab:not(.active):hover {
+            background: #e2e8f0;
         }
         
         footer {
@@ -341,14 +354,14 @@
 
 <!-- ДИСКЛЕЙМЕР -->
 <div class="disclaimer">
-    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.ь<br>
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.<br>
     Исходные данные являются <strong>синтетическими (демонстрационными)</strong> или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.<br>
     🔗 Код, схемы и спецификации можно посмотреть в <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io" target="_blank">репозитории GitHub</a>.
 </div>
 
 <h2>🛠 Навыки</h2>
 
-<!-- ЗАГОЛОВКИ СТОЛБИКОВ — тёмно-синие -->
+<!-- ЗАГОЛОВКИ СТОЛБИКОВ -->
 <div class="skills-header">
     <span>📌 Навыки и компетенции</span>
     <span>📁 Пример проекта</span>
@@ -409,10 +422,9 @@
     <div class="skill-row">
         <div class="skill-info">
             <div class="skill-name">📊 Моделирование бизнес-процессов</div>
-            <span class="competence">Draw.io / Miro / LucidChart </span>
+            <span class="competence">Draw.io / Miro</span>
             <span class="competence">AS-IS / TO-BE</span>
             <span class="competence">визуализация процессов</span>
-            <span class="competence">выявление узких мест</span>
         </div>
         <div class="project-info">
             <div class="project-title">Логистика: мультимодальные перевозки (авиа + море + ЖД)</div>
@@ -420,36 +432,31 @@
         </div>
     </div>
     
-    <div class="console-wrapper">
-        <div class="console-horizontal">
-            <div class="console-label">
-                <div class="console-dot red"></div>
-                <div class="console-dot yellow"></div>
-                <div class="console-dot green"></div>
-                <span>диаграммы&gt;</span>
-            </div>
-            <select id="diagramSelect">
-                <option value="asis">📋 AS-IS (как было) — Excel, рассылка, 3 дня</option>
-                <option value="tobe">🚀 TO-BE (как стало) — единая форма, 4 часа</option>
-            </select>
-            <button class="run-btn" id="diagramRunBtn">▶ Показать схему</button>
-            <div class="result-inline" id="diagramInline">
-                ⚡ выбери вариант и нажми «Показать схему»
-            </div>
+    <!-- Визуальный переключатель AS-IS / TO-BE -->
+    <div style="padding: 0.5rem 1rem 0 1rem;">
+        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content;">
+            <button class="diagram-tab active" data-diagram="asis" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: all 0.2s; background: #3b82f6; color: white;">
+                📋 AS-IS (как было)
+            </button>
+            <button class="diagram-tab" data-diagram="tobe" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: all 0.2s; background: transparent; color: #475569;">
+                🚀 TO-BE (как стало)
+            </button>
         </div>
-        
-        <div class="result-panel" id="diagramPanel" style="display: none;">
-            <div class="result-header">
-                <span style="color:#94a3b8; font-size:0.7rem;">📐 Схема процесса</span>
-                <button class="toggle-btn" id="diagramToggleBtn">Скрыть</button>
-            </div>
-            <div id="diagramContainer" style="background: #0f172a; border-radius: 8px; padding: 1rem; text-align: center;">
-                <div class="diagram-placeholder">
-                    🖼️ Схема будет добавлена<br>
-                    <span style="font-size: 0.6rem;">(PNG из Draw.io / Miro)</span>
+    </div>
+    
+    <!-- Превью диаграммы -->
+    <div style="padding: 1rem;">
+        <div id="diagramPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
+            <div id="diagramImage" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: #f8fafc;">
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🖼️</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Схема будет добавлена</div>
+                    <div style="font-size: 0.65rem; color: #94a3b8; margin-top: 0.25rem;">AS-IS: Excel-рассылка, 3 отдела, 3 дня</div>
                 </div>
             </div>
-            <div id="diagramStats" style="margin-top: 0.5rem;"></div>
+            <div id="diagramCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
+                📊 AS-IS: Менеджер вручную заполняет Excel → рассылка по email → отделы не видят друг друга → расхождения на стыках → клиент ждёт 3 дня
+            </div>
         </div>
     </div>
 </div>
@@ -700,91 +707,58 @@
         resultTableArea.innerHTML = '';
     });
 
-    // ========== ДИАГРАММЫ ДАННЫЕ ==========
-    const diagrams = {
+    // ========== ДИАГРАММЫ ==========
+    const diagramData = {
         asis: {
             src: "#",
-            alt: "AS-IS: хаотичный расчёт мультимодальной перевозки",
-            stats: "📋 3 отдела | Excel-рассылка | 3 дня ожидания | расхождения на стыках маршрута",
-            description: "Менеджер вручную заполняет Excel → рассылает по email → отделы не видят друг друга → расхождения на стыках → ручной свод → клиент ждёт 3 дня"
+            caption: "📊 AS-IS: Менеджер вручную заполняет Excel → рассылка по email → отделы не видят друг друга → расхождения на стыках → клиент ждёт 3 дня",
+            placeholder: "AS-IS: Excel-рассылка, 3 отдела, 3 дня"
         },
         tobe: {
             src: "#",
-            alt: "TO-BE: оптимизированный расчёт мультимодальной перевозки",
-            stats: "🚀 единая форма | логисты видят маршрут | отмечаются по готовности | автоматическая проверка стыков | 4 часа",
-            description: "Единая форма → все видят маршрут → параллельный расчёт → отметки о готовности → автосвод → клиент получает КП за 4 часа"
+            caption: "🚀 TO-BE: Единая форма → все логисты видят маршрут → параллельный расчёт → отметки о готовности → автоматическая проверка стыков → клиент получает КП за 4 часа",
+            placeholder: "TO-BE: единая форма, параллельный расчёт, 4 часа"
         }
     };
 
-    let diagramPanelVisible = false;
-    const diagramSelect = document.getElementById('diagramSelect');
-    const diagramRunBtn = document.getElementById('diagramRunBtn');
-    const diagramInline = document.getElementById('diagramInline');
-    const diagramPanel = document.getElementById('diagramPanel');
-    const diagramToggleBtn = document.getElementById('diagramToggleBtn');
-    const diagramContainer = document.getElementById('diagramContainer');
-    const diagramStats = document.getElementById('diagramStats');
-
-    function renderDiagram(type) {
-        const data = diagrams[type];
+    function switchDiagram(type) {
+        const data = diagramData[type];
+        const imageContainer = document.getElementById('diagramImage');
+        const captionContainer = document.getElementById('diagramCaption');
         
         if (data.src && data.src !== '#') {
-            diagramContainer.innerHTML = `
-                <img src="${data.src}" 
-                     alt="${data.alt}" 
-                     style="max-width: 100%; 
-                            max-height: 450px; 
-                            border-radius: 8px; 
-                            border: 1px solid #334155;
-                            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);">
-                <div style="margin-top: 0.75rem; font-size: 0.65rem; color: #64748b;">
-                    📍 ${data.alt}
-                </div>
-            `;
+            imageContainer.innerHTML = `<img src="${data.src}" alt="${type}" style="width: 100%; display: block; border-radius: 8px;">`;
         } else {
-            diagramContainer.innerHTML = `
-                <div class="diagram-placeholder">
-                    🖼️ Схема будет добавлена<br>
-                    <span style="font-size: 0.6rem;">AS-IS: Excel-рассылка, 3 отдела, 3 дня<br>TO-BE: единая форма, параллельный расчёт, 4 часа</span>
+            imageContainer.innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🖼️</div>
+                    <div style="font-size: 0.75rem; color: #64748b;">Схема будет добавлена</div>
+                    <div style="font-size: 0.65rem; color: #94a3b8; margin-top: 0.25rem;">${data.placeholder}</div>
                 </div>
             `;
         }
-        diagramStats.innerHTML = `<span style="color: #94a3b8; font-size: 0.65rem;">📊 ${data.stats}</span>`;
+        captionContainer.innerHTML = data.caption;
+        
+        // Обновляем активную кнопку
+        document.querySelectorAll('.diagram-tab').forEach(btn => {
+            if (btn.dataset.diagram === type) {
+                btn.classList.add('active');
+                btn.style.background = '#3b82f6';
+                btn.style.color = 'white';
+            } else {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.color = '#475569';
+            }
+        });
     }
 
-    async function executeDiagram() {
-        const type = diagramSelect.value;
-        
-        diagramRunBtn.classList.add('running');
-        diagramRunBtn.textContent = '⏳ Загрузка...';
-        diagramInline.innerHTML = '<div class="loading"><div class="spinner"></div> Загружаю схему...</div>';
-        
-        await new Promise(resolve => setTimeout(resolve, 500));
-        
-        renderDiagram(type);
-        diagramPanel.style.display = 'block';
-        diagramPanelVisible = true;
-        diagramToggleBtn.textContent = 'Скрыть';
-        diagramInline.innerHTML = `✅ ${type === 'asis' ? 'AS-IS' : 'TO-BE'} — схема готова`;
-        
-        diagramRunBtn.classList.remove('running');
-        diagramRunBtn.textContent = '▶ Показать схему';
-    }
-
-    function toggleDiagramPanel() {
-        if (diagramPanelVisible) {
-            diagramPanel.style.display = 'none';
-            diagramToggleBtn.textContent = 'Раскрыть';
-            diagramPanelVisible = false;
-        } else {
-            diagramPanel.style.display = 'block';
-            diagramToggleBtn.textContent = 'Скрыть';
-            diagramPanelVisible = true;
-        }
-    }
-
-    diagramRunBtn.addEventListener('click', executeDiagram);
-    diagramToggleBtn.addEventListener('click', toggleDiagramPanel);
+    // Навешиваем обработчики на кнопки диаграмм
+    document.querySelectorAll('.diagram-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            switchDiagram(btn.dataset.diagram);
+        });
+    });
 </script>
 
 </body>
