@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Ксения Гонтарь | Портфолио</title>
+    <title> Ксения Гонтарь | Портфолио</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,7 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
             background: #f1f5f9;
@@ -54,22 +54,23 @@
             color: #1e293b;
         }
         
-        /* Таблица с заголовками */
+        /* ШАПКА ТАБЛИЦЫ — тёмно-синяя, отличается от консоли */
         .skills-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            background: #1e293b;
+            background: #1e3a5f;
             border-radius: 12px 12px 0 0;
-            padding: 0.7rem 1rem;
+            padding: 0.8rem 1rem;
             margin-top: 1rem;
         }
         .skills-header span {
             color: white;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
         }
         
-        /* Карточка навыка */
+        /* Карточка навыка — белая */
         .skill-card {
             background: white;
             border-bottom: 1px solid #e2e8f0;
@@ -80,7 +81,7 @@
         .skill-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            padding: 0.8rem 1rem;
+            padding: 0.9rem 1rem;
             gap: 1rem;
             align-items: flex-start;
         }
@@ -113,14 +114,14 @@
             color: #475569;
         }
         
-        /* ГОРИЗОНТАЛЬНАЯ КОНСОЛЬ */
+        /* КОНСОЛЬ — тёмная, явно отличается от шапки */
         .console-wrapper {
             background: #1e293b;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid #334155;
         }
         .console-horizontal {
             background: #1e293b;
-            padding: 0.6rem 1rem;
+            padding: 0.7rem 1rem;
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -271,20 +272,30 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Обычное превью для других навыков */
+        /* Превью для диаграмм */
         .preview-card {
             background: #f1f5f9;
             border-radius: 8px;
-            padding: 0.6rem;
+            padding: 0.7rem;
             font-size: 0.7rem;
             border-left: 3px solid #3b82f6;
             margin: 0.6rem 1rem 0.8rem 1rem;
+            line-height: 1.5;
         }
         .preview-card code {
             background: #e2e8f0;
             padding: 0.1rem 0.3rem;
             border-radius: 4px;
             font-size: 0.65rem;
+        }
+        .diagram-placeholder {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.7rem;
+            border: 1px dashed #475569;
         }
         
         footer {
@@ -323,21 +334,21 @@
 </head>
 <body>
 
-<h1>📋 Fullstack аналитик</h1>
+<h1>📋 Системный аналитик</h1>
 <div class="subhead">
-    3 года 4 месяца · SQL · BPMN · REST API · Python · PostgreSQL
+    3 года 4 месяца · SQL · Моделирование процессов · REST API · Python · PostgreSQL
 </div>
 
 <!-- ДИСКЛЕЙМЕР -->
 <div class="disclaimer">
-    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.<br>
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.ь<br>
     Исходные данные являются <strong>синтетическими (демонстрационными)</strong> или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.<br>
     🔗 Код, схемы и спецификации можно посмотреть в <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io" target="_blank">репозитории GitHub</a>.
 </div>
 
 <h2>🛠 Навыки</h2>
 
-<!-- Заголовки столбиков -->
+<!-- ЗАГОЛОВКИ СТОЛБИКОВ — тёмно-синие -->
 <div class="skills-header">
     <span>📌 Навыки и компетенции</span>
     <span>📁 Пример проекта</span>
@@ -393,29 +404,57 @@
     </div>
 </div>
 
-<!-- BPMN Карточка -->
+<!-- ========== МОДЕЛИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
-            <div class="skill-name">🔄 BPMN 2.0</div>
-            <span class="competence">пулы/дорожки</span>
-            <span class="competence">шлюзы</span>
-            <span class="competence">события</span>
+            <div class="skill-name">📊 Моделирование бизнес-процессов</div>
+            <span class="competence">Draw.io / Miro / LucidChart </span>
             <span class="competence">AS-IS / TO-BE</span>
+            <span class="competence">визуализация процессов</span>
+            <span class="competence">выявление узких мест</span>
         </div>
         <div class="project-info">
-            <div class="project-title">Промбезопасность: согласование заявок</div>
-            <div class="project-desc">Оптимизация процесса согласования, сокращение ручного ввода</div>
+            <div class="project-title">Логистика: мультимодальные перевозки (авиа + море + ЖД)</div>
+            <div class="project-desc">Автоматизация расчёта КП — с 3 дней до 4 часов</div>
         </div>
     </div>
-    <div class="preview-card">
-        <span style="background:#e2e8f0; padding:0.1rem 0.4rem; border-radius:8px; font-size:0.6rem;">AS-IS</span> 3 отдела, 2 согласования, 5 дней<br>
-        <span style="background:#e2e8f0; padding:0.1rem 0.4rem; border-radius:8px; font-size:0.6rem;">TO-BE</span> 1 автоматический шлюз, 1 день<br>
-        🎯 Узкое место: отдел закупок (70% задержек)
+    
+    <div class="console-wrapper">
+        <div class="console-horizontal">
+            <div class="console-label">
+                <div class="console-dot red"></div>
+                <div class="console-dot yellow"></div>
+                <div class="console-dot green"></div>
+                <span>диаграммы&gt;</span>
+            </div>
+            <select id="diagramSelect">
+                <option value="asis">📋 AS-IS (как было) — Excel, рассылка, 3 дня</option>
+                <option value="tobe">🚀 TO-BE (как стало) — единая форма, 4 часа</option>
+            </select>
+            <button class="run-btn" id="diagramRunBtn">▶ Показать схему</button>
+            <div class="result-inline" id="diagramInline">
+                ⚡ выбери вариант и нажми «Показать схему»
+            </div>
+        </div>
+        
+        <div class="result-panel" id="diagramPanel" style="display: none;">
+            <div class="result-header">
+                <span style="color:#94a3b8; font-size:0.7rem;">📐 Схема процесса</span>
+                <button class="toggle-btn" id="diagramToggleBtn">Скрыть</button>
+            </div>
+            <div id="diagramContainer" style="background: #0f172a; border-radius: 8px; padding: 1rem; text-align: center;">
+                <div class="diagram-placeholder">
+                    🖼️ Схема будет добавлена<br>
+                    <span style="font-size: 0.6rem;">(PNG из Draw.io / Miro)</span>
+                </div>
+            </div>
+            <div id="diagramStats" style="margin-top: 0.5rem;"></div>
+        </div>
     </div>
 </div>
 
-<!-- REST API Карточка -->
+<!-- ========== REST API ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
@@ -437,7 +476,7 @@
     </div>
 </div>
 
-<!-- Postman Карточка -->
+<!-- ========== POSTMAN ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
@@ -445,7 +484,6 @@
             <span class="competence">коллекции</span>
             <span class="competence">env variables</span>
             <span class="competence">тесты</span>
-            <span class="competence">авторизация</span>
         </div>
         <div class="project-info">
             <div class="project-title">Тестирование интеграций</div>
@@ -459,7 +497,7 @@
     </div>
 </div>
 
-<!-- Python Карточка -->
+<!-- ========== PYTHON ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
@@ -467,7 +505,6 @@
             <span class="competence">requests</span>
             <span class="competence">psycopg2</span>
             <span class="competence">schedule</span>
-            <span class="competence">pandas</span>
         </div>
         <div class="project-info">
             <div class="project-title">Автоматизация выгрузок</div>
@@ -481,7 +518,7 @@
     </div>
 </div>
 
-<!-- PostgreSQL Карточка -->
+<!-- ========== POSTGRESQL ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
@@ -489,7 +526,6 @@
             <span class="competence">DDL</span>
             <span class="competence">индексы</span>
             <span class="competence">внешние ключи</span>
-            <span class="competence">нормализация</span>
         </div>
         <div class="project-info">
             <div class="project-title">Модель данных для склада</div>
@@ -503,7 +539,7 @@
     </div>
 </div>
 
-<!-- Требования Карточка -->
+<!-- ========== УПРАВЛЕНИЕ ТРЕБОВАНИЯМИ ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
@@ -511,7 +547,6 @@
             <span class="competence">SRS</span>
             <span class="competence">User Stories</span>
             <span class="competence">Use Cases</span>
-            <span class="competence">MoSCoW</span>
         </div>
         <div class="project-info">
             <div class="project-title">Учёт материалов КБ</div>
@@ -525,7 +560,7 @@
     </div>
 </div>
 
-<!-- Git Карточка -->
+<!-- ========== GIT ========== -->
 <div class="skill-card">
     <div class="skill-row">
         <div class="skill-info">
@@ -533,7 +568,6 @@
             <span class="competence">commits</span>
             <span class="competence">branches</span>
             <span class="competence">GitHub Pages</span>
-            <span class="competence">README</span>
         </div>
         <div class="project-info">
             <div class="project-title">Версионирование</div>
@@ -543,7 +577,7 @@
     <div class="preview-card">
         🌿 main → production<br>
         🌿 dev → разработка<br>
-        🚀 <a href="#" style="font-size:0.7rem;">GitHub Pages</a> — этот сайт
+        🚀 GitHub Pages — этот сайт
     </div>
 </div>
 
@@ -554,9 +588,10 @@
     🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
 </div>
 
-<footer>🚀 GitHub Pages | Горизонтальная SQL-консоль — выбери запрос, нажми «Выполнить», результат можно скрыть/раскрыть</footer>
+<footer>🚀 GitHub Pages | SQL-консоль интерактивная — выбери запрос, нажми «Выполнить»</footer>
 
 <script>
+    // ========== SQL ДАННЫЕ ==========
     const results = {
         1: { 
             cols: ["Статус", "Сделок", "Сумма (₽)"], 
@@ -599,6 +634,7 @@
         return html;
     }
 
+    // SQL элементы
     const select = document.getElementById('querySelect');
     const runBtn = document.getElementById('runBtn');
     const resultInline = document.getElementById('resultInline');
@@ -663,6 +699,92 @@
         queryDisplay.innerHTML = '';
         resultTableArea.innerHTML = '';
     });
+
+    // ========== ДИАГРАММЫ ДАННЫЕ ==========
+    const diagrams = {
+        asis: {
+            src: "#",
+            alt: "AS-IS: хаотичный расчёт мультимодальной перевозки",
+            stats: "📋 3 отдела | Excel-рассылка | 3 дня ожидания | расхождения на стыках маршрута",
+            description: "Менеджер вручную заполняет Excel → рассылает по email → отделы не видят друг друга → расхождения на стыках → ручной свод → клиент ждёт 3 дня"
+        },
+        tobe: {
+            src: "#",
+            alt: "TO-BE: оптимизированный расчёт мультимодальной перевозки",
+            stats: "🚀 единая форма | логисты видят маршрут | отмечаются по готовности | автоматическая проверка стыков | 4 часа",
+            description: "Единая форма → все видят маршрут → параллельный расчёт → отметки о готовности → автосвод → клиент получает КП за 4 часа"
+        }
+    };
+
+    let diagramPanelVisible = false;
+    const diagramSelect = document.getElementById('diagramSelect');
+    const diagramRunBtn = document.getElementById('diagramRunBtn');
+    const diagramInline = document.getElementById('diagramInline');
+    const diagramPanel = document.getElementById('diagramPanel');
+    const diagramToggleBtn = document.getElementById('diagramToggleBtn');
+    const diagramContainer = document.getElementById('diagramContainer');
+    const diagramStats = document.getElementById('diagramStats');
+
+    function renderDiagram(type) {
+        const data = diagrams[type];
+        
+        if (data.src && data.src !== '#') {
+            diagramContainer.innerHTML = `
+                <img src="${data.src}" 
+                     alt="${data.alt}" 
+                     style="max-width: 100%; 
+                            max-height: 450px; 
+                            border-radius: 8px; 
+                            border: 1px solid #334155;
+                            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);">
+                <div style="margin-top: 0.75rem; font-size: 0.65rem; color: #64748b;">
+                    📍 ${data.alt}
+                </div>
+            `;
+        } else {
+            diagramContainer.innerHTML = `
+                <div class="diagram-placeholder">
+                    🖼️ Схема будет добавлена<br>
+                    <span style="font-size: 0.6rem;">AS-IS: Excel-рассылка, 3 отдела, 3 дня<br>TO-BE: единая форма, параллельный расчёт, 4 часа</span>
+                </div>
+            `;
+        }
+        diagramStats.innerHTML = `<span style="color: #94a3b8; font-size: 0.65rem;">📊 ${data.stats}</span>`;
+    }
+
+    async function executeDiagram() {
+        const type = diagramSelect.value;
+        
+        diagramRunBtn.classList.add('running');
+        diagramRunBtn.textContent = '⏳ Загрузка...';
+        diagramInline.innerHTML = '<div class="loading"><div class="spinner"></div> Загружаю схему...</div>';
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        renderDiagram(type);
+        diagramPanel.style.display = 'block';
+        diagramPanelVisible = true;
+        diagramToggleBtn.textContent = 'Скрыть';
+        diagramInline.innerHTML = `✅ ${type === 'asis' ? 'AS-IS' : 'TO-BE'} — схема готова`;
+        
+        diagramRunBtn.classList.remove('running');
+        diagramRunBtn.textContent = '▶ Показать схему';
+    }
+
+    function toggleDiagramPanel() {
+        if (diagramPanelVisible) {
+            diagramPanel.style.display = 'none';
+            diagramToggleBtn.textContent = 'Раскрыть';
+            diagramPanelVisible = false;
+        } else {
+            diagramPanel.style.display = 'block';
+            diagramToggleBtn.textContent = 'Скрыть';
+            diagramPanelVisible = true;
+        }
+    }
+
+    diagramRunBtn.addEventListener('click', executeDiagram);
+    diagramToggleBtn.addEventListener('click', toggleDiagramPanel);
 </script>
 
 </body>
