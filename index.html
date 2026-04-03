@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title> Ксения Гонтарь | Портфолио</title>
+    <title>Ксения Гонтарь | Портфолио</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,7 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
             background: #f1f5f9;
@@ -289,8 +289,8 @@
             font-size: 0.65rem;
         }
         
-        /* Стили для диаграмм (визуальный интерфейс) */
-        .diagram-tab {
+        /* Стили для диаграмм и схем */
+        .diagram-tab, .schema-tab {
             padding: 0.4rem 1.2rem;
             border: none;
             border-radius: 32px;
@@ -299,15 +299,15 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .diagram-tab.active {
+        .diagram-tab.active, .schema-tab.active {
             background: #3b82f6;
             color: white;
         }
-        .diagram-tab:not(.active) {
+        .diagram-tab:not(.active), .schema-tab:not(.active) {
             background: transparent;
             color: #475569;
         }
-        .diagram-tab:not(.active):hover {
+        .diagram-tab:not(.active):hover, .schema-tab:not(.active):hover {
             background: #e2e8f0;
         }
         
@@ -354,7 +354,7 @@
 
 <!-- ДИСКЛЕЙМЕР -->
 <div class="disclaimer">
-    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.<br>
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке. <br>
     Исходные данные являются <strong>синтетическими (демонстрационными)</strong> или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.<br>
     🔗 Код, схемы и спецификации можно посмотреть в <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io" target="_blank">репозитории GitHub</a>.
 </div>
@@ -432,7 +432,6 @@
         </div>
     </div>
     
-    <!-- Визуальный переключатель AS-IS / TO-BE -->
     <div style="padding: 0.5rem 1rem 0 1rem;">
         <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content;">
             <button class="diagram-tab active" data-diagram="asis" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: all 0.2s; background: #3b82f6; color: white;">
@@ -444,7 +443,6 @@
         </div>
     </div>
     
-    <!-- Превью диаграммы -->
     <div style="padding: 1rem;">
         <div id="diagramPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
             <div id="diagramImage" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: #f8fafc;">
@@ -456,6 +454,99 @@
             </div>
             <div id="diagramCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
                 📊 AS-IS: Менеджер вручную заполняет Excel → рассылка по email → отделы не видят друг друга → расхождения на стыках → клиент ждёт 3 дня
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== МОДЕЛИРОВАНИЕ ДАННЫХ (СКЛАДСКОЙ УЧЁТ) ========== -->
+<div class="skill-card">
+    <div class="skill-row">
+        <div class="skill-info">
+            <div class="skill-name">🗄️ Моделирование данных (PostgreSQL)</div>
+            <span class="competence">DDL</span>
+            <span class="competence">нормализация (3НФ)</span>
+            <span class="competence">индексы</span>
+            <span class="competence">внешние ключи</span>
+            <span class="competence">материализованные представления</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Складской учёт: материалы + готовая продукция</div>
+            <div class="project-desc">Модель данных для учёта сырья и изделий, единиц измерения, движения по складу и расчёта остатков</div>
+        </div>
+    </div>
+    
+    <div style="padding: 0.5rem 1rem 0 1rem;">
+        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content; flex-wrap: wrap;">
+            <button class="schema-tab active" data-schema="tables" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: #3b82f6; color: white;">
+                📋 Структура таблиц
+            </button>
+            <button class="schema-tab" data-schema="relations" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
+                🔗 Связи и индексы
+            </button>
+            <button class="schema-tab" data-schema="sql" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
+                📝 SQL-схема
+            </button>
+        </div>
+    </div>
+    
+    <div style="padding: 1rem;">
+        <div id="schemaPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
+            <div id="schemaContent" style="padding: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📦 Номенклатура (materials)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            id (PK) → bigint<br>
+                            article → varchar(50) <span style="color: #3b82f6;">UNIQUE INDEX</span><br>
+                            name → varchar(200)<br>
+                            type → varchar(20) <span style="color: #64748b;">(material / product)</span><br>
+                            unit_id (FK) → int<br>
+                            min_stock → numeric<br>
+                            current_stock → numeric<br>
+                            price → numeric<br>
+                            is_active → boolean<br>
+                            created_at → timestamp<br>
+                            updated_at → timestamp
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📏 Единицы (units)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            id (PK) → int<br>
+                            name → varchar(50)<br>
+                            short_name → varchar(10)<br>
+                            dimension → varchar(20)<br>
+                            is_metric → boolean
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">🚚 Движения (movements)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            id (PK) → bigint<br>
+                            material_id (FK) → bigint<br>
+                            type → varchar(20)<br>
+                            quantity → numeric<br>
+                            document_number → varchar(50)<br>
+                            movement_date → date <span style="color: #3b82f6;">INDEX</span><br>
+                            created_by → varchar(100)
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📊 Остатки (stock_mv)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            material_id (PK) → bigint<br>
+                            article → varchar(50)<br>
+                            name → varchar(200)<br>
+                            total_quantity → numeric<br>
+                            last_updated → timestamp<br>
+                            <span style="color: #eab308;">※ материализованное представление</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="schemaCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
+                📊 <strong>4 таблицы</strong> — номенклатура (артикул, тип, ед.изм., остаток), справочник единиц, движения по складу, материализованное представление остатков
             </div>
         </div>
     </div>
@@ -522,27 +613,6 @@
         <code>requests.get(url, headers=api_key)</code><br>
         → JSON → pandas → <code>df.to_sql('orders')</code><br>
         ⏰ Еженощный запуск через schedule
-    </div>
-</div>
-
-<!-- ========== POSTGRESQL ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">🗄️ PostgreSQL</div>
-            <span class="competence">DDL</span>
-            <span class="competence">индексы</span>
-            <span class="competence">внешние ключи</span>
-        </div>
-        <div class="project-info">
-            <div class="project-title">Модель данных для склада</div>
-            <div class="project-desc">Учёт материалов, поставок, остатков</div>
-        </div>
-    </div>
-    <div class="preview-card">
-        📦 <strong>products</strong> (id, name, code)<br>
-        🚚 <strong>shipments</strong> (id, product_id, quantity, date)<br>
-        📊 <strong>stock</strong> (product_id, balance) — материализованное представление
     </div>
 </div>
 
@@ -635,9 +705,9 @@
     function renderTable(cols, rows) {
         let html = '<table class="result-table"><thead><tr>';
         cols.forEach(c => html += `<th>${c}</th>`);
-        html += '</tr></thead><tbody>';
+        html += '<tr></thead><tbody>';
         rows.forEach(r => { html += '<tr>'; r.forEach(c => html += `<td>${c}</td>`); html += '</tr>'; });
-        html += '</tbody></table>';
+        html += '</tbody></tr>';
         return html;
     }
 
@@ -739,7 +809,6 @@
         }
         captionContainer.innerHTML = data.caption;
         
-        // Обновляем активную кнопку
         document.querySelectorAll('.diagram-tab').forEach(btn => {
             if (btn.dataset.diagram === type) {
                 btn.classList.add('active');
@@ -753,10 +822,181 @@
         });
     }
 
-    // Навешиваем обработчики на кнопки диаграмм
     document.querySelectorAll('.diagram-tab').forEach(btn => {
         btn.addEventListener('click', () => {
             switchDiagram(btn.dataset.diagram);
+        });
+    });
+
+    // ========== СХЕМА ДАННЫХ ==========
+    const schemaData = {
+        tables: {
+            content: `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📦 Номенклатура (materials)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            id (PK) → bigint<br>
+                            article → varchar(50) <span style="color: #3b82f6;">UNIQUE INDEX</span><br>
+                            name → varchar(200)<br>
+                            type → varchar(20) <span style="color: #64748b;">(material / product)</span><br>
+                            unit_id (FK) → int<br>
+                            min_stock → numeric<br>
+                            current_stock → numeric<br>
+                            price → numeric<br>
+                            is_active → boolean<br>
+                            created_at → timestamp<br>
+                            updated_at → timestamp
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📏 Единицы (units)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            id (PK) → int<br>
+                            name → varchar(50)<br>
+                            short_name → varchar(10)<br>
+                            dimension → varchar(20) <span style="color: #64748b;">(шт / м² / кг / м)</span><br>
+                            is_metric → boolean
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">🚚 Движения (movements)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            id (PK) → bigint<br>
+                            material_id (FK) → bigint<br>
+                            type → varchar(20) <span style="color: #64748b;">(income/outcome)</span><br>
+                            quantity → numeric<br>
+                            document_number → varchar(50)<br>
+                            movement_date → date <span style="color: #3b82f6;">INDEX</span><br>
+                            created_by → varchar(100)
+                        </div>
+                    </div>
+                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
+                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📊 Остатки (stock_mv)</div>
+                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
+                            material_id (PK) → bigint<br>
+                            article → varchar(50)<br>
+                            name → varchar(200)<br>
+                            total_quantity → numeric<br>
+                            last_updated → timestamp<br>
+                            <span style="color: #eab308;">※ материализованное представление</span>
+                        </div>
+                    </div>
+                </div>
+            `,
+            caption: "📊 <strong>4 таблицы</strong> — номенклатура (артикул, тип, ед.изм.), справочник единиц, движения по складу, материализованное представление остатков"
+        },
+        relations: {
+            content: `
+                <div style="font-family: monospace; font-size: 0.7rem; line-height: 1.8;">
+                    <div style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <strong style="color: #1e3a5f;">🔗 Внешние ключи (FK):</strong><br>
+                        • materials.unit_id → units.id <span style="color: #64748b;">(материал → единица измерения)</span><br>
+                        • movements.material_id → materials.id <span style="color: #64748b;">(движение → материал)</span>
+                    </div>
+                    <div style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <strong style="color: #1e3a5f;">⚡ Индексы:</strong><br>
+                        • materials.article — <span style="color: #3b82f6;">UNIQUE B-tree</span> (быстрый поиск по артикулу)<br>
+                        • movements.movement_date — <span style="color: #3b82f6;">B-tree index</span> (для отчётов по периодам)<br>
+                        • movements.material_id — <span style="color: #3b82f6;">foreign key index</span> (автоматический)
+                    </div>
+                    <div style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px;">
+                        <strong style="color: #1e3a5f;">📈 Материализованное представление (stock_mv):</strong><br>
+                        • Обновляется ежедневно через REFRESH MATERIALIZED VIEW<br>
+                        • Хранит актуальные остатки по каждому материалу<br>
+                        • Ускоряет отчётность в 10+ раз по сравнению с агрегацией на лету
+                    </div>
+                </div>
+            `,
+            caption: "🔗 materials → units (справочник), movements → materials (движения), индексы на article и movement_date, MV для остатков"
+        },
+        sql: {
+            content: `
+                <div style="font-family: monospace; font-size: 0.65rem; line-height: 1.5; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto;">
+                    <span style="color: #94a3b8;">-- Таблица номенклатуры</span><br>
+                    CREATE TABLE materials (<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;article VARCHAR(50) UNIQUE NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;name VARCHAR(200) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;type VARCHAR(20) CHECK (type IN ('material', 'product')),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;unit_id INT REFERENCES units(id),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;min_stock NUMERIC DEFAULT 0,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;current_stock NUMERIC DEFAULT 0,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;price NUMERIC,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;is_active BOOLEAN DEFAULT true,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;created_at TIMESTAMP DEFAULT NOW(),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;updated_at TIMESTAMP DEFAULT NOW()<br>
+                    );<br>
+                    <br>
+                    <span style="color: #94a3b8;">-- Таблица единиц измерения</span><br>
+                    CREATE TABLE units (<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;id SERIAL PRIMARY KEY,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;name VARCHAR(50) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;short_name VARCHAR(10) NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;dimension VARCHAR(20),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;is_metric BOOLEAN DEFAULT true<br>
+                    );<br>
+                    <br>
+                    <span style="color: #94a3b8;">-- Таблица движений по складу</span><br>
+                    CREATE TABLE movements (<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;material_id BIGINT REFERENCES materials(id),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;type VARCHAR(20) CHECK (type IN ('income', 'outcome')),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;quantity NUMERIC NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;document_number VARCHAR(50),<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;movement_date DATE NOT NULL,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;created_by VARCHAR(100)<br>
+                    );<br>
+                    <br>
+                    <span style="color: #94a3b8;">-- Индексы</span><br>
+                    CREATE INDEX idx_movements_date ON movements(movement_date);<br>
+                    <br>
+                    <span style="color: #94a3b8;">-- Материализованное представление остатков</span><br>
+                    CREATE MATERIALIZED VIEW stock_mv AS<br>
+                    SELECT <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;m.id AS material_id,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;m.article,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;m.name,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;COALESCE(SUM(CASE WHEN mv.type = 'income' THEN mv.quantity ELSE -mv.quantity END), 0) AS total_quantity,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;NOW() AS last_updated<br>
+                    FROM materials m<br>
+                    LEFT JOIN movements mv ON m.id = mv.material_id<br>
+                    GROUP BY m.id, m.article, m.name;<br>
+                    <br>
+                    <span style="color: #94a3b8;">-- Обновление материализованного представления</span><br>
+                    REFRESH MATERIALIZED VIEW stock_mv;
+                </div>
+            `,
+            caption: "📝 Полная SQL-схема базы данных складского учёта с индексами и материализованным представлением"
+        }
+    };
+
+    function switchSchemaView(type) {
+        const data = schemaData[type];
+        const schemaContent = document.getElementById('schemaContent');
+        const schemaCaption = document.getElementById('schemaCaption');
+        
+        if (schemaContent && schemaCaption) {
+            schemaContent.innerHTML = data.content;
+            schemaCaption.innerHTML = data.caption;
+        }
+        
+        document.querySelectorAll('.schema-tab').forEach(btn => {
+            if (btn.dataset.schema === type) {
+                btn.classList.add('active');
+                btn.style.background = '#3b82f6';
+                btn.style.color = 'white';
+            } else {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.color = '#475569';
+            }
+        });
+    }
+
+    document.querySelectorAll('.schema-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            switchSchemaView(btn.dataset.schema);
         });
     });
 </script>
