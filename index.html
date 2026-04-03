@@ -11,7 +11,7 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
             background: #f1f5f9;
@@ -34,72 +34,73 @@
             color: #1e293b;
         }
         
-        /* Таблица навыков — компактная */
-        .skills-table {
-            width: 100%;
-            border-collapse: collapse;
+        /* Карточка навыка */
+        .skill-card {
             background: white;
             border-radius: 12px;
+            margin-bottom: 1rem;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
-        .skills-table th {
-            background: #1e293b;
-            color: white;
-            padding: 0.6rem 0.8rem;
-            text-align: left;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-        .skills-table td {
-            padding: 0.8rem;
+        .skill-header {
+            display: flex;
+            align-items: center;
+            padding: 0.7rem 1rem;
+            background: #fafcff;
             border-bottom: 1px solid #e2e8f0;
-            vertical-align: top;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .skills-table tr:hover {
-            background: #f8fafc;
+        .skill-icon {
+            font-size: 1.3rem;
         }
-        
-        /* Ячейка навыка — компактно */
+        .skill-info {
+            flex: 2;
+        }
         .skill-name {
             font-weight: 700;
             font-size: 0.9rem;
-            margin-bottom: 0.3rem;
+            color: #0f172a;
         }
         .competence {
             display: inline-block;
             background: #e2e8f0;
-            padding: 0.15rem 0.4rem;
-            border-radius: 10px;
+            padding: 0.1rem 0.4rem;
+            border-radius: 20px;
             font-size: 0.6rem;
             font-family: monospace;
             margin: 0.15rem 0.15rem 0 0;
         }
-        
-        /* Ячейка проекта */
+        .project-info {
+            flex: 3;
+        }
         .project-title {
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #1e3a5f;
-            margin-bottom: 0.2rem;
         }
         .project-desc {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #475569;
         }
         
-        /* КОНСОЛЬ — компактная и интерактивная */
-        .console {
+        /* ГОРИЗОНТАЛЬНАЯ КОНСОЛЬ */
+        .console-horizontal {
             background: #1e293b;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .console-header {
-            background: #0f172a;
-            padding: 0.4rem 0.6rem;
+            padding: 0.6rem 0.8rem;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .console-label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #0f172a;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
         }
         .console-dot {
             width: 8px;
@@ -109,56 +110,64 @@
         .console-dot.red { background: #ef4444; }
         .console-dot.yellow { background: #eab308; }
         .console-dot.green { background: #22c55e; }
-        .console-title {
+        .console-label span {
             color: #94a3b8;
             font-size: 0.6rem;
-            margin-left: 0.3rem;
+            font-family: monospace;
         }
-        .console-body {
-            padding: 0.6rem;
-        }
-        .query-row {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 0.6rem;
-        }
+        
         select {
-            flex: 1;
-            padding: 0.35rem 0.6rem;
+            flex: 2;
+            min-width: 200px;
+            padding: 0.4rem 0.6rem;
             background: #0f172a;
             color: #e2e8f0;
             border: 1px solid #334155;
             border-radius: 6px;
             font-family: monospace;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             cursor: pointer;
         }
         .run-btn {
-            padding: 0.35rem 1rem;
+            padding: 0.4rem 1rem;
             background: #3b82f6;
             color: white;
             border: none;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             cursor: pointer;
-            transition: all 0.1s;
+            transition: all 0.1s ease;
+            white-space: nowrap;
         }
         .run-btn:active {
-            transform: scale(0.97);
-            background: #2563eb;
+            transform: scale(0.95);
         }
-        .query-display {
+        .run-btn.running {
+            background: #64748b;
+            pointer-events: none;
+        }
+        .result-inline {
+            flex: 3;
             background: #0f172a;
-            padding: 0.5rem;
             border-radius: 6px;
+            padding: 0.3rem 0.6rem;
             font-family: monospace;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             color: #e2e8f0;
             overflow-x: auto;
-            margin-bottom: 0.6rem;
-            border: 1px solid #334155;
-            line-height: 1.3;
+            white-space: nowrap;
+        }
+        
+        /* Результат выполнения — выпадающая область */
+        .result-panel {
+            background: #0f172a;
+            border-top: 1px solid #334155;
+            padding: 0.8rem;
+            display: none;
+        }
+        .result-panel.show {
+            display: block;
         }
         .result-table {
             width: 100%;
@@ -166,31 +175,52 @@
             background: white;
             border-radius: 6px;
             overflow: hidden;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
         }
         .result-table th {
             background: #3b82f6;
             color: white;
-            padding: 4px 6px;
-            font-size: 0.6rem;
+            padding: 5px 8px;
+            font-size: 0.65rem;
         }
         .result-table td {
             border: 1px solid #e2e8f0;
-            padding: 4px 6px;
+            padding: 5px 8px;
         }
         .result-stats {
-            margin-top: 0.3rem;
-            font-size: 0.55rem;
+            margin-top: 0.4rem;
+            font-size: 0.6rem;
             color: #94a3b8;
+            text-align: right;
+        }
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            color: #94a3b8;
+            font-size: 0.7rem;
+        }
+        .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid #334155;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
         /* Обычное превью для других навыков */
         .preview-card {
             background: #f1f5f9;
             border-radius: 8px;
-            padding: 0.5rem;
+            padding: 0.6rem;
             font-size: 0.7rem;
             border-left: 3px solid #3b82f6;
+            margin: 0.6rem 0.8rem;
         }
         .preview-card code {
             background: #e2e8f0;
@@ -212,27 +242,16 @@
             text-decoration: none;
         }
         
-        @media (max-width: 800px) {
-            body { padding: 1rem; }
-            .skills-table, .skills-table tbody, .skills-table tr, .skills-table td {
-                display: block;
+        @media (max-width: 900px) {
+            .console-horizontal {
+                flex-direction: column;
+                align-items: stretch;
             }
-            .skills-table th { display: none; }
-            .skills-table tr {
-                margin-bottom: 1rem;
-                border: 1px solid #e2e8f0;
-                border-radius: 12px;
+            select, .run-btn, .result-inline {
+                width: 100%;
             }
-            .skills-table td {
-                display: flex;
-                padding: 0.6rem;
-            }
-            .skills-table td::before {
-                content: attr(data-label);
-                font-weight: 700;
-                width: 90px;
-                flex-shrink: 0;
-                font-size: 0.7rem;
+            .result-inline {
+                white-space: normal;
             }
         }
     </style>
@@ -246,229 +265,247 @@
 
 <h2>🛠 Навыки</h2>
 
-<table class="skills-table">
-    <thead>
-        <tr>
-            <th style="width: 25%">Навык</th>
-            <th style="width: 30%">Проект</th>
-            <th style="width: 45%">Превью / Демо</th>
-        </tr>
-    </thead>
-    <tbody>
+<!-- ========== SQL КАРТОЧКА С ГОРИЗОНТАЛЬНОЙ КОНСОЛЬЮ ========== -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">📊</div>
+        <div class="skill-info">
+            <div class="skill-name">SQL</div>
+            <span class="competence">CASE WHEN</span>
+            <span class="competence">LAG()</span>
+            <span class="competence">CTE</span>
+            <span class="competence">подзапросы</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Битрикс24: аналитика сделок</div>
+            <div class="project-desc">Воронка, рейтинг, прогноз, конверсия</div>
+        </div>
+    </div>
+    
+    <!-- Горизонтальная консоль -->
+    <div class="console-horizontal">
+        <div class="console-label">
+            <div class="console-dot red"></div>
+            <div class="console-dot yellow"></div>
+            <div class="console-dot green"></div>
+            <span>SQL&gt;</span>
+        </div>
+        <select id="querySelect">
+            <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
+            <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
+            <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
+            <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
+            <option value="5">🔄 Конверсия — LAG оконная</option>
+            <option value="6">📉 Проигрыши — подзапрос IN</option>
+        </select>
+        <button class="run-btn" id="runBtn">▶ Выполнить</button>
+        <div class="result-inline" id="resultInline">
+            готов к работе
+        </div>
+    </div>
+    
+    <!-- Панель с полным результатом (появляется после выполнения) -->
+    <div class="result-panel" id="resultPanel">
+        <div class="query-display" id="queryDisplay" style="background:#0f172a; padding:0.5rem; border-radius:6px; font-family:monospace; font-size:0.6rem; color:#94a3b8; margin-bottom:0.8rem; border:1px solid #334155;"></div>
+        <div id="resultTableArea"></div>
+    </div>
+</div>
 
-        <!-- SQL — с интерактивной консолью -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">📊 SQL</div>
-                <span class="competence">CASE</span>
-                <span class="competence">LAG()</span>
-                <span class="competence">CTE</span>
-                <span class="competence">подзапросы</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Битрикс24: аналитика сделок</div>
-                <div class="project-desc">Воронка, рейтинг, прогноз, конверсия</div>
-            </td>
-            <td data-label="Демо">
-                <div class="console">
-                    <div class="console-header">
-                        <div class="console-dot red"></div>
-                        <div class="console-dot yellow"></div>
-                        <div class="console-dot green"></div>
-                        <span class="console-title">▶ выбери запрос и нажми «Выполнить»</span>
-                    </div>
-                    <div class="console-body">
-                        <div class="query-row">
-                            <select id="querySelect">
-                                <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
-                                <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
-                                <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
-                                <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
-                                <option value="5">🔄 Конверсия — LAG оконная</option>
-                                <option value="6">📉 Проигрыши — подзапрос IN</option>
-                            </select>
-                            <button class="run-btn" id="runQuery">▶ Выполнить</button>
-                        </div>
-                        <div class="query-display" id="queryDisplay">SELECT * FROM deals;</div>
-                        <div id="resultArea"></div>
-                    </div>
-                </div>
-            </td>
-        </tr>
+<!-- BPMN Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">🔄</div>
+        <div class="skill-info">
+            <div class="skill-name">BPMN 2.0</div>
+            <span class="competence">пулы/дорожки</span>
+            <span class="competence">шлюзы</span>
+            <span class="competence">AS-IS / TO-BE</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Промбезопасность: согласование заявок</div>
+            <div class="project-desc">Оптимизация процесса, сокращение ручного ввода</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        <span style="background:#e2e8f0; padding:0.1rem 0.4rem; border-radius:8px; font-size:0.6rem;">AS-IS</span> 3 отдела, 2 согласования, 5 дней<br>
+        <span style="background:#e2e8f0; padding:0.1rem 0.4rem; border-radius:8px; font-size:0.6rem;">TO-BE</span> 1 автоматический шлюз, 1 день<br>
+        🎯 Узкое место: отдел закупок (70% задержек)
+    </div>
+</div>
 
-        <!-- BPMN -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">🔄 BPMN 2.0</div>
-                <span class="competence">пулы</span>
-                <span class="competence">шлюзы</span>
-                <span class="competence">AS-IS/TO-BE</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Промбезопасность: согласование заявок</div>
-                <div class="project-desc">Оптимизация процесса, сокращение ручного ввода</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    <span style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:8px; font-size:0.6rem;">AS-IS</span> 3 отдела, 5 дней<br>
-                    <span style="background:#e2e8f0; padding:0.1rem 0.3rem; border-radius:8px; font-size:0.6rem;">TO-BE</span> 1 шлюз, 1 день<br>
-                    🎯 Узкое место: закупки (70% задержек)
-                </div>
-            </td>
-        </tr>
+<!-- REST API Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">🔌</div>
+        <div class="skill-info">
+            <div class="skill-name">REST API / OpenAPI</div>
+            <span class="competence">OpenAPI 3.0</span>
+            <span class="competence">Swagger</span>
+            <span class="competence">JSON</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Учётная система КБ + склад</div>
+            <div class="project-desc">Интеграция с CRM через REST API</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        <code>POST /orders</code> создание заказа → 201 Created<br>
+        <code>GET /materials</code> получение остатков → JSON<br>
+        <code>PUT /status</code> обновление статуса отгрузки
+    </div>
+</div>
 
-        <!-- REST API -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">🔌 REST API</div>
-                <span class="competence">OpenAPI</span>
-                <span class="competence">Swagger</span>
-                <span class="competence">JSON</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Учётная система КБ + склад</div>
-                <div class="project-desc">Интеграция с CRM через REST API</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    <code>POST /orders</code> → 201 Created<br>
-                    <code>GET /materials</code> → JSON остатки<br>
-                    <code>PUT /status</code> → обновление
-                </div>
-            </td>
-        </tr>
+<!-- Postman Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">📮</div>
+        <div class="skill-info">
+            <div class="skill-name">Postman</div>
+            <span class="competence">коллекции</span>
+            <span class="competence">env variables</span>
+            <span class="competence">тесты</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Тестирование интеграций</div>
+            <div class="project-desc">Сценарии: создание заказа, обновление статуса, ошибки</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        ✅ POST /order → 200 OK<br>
+        ❌ неверный ID → 404 Not Found<br>
+        🔄 переменная {{order_id}} передаётся между запросами
+    </div>
+</div>
 
-        <!-- Postman -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">📮 Postman</div>
-                <span class="competence">коллекции</span>
-                <span class="competence">env</span>
-                <span class="competence">тесты</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Тестирование интеграций</div>
-                <div class="project-desc">Сценарии: заказ, статус, ошибки</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    ✅ POST /order → 200 OK<br>
-                    ❌ неверный ID → 404<br>
-                    🔄 {{order_id}} между запросами
-                </div>
-            </td>
-        </tr>
+<!-- Python Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-info">
+            <div class="skill-name">Python</div>
+            <span class="competence">requests</span>
+            <span class="competence">psycopg2</span>
+            <span class="competence">schedule</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Автоматизация выгрузок</div>
+            <div class="project-desc">API → PostgreSQL по расписанию</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        <code>requests.get(url, headers=api_key)</code><br>
+        → JSON → pandas → <code>df.to_sql('orders')</code><br>
+        ⏰ Еженощный запуск через schedule
+    </div>
+</div>
 
-        <!-- Python -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">🐍 Python</div>
-                <span class="competence">requests</span>
-                <span class="competence">psycopg2</span>
-                <span class="competence">schedule</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Автоматизация выгрузок</div>
-                <div class="project-desc">API → PostgreSQL по расписанию</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    <code>requests.get(url, headers)</code><br>
-                    → pandas → <code>df.to_sql()</code><br>
-                    ⏰ еженощно через schedule
-                </div>
-            </td>
-        </tr>
+<!-- PostgreSQL Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-info">
+            <div class="skill-name">PostgreSQL</div>
+            <span class="competence">DDL</span>
+            <span class="competence">индексы</span>
+            <span class="competence">внешние ключи</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Модель данных для склада</div>
+            <div class="project-desc">Учёт материалов, поставок, остатков</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        📦 <strong>products</strong> (id, name, code)<br>
+        🚚 <strong>shipments</strong> (id, product_id, quantity, date)<br>
+        📊 <strong>stock</strong> (product_id, balance) — материализованное представление
+    </div>
+</div>
 
-        <!-- PostgreSQL -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">🗄️ PostgreSQL</div>
-                <span class="competence">DDL</span>
-                <span class="competence">индексы</span>
-                <span class="competence">FK</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Модель данных для склада</div>
-                <div class="project-desc">товары → поставки → остатки</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    📦 products (id, name, code)<br>
-                    🚚 shipments (product_id, qty, date)<br>
-                    📊 stock — материализованное представление
-                </div>
-            </td>
-        </tr>
+<!-- Требования Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">📋</div>
+        <div class="skill-info">
+            <div class="skill-name">Управление требованиями</div>
+            <span class="competence">SRS</span>
+            <span class="competence">User Stories</span>
+            <span class="competence">Use Cases</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Учёт материалов КБ</div>
+            <div class="project-desc">Полная документация требований</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        📄 <strong>SRS</strong>: 23 функциональных требования<br>
+        👥 <strong>Use Case</strong>: "Конструктор создаёт заявку"<br>
+        🎯 <strong>MoSCoW</strong>: MUST — учёт остатков
+    </div>
+</div>
 
-        <!-- Требования -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">📋 Требования</div>
-                <span class="competence">SRS</span>
-                <span class="competence">User Stories</span>
-                <span class="competence">Use Cases</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Учёт материалов КБ</div>
-                <div class="project-desc">Полная документация</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    📄 23 функциональных требования<br>
-                    👥 "Конструктор создаёт заявку"<br>
-                    🎯 MoSCoW: MUST — учёт остатков
-                </div>
-            </td>
-        </tr>
-
-        <!-- Git -->
-        <tr>
-            <td data-label="Навык">
-                <div class="skill-name">🐙 Git</div>
-                <span class="competence">commits</span>
-                <span class="competence">branches</span>
-                <span class="competence">Pages</span>
-            </td>
-            <td data-label="Проект">
-                <div class="project-title">Версионирование</div>
-                <div class="project-desc">Документация + скрипты + портфолио</div>
-            </td>
-            <td data-label="Демо">
-                <div class="preview-card">
-                    🌿 main → production<br>
-                    🌿 dev → разработка<br>
-                    🚀 <a href="#" style="font-size:0.7rem;">GitHub Pages</a>
-                </div>
-            </td>
-        </tr>
-
-    </tbody>
-</table>
+<!-- Git Карточка -->
+<div class="skill-card">
+    <div class="skill-header">
+        <div class="skill-icon">🐙</div>
+        <div class="skill-info">
+            <div class="skill-name">Git / GitHub</div>
+            <span class="competence">commits</span>
+            <span class="competence">branches</span>
+            <span class="competence">Pages</span>
+        </div>
+        <div class="project-info">
+            <div class="project-title">Версионирование</div>
+            <div class="project-desc">Документация + скрипты + портфолио</div>
+        </div>
+    </div>
+    <div class="preview-card">
+        🌿 main → production<br>
+        🌿 dev → разработка<br>
+        🚀 <a href="#" style="font-size:0.7rem;">GitHub Pages</a>
+    </div>
+</div>
 
 <h2>📬 Контакты</h2>
-<table class="skills-table" style="margin-top: 0;">
-    <tr><td style="width: 25%; font-weight: 600;">📧 Email</td><td><a href="mailto:your@email.com">ksugont@email.com</a></td></tr>
-    <tr><td style="font-weight: 600;">💬 Telegram</td><td><a href="#">@xenia_gontar</a></td></tr>
-    <tr><td style="font-weight: 600;">🐙 GitHub</td><td><a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a></td></tr>
-</table>
+<div class="skill-card" style="padding: 0.8rem;">
+    📧 <a href="mailto:your@email.com">ksugont@email.com</a><br>
+    💬 Telegram: <a href="#">@xenia_gontar</a><br>
+    🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
+</div>
 
-<footer>🚀 GitHub Pages | SQL-консоль интерактивная — нажми «Выполнить»</footer>
+<footer>🚀 GitHub Pages | Горизонтальная SQL-консоль — выбери запрос и нажми «Выполнить»</footer>
 
 <script>
     const results = {
-        1: { cols: ["Статус", "Сделок", "Сумма (₽)"], rows: [["В работе", 15, "5.5M"], ["Успешно", 10, "2.75M"], ["Проиграно", 6, "1.9M"]],
-            sql: "SELECT CASE STAGE_SEMANTIC_ID\n      WHEN 'P' THEN 'В работе'\n      WHEN 'S' THEN 'Успешно'\n      ELSE 'Проиграно'\n   END AS status,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY),0) AS amount\nFROM crm_deal\nGROUP BY STAGE_SEMANTIC_ID;" },
-        2: { cols: ["Менеджер", "Сделок", "Выручка"], rows: [["Анна Смирнова", 6, "1.2M"], ["Елена Козлова", 5, "1.1M"], ["Иван Петров", 5, "0.5M"]],
-            sql: "SELECT ASSIGNED_BY_NAME,\n   SUM(CASE WHEN STAGE_SEMANTIC_ID='S' THEN OPPORTUNITY ELSE 0 END) AS revenue\nFROM crm_deal\nGROUP BY ASSIGNED_BY_NAME\nORDER BY revenue DESC;" },
-        3: { cols: ["Месяц", "Новых", "Выручка"], rows: [["2025-01", 8, "1.5M"], ["2025-02", 10, "1.0M"], ["2025-03", 12, "0.25M"]],
-            sql: "SELECT TO_CHAR(DATE_CREATE, 'YYYY-MM') AS month,\n   COUNT(*) AS new_deals,\n   SUM(OPPORTUNITY) AS revenue\nFROM crm_deal\nGROUP BY TO_CHAR(DATE_CREATE, 'YYYY-MM')\nORDER BY month;" },
-        4: { cols: ["Период", "В работе", "Прогноз"], rows: [["Апрель 2025", 15, "2.75M₽"]],
-            sql: "WITH active AS (\n   SELECT OPPORTUNITY, PROBABILITY/100 AS w\n   FROM crm_deal WHERE STAGE_SEMANTIC_ID='P'\n)\nSELECT 'Апрель 2025' AS period,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY * w),0) AS forecast\nFROM active;" },
-        5: { cols: ["Со стадии", "На стадию", "Переходов"], rows: [["Новая", "Контакт", 25], ["Контакт", "В работе", 20], ["В работе", "Переговоры", 15]],
-            sql: "WITH t AS (\n   SELECT DEAL_ID, STAGE_NAME,\n      LAG(STAGE_NAME) OVER (PARTITION BY DEAL_ID ORDER BY DATE_CREATE) AS prev\n   FROM crm_deal_stage_history\n)\nSELECT prev, STAGE_NAME, COUNT(*)\nFROM t WHERE prev IS NOT NULL\nGROUP BY prev, STAGE_NAME\nORDER BY 3 DESC;" },
-        6: { cols: ["Стадия", "Потерь", "Дней"], rows: [["Переговоры", 3, "7.2"], ["Счёт", 2, "5.5"], ["В работе", 1, "12.0"]],
-            sql: "SELECT STAGE_NAME, COUNT(*), ROUND(AVG(DAYS_IN_STAGE),1)\nFROM crm_deal_stage_history\nWHERE DEAL_ID IN (SELECT DEAL_ID FROM crm_deal WHERE STAGE_SEMANTIC_ID='F')\nGROUP BY STAGE_NAME\nORDER BY 2 DESC;" }
+        1: { 
+            cols: ["Статус", "Сделок", "Сумма (₽)"], 
+            rows: [["В работе", 15, "5 500 000"], ["Успешно", 10, "2 750 000"], ["Проиграно", 6, "1 900 000"]],
+            sql: "SELECT CASE STAGE_SEMANTIC_ID\n      WHEN 'P' THEN 'В работе'\n      WHEN 'S' THEN 'Успешно'\n      ELSE 'Проиграно'\n   END AS status,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY), 0) AS amount\nFROM crm_deal\nGROUP BY STAGE_SEMANTIC_ID;"
+        },
+        2: { 
+            cols: ["Менеджер", "Сделок", "Выручка (₽)"], 
+            rows: [["Анна Смирнова", 6, "1 200 000"], ["Елена Козлова", 5, "1 100 000"], ["Иван Петров", 5, "500 000"], ["Ольга Новикова", 4, "400 000"], ["Дмитрий Сидоров", 3, "120 000"]],
+            sql: "SELECT ASSIGNED_BY_NAME AS manager,\n   COUNT(*) AS deals,\n   SUM(CASE WHEN STAGE_SEMANTIC_ID='S' THEN OPPORTUNITY ELSE 0 END) AS revenue\nFROM crm_deal\nGROUP BY ASSIGNED_BY_NAME\nORDER BY revenue DESC;"
+        },
+        3: { 
+            cols: ["Месяц", "Новых сделок", "Выручка (₽)"], 
+            rows: [["2025-01", 8, "1 500 000"], ["2025-02", 10, "1 000 000"], ["2025-03", 12, "250 000"]],
+            sql: "SELECT TO_CHAR(DATE_CREATE, 'YYYY-MM') AS month,\n   COUNT(*) AS new_deals,\n   SUM(OPPORTUNITY) AS revenue\nFROM crm_deal\nGROUP BY TO_CHAR(DATE_CREATE, 'YYYY-MM')\nORDER BY month;"
+        },
+        4: { 
+            cols: ["Период", "Сделок в работе", "Ожидаемая выручка"], 
+            rows: [["Апрель 2025", 15, "2 750 000 ₽"]],
+            sql: "WITH active_deals AS (\n   SELECT OPPORTUNITY, PROBABILITY/100 AS w\n   FROM crm_deal\n   WHERE STAGE_SEMANTIC_ID = 'P'\n)\nSELECT 'Апрель 2025' AS period,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY * w), 0) AS forecast\nFROM active_deals;"
+        },
+        5: { 
+            cols: ["Со стадии", "На стадию", "Переходов"], 
+            rows: [["Новая", "Контакт", 25], ["Контакт", "В работе", 20], ["В работе", "Переговоры", 15], ["Переговоры", "Успешно", 10], ["Переговоры", "Проиграно", 5]],
+            sql: "WITH transitions AS (\n   SELECT DEAL_ID, STAGE_NAME,\n      LAG(STAGE_NAME) OVER (PARTITION BY DEAL_ID ORDER BY DATE_CREATE) AS prev\n   FROM crm_deal_stage_history\n)\nSELECT prev AS from_stage,\n   STAGE_NAME AS to_stage,\n   COUNT(*) AS cnt\nFROM transitions\nWHERE prev IS NOT NULL\nGROUP BY prev, STAGE_NAME\nORDER BY cnt DESC;"
+        },
+        6: { 
+            cols: ["Стадия", "Потеряно сделок", "Среднее дней"], 
+            rows: [["Переговоры", 3, "7.2"], ["Счёт", 2, "5.5"], ["В работе", 1, "12.0"]],
+            sql: "SELECT STAGE_NAME,\n   COUNT(*) AS lose_count,\n   ROUND(AVG(DAYS_IN_STAGE), 1) AS avg_days\nFROM crm_deal_stage_history\nWHERE DEAL_ID IN (\n   SELECT DEAL_ID FROM crm_deal WHERE STAGE_SEMANTIC_ID = 'F'\n)\nGROUP BY STAGE_NAME\nORDER BY lose_count DESC;"
+        }
     };
 
     function renderTable(cols, rows) {
@@ -481,24 +518,54 @@
     }
 
     const select = document.getElementById('querySelect');
-    const runBtn = document.getElementById('runQuery');
+    const runBtn = document.getElementById('runBtn');
+    const resultInline = document.getElementById('resultInline');
+    const resultPanel = document.getElementById('resultPanel');
     const queryDisplay = document.getElementById('queryDisplay');
-    const resultArea = document.getElementById('resultArea');
+    const resultTableArea = document.getElementById('resultTableArea');
 
-    function update() {
+    let isRunning = false;
+
+    async function executeQuery() {
+        if (isRunning) return;
+        isRunning = true;
+        runBtn.classList.add('running');
+        runBtn.textContent = '⏳ Выполнение...';
+        resultInline.innerHTML = '<div class="loading"><div class="spinner"></div> Выполняется...</div>';
+        resultPanel.classList.remove('show');
+        
+        // Имитация задержки выполнения
+        await new Promise(resolve => setTimeout(resolve, 600));
+        
         const val = select.value;
         const data = results[val];
+        
         if (data) {
             queryDisplay.innerHTML = data.sql.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
-            resultArea.innerHTML = renderTable(data.cols, data.rows) + `<div class="result-stats">📊 ${data.rows.length} строк</div>`;
+            resultTableArea.innerHTML = renderTable(data.cols, data.rows) + `<div class="result-stats">📊 ${data.rows.length} строк возвращено</div>`;
+            resultPanel.classList.add('show');
+            resultInline.innerHTML = `✅ Готово — ${data.rows.length} строк`;
+        } else {
+            resultInline.innerHTML = '❌ Ошибка выполнения';
         }
+        
+        runBtn.classList.remove('running');
+        runBtn.textContent = '▶ Выполнить';
+        isRunning = false;
     }
 
-    runBtn.addEventListener('click', update);
-    select.addEventListener('change', update);
-    update();
+    runBtn.addEventListener('click', executeQuery);
+    
+    // При смене запроса — сбрасываем результат
+    select.addEventListener('change', () => {
+        resultPanel.classList.remove('show');
+        resultInline.innerHTML = '⚡ выбери запрос и нажми "Выполнить"';
+        queryDisplay.innerHTML = '';
+        resultTableArea.innerHTML = '';
+    });
 </script>
 
 </body>
 </html>
+</body>
 </html>
