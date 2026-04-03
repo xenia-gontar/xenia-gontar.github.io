@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Ксения Гонтарь | Портфолио</title>
+    <title> Ксения Гонтарь | Портфолио</title>
     <style>
         * {
             margin: 0;
@@ -11,7 +11,7 @@
         }
         body {
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1300px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 2rem 1.5rem;
             background: #f1f5f9;
@@ -40,13 +40,6 @@
             color: #854d0e;
             line-height: 1.4;
         }
-        .disclaimer strong {
-            color: #a16207;
-        }
-        .disclaimer a {
-            color: #3b82f6;
-            text-decoration: none;
-        }
         
         h2 {
             font-size: 1.3rem;
@@ -54,86 +47,102 @@
             color: #1e293b;
         }
         
-        /* ШАПКА ТАБЛИЦЫ */
-        .skills-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: #1e3a5f;
-            border-radius: 12px 12px 0 0;
-            padding: 0.8rem 1rem;
-            margin-top: 1rem;
-        }
-        .skills-header span {
-            color: white;
-            font-weight: 600;
-            font-size: 0.85rem;
-            letter-spacing: 0.3px;
-        }
-        
-        /* Карточка навыка */
-        .skill-card {
+        /* ========== АККОРДЕОН ========== */
+        .accordion-item {
             background: white;
-            border-bottom: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
         }
-        .skill-card:last-child {
-            border-radius: 0 0 12px 12px;
-        }
-        .skill-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding: 0.9rem 1rem;
-            gap: 1rem;
-            align-items: flex-start;
-        }
-        .skill-info {
-            padding-right: 1rem;
-        }
-        .skill-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #0f172a;
-            margin-bottom: 0.3rem;
-        }
-        .competence {
-            display: inline-block;
-            background: #e2e8f0;
-            padding: 0.15rem 0.5rem;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            font-family: monospace;
-            margin: 0.2rem 0.2rem 0 0;
-        }
-        .project-title {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #1e3a5f;
-            margin-bottom: 0.2rem;
-        }
-        .project-desc {
-            font-size: 0.7rem;
-            color: #475569;
-        }
-        
-        /* КОНСОЛЬ — тёмная */
-        .console-wrapper {
-            background: #1e293b;
-            border-top: 1px solid #334155;
-        }
-        .console-horizontal {
-            background: #1e293b;
-            padding: 0.7rem 1rem;
+        .accordion-header {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            justify-content: space-between;
+            padding: 0.9rem 1rem;
+            cursor: pointer;
+            background: white;
+            gap: 1rem;
             flex-wrap: wrap;
         }
-        .console-label {
+        .accordion-header:hover {
+            background: #f8fafc;
+        }
+        .skill-badge {
             display: flex;
             align-items: center;
+            gap: 0.5rem;
+            min-width: 140px;
+        }
+        .skill-icon {
+            font-size: 1.4rem;
+        }
+        .skill-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0f172a;
+        }
+        .competence-list {
+            display: flex;
+            flex-wrap: wrap;
             gap: 0.3rem;
-            background: #0f172a;
-            padding: 0.25rem 0.6rem;
+            flex: 2;
+        }
+        .competence-chip {
+            background: #e2e8f0;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
+            font-size: 0.65rem;
+            font-family: monospace;
+        }
+        .project-preview {
+            flex: 2;
+            font-size: 0.75rem;
+            color: #475569;
+        }
+        .project-preview strong {
+            color: #1e3a5f;
+        }
+        .expand-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #64748b;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .expand-btn:hover {
+            background: #e2e8f0;
+        }
+        
+        /* Развернутая панель */
+        .accordion-content {
+            display: none;
+            border-top: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        .accordion-content.active {
+            display: block;
+        }
+        .content-inner {
+            padding: 1rem;
+        }
+        
+        /* Консоль внутри аккордеона */
+        .console-compact {
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .console-header {
+            background: #0f172a;
+            padding: 0.4rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
         .console-dot {
             width: 8px;
@@ -143,26 +152,32 @@
         .console-dot.red { background: #ef4444; }
         .console-dot.yellow { background: #eab308; }
         .console-dot.green { background: #22c55e; }
-        .console-label span {
+        .console-title {
             color: #94a3b8;
             font-size: 0.6rem;
-            font-family: monospace;
+            margin-left: 0.3rem;
         }
-        
+        .console-body {
+            padding: 0.8rem;
+        }
+        .query-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
         select {
             flex: 2;
-            min-width: 220px;
-            padding: 0.4rem 0.6rem;
+            padding: 0.35rem 0.6rem;
             background: #0f172a;
             color: #e2e8f0;
             border: 1px solid #334155;
             border-radius: 6px;
             font-family: monospace;
             font-size: 0.7rem;
-            cursor: pointer;
         }
         .run-btn {
-            padding: 0.4rem 1rem;
+            padding: 0.35rem 1rem;
             background: #3b82f6;
             color: white;
             border: none;
@@ -170,63 +185,20 @@
             font-weight: 600;
             font-size: 0.7rem;
             cursor: pointer;
-            transition: all 0.1s ease;
-            white-space: nowrap;
-        }
-        .run-btn:active {
-            transform: scale(0.95);
-        }
-        .run-btn.running {
-            background: #64748b;
-            pointer-events: none;
         }
         .result-inline {
-            flex: 3;
             background: #0f172a;
             border-radius: 6px;
             padding: 0.3rem 0.6rem;
             font-family: monospace;
             font-size: 0.65rem;
             color: #e2e8f0;
-            overflow-x: auto;
-            white-space: nowrap;
         }
-        
-        /* Панель с результатом SQL */
-        .result-panel {
+        .result-preview {
+            margin-top: 0.8rem;
             background: #0f172a;
-            border-top: 1px solid #334155;
-            padding: 0.8rem;
-        }
-        .result-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-        .toggle-btn {
-            background: #334155;
-            color: #e2e8f0;
-            border: none;
             border-radius: 6px;
-            padding: 0.25rem 0.8rem;
-            font-size: 0.65rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .toggle-btn:hover {
-            background: #475569;
-        }
-        .query-display {
-            background: #0f172a;
-            padding: 0.5rem;
-            border-radius: 6px;
-            font-family: monospace;
-            font-size: 0.6rem;
-            color: #94a3b8;
-            margin-bottom: 0.8rem;
-            border: 1px solid #334155;
-            overflow-x: auto;
+            padding: 0.6rem;
         }
         .result-table {
             width: 100%;
@@ -234,90 +206,75 @@
             background: white;
             border-radius: 6px;
             overflow: hidden;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
         }
         .result-table th {
             background: #3b82f6;
             color: white;
-            padding: 5px 8px;
-            font-size: 0.65rem;
+            padding: 4px 6px;
         }
         .result-table td {
             border: 1px solid #e2e8f0;
-            padding: 5px 8px;
+            padding: 4px 6px;
         }
-        .result-stats {
-            margin-top: 0.4rem;
-            font-size: 0.6rem;
-            color: #94a3b8;
-            text-align: right;
-        }
-        .loading {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.3rem;
-            color: #94a3b8;
-            font-size: 0.7rem;
-        }
-        .spinner {
-            width: 14px;
-            height: 14px;
-            border: 2px solid #334155;
-            border-top-color: #3b82f6;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Превью для остальных навыков */
         .preview-card {
             background: #f1f5f9;
             border-radius: 8px;
-            padding: 0.7rem;
+            padding: 0.6rem;
             font-size: 0.7rem;
             border-left: 3px solid #3b82f6;
-            margin: 0.6rem 1rem 0.8rem 1rem;
-            line-height: 1.5;
         }
-        .preview-card code {
+        .schema-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+        .schema-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+        .schema-card-header {
+            background: #1e3a5f;
+            color: white;
+            padding: 0.4rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .schema-card-body {
+            padding: 0.5rem;
+            font-size: 0.6rem;
+            font-family: monospace;
+        }
+        .tab-group {
+            display: flex;
+            gap: 0.3rem;
             background: #e2e8f0;
-            padding: 0.1rem 0.3rem;
-            border-radius: 4px;
-            font-size: 0.65rem;
+            padding: 0.25rem;
+            border-radius: 40px;
+            margin-bottom: 0.8rem;
+            width: fit-content;
         }
-        
-        /* Стили для вкладок */
-        .diagram-tab, .schema-tab, .req-tab {
-            padding: 0.4rem 1.2rem;
+        .tab-btn {
+            padding: 0.3rem 1rem;
             border: none;
             border-radius: 32px;
-            font-size: 0.75rem;
-            font-weight: 500;
+            font-size: 0.7rem;
             cursor: pointer;
-            transition: all 0.2s;
+            background: transparent;
         }
-        .diagram-tab.active, .schema-tab.active, .req-tab.active {
+        .tab-btn.active {
             background: #3b82f6;
             color: white;
-        }
-        .diagram-tab:not(.active), .schema-tab:not(.active), .req-tab:not(.active) {
-            background: transparent;
-            color: #475569;
-        }
-        .diagram-tab:not(.active):hover, .schema-tab:not(.active):hover, .req-tab:not(.active):hover {
-            background: #e2e8f0;
         }
         
         footer {
             margin-top: 2rem;
-            padding-top: 1rem;
             text-align: center;
             font-size: 0.65rem;
             color: #64748b;
-            border-top: 1px solid #e2e8f0;
         }
         a {
             color: #3b82f6;
@@ -325,22 +282,12 @@
         }
         
         @media (max-width: 800px) {
-            .skill-row {
-                grid-template-columns: 1fr;
-                gap: 0.5rem;
-            }
-            .skills-header {
-                display: none;
-            }
-            .console-horizontal {
+            .accordion-header {
                 flex-direction: column;
-                align-items: stretch;
+                align-items: flex-start;
             }
-            select, .run-btn, .result-inline {
-                width: 100%;
-            }
-            .result-inline {
-                white-space: normal;
+            .expand-btn {
+                align-self: flex-end;
             }
         }
     </style>
@@ -352,407 +299,314 @@
     3 года 4 месяца · SQL · Моделирование процессов · REST API · Python · PostgreSQL
 </div>
 
-<!-- ДИСКЛЕЙМЕР -->
 <div class="disclaimer">
-    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на <strong>реальном опыте</strong> работы в коммерческой разработке.<br>
-    Исходные данные являются <strong>синтетическими (демонстрационными)</strong> или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.<br>
-    🔗 Код, схемы и спецификации можно посмотреть в <a href="https://github.com/ВАШ_USERNAME/ВАШ_USERNAME.github.io" target="_blank">репозитории GitHub</a>.
+    <strong>📌 О портфолио:</strong> Все представленные проекты и задачи основаны на  <strong>реальном опыте</strong> работы в коммерческой разработке. Исходные данные являются синтетическими (демонстрационными) или смоделированными на основе открытых источников, чтобы сохранить конфиденциальность коммерческой информации.
 </div>
 
 <h2>🛠 Навыки</h2>
 
-<!-- ЗАГОЛОВКИ СТОЛБИКОВ -->
-<div class="skills-header">
-    <span>📌 Навыки и компетенции</span>
-    <span>📁 Пример проекта</span>
-</div>
-
-<!-- ========== SQL КАРТОЧКА ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">📊 SQL</div>
-            <span class="competence">CASE WHEN</span>
-            <span class="competence">LAG()</span>
-            <span class="competence">CTE</span>
-            <span class="competence">подзапросы</span>
-            <span class="competence">оконные функции</span>
+<!-- ===== SQL ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">📊</span>
+            <span class="skill-title">SQL</span>
         </div>
-        <div class="project-info">
-            <div class="project-title">Битрикс24: аналитика сделок</div>
-            <div class="project-desc">Воронка продаж, рейтинг менеджеров, прогноз, конверсия между стадиями</div>
+        <div class="competence-list">
+            <span class="competence-chip">CASE WHEN</span>
+            <span class="competence-chip">LAG()</span>
+            <span class="competence-chip">CTE</span>
+            <span class="competence-chip">подзапросы</span>
+            <span class="competence-chip">оконные функции</span>
         </div>
+        <div class="project-preview">
+            <strong>Битрикс24:</strong> воронка, рейтинг, прогноз, конверсия
+        </div>
+        <button class="expand-btn">▶</button>
     </div>
-    
-    <div class="console-wrapper">
-        <div class="console-horizontal">
-            <div class="console-label">
-                <div class="console-dot red"></div>
-                <div class="console-dot yellow"></div>
-                <div class="console-dot green"></div>
-                <span>SQL&gt;</span>
-            </div>
-            <select id="querySelect">
-                <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
-                <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
-                <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
-                <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
-                <option value="5">🔄 Конверсия — LAG оконная</option>
-                <option value="6">📉 Проигрыши — подзапрос IN</option>
-            </select>
-            <button class="run-btn" id="runBtn">▶ Выполнить</button>
-            <div class="result-inline" id="resultInline">
-                ⚡ выбери запрос и нажми «Выполнить»
-            </div>
-        </div>
-        
-        <div class="result-panel" id="resultPanel" style="display: none;">
-            <div class="result-header">
-                <span style="color:#94a3b8; font-size:0.7rem;">📋 Результат выполнения</span>
-                <button class="toggle-btn" id="toggleBtn">Скрыть</button>
-            </div>
-            <div class="query-display" id="queryDisplay"></div>
-            <div id="resultTableArea"></div>
-        </div>
-    </div>
-</div>
-
-<!-- ========== МОДЕЛИРОВАНИЕ БИЗНЕС-ПРОЦЕССОВ ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">📊 Моделирование бизнес-процессов</div>
-            <span class="competence">Draw.io / Miro</span>
-            <span class="competence">AS-IS / TO-BE</span>
-            <span class="competence">визуализация процессов</span>
-        </div>
-        <div class="project-info">
-            <div class="project-title">Логистика: мультимодальные перевозки (авиа + море + ЖД)</div>
-            <div class="project-desc">Автоматизация расчёта КП — с 3 дней до 4 часов</div>
-        </div>
-    </div>
-    
-    <div style="padding: 0.5rem 1rem 0 1rem;">
-        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content;">
-            <button class="diagram-tab active" data-diagram="asis" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: #3b82f6; color: white;">
-                📋 AS-IS (как было)
-            </button>
-            <button class="diagram-tab" data-diagram="tobe" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
-                🚀 TO-BE (как стало)
-            </button>
-        </div>
-    </div>
-    
-    <div style="padding: 1rem;">
-        <div id="diagramPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
-            <div id="diagramImage" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: #f8fafc;">
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🖼️</div>
-                    <div style="font-size: 0.75rem; color: #64748b;">Схема будет добавлена</div>
-                    <div style="font-size: 0.65rem; color: #94a3b8; margin-top: 0.25rem;">AS-IS: Excel-рассылка, 3 отдела, 3 дня</div>
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="console-compact">
+                <div class="console-header">
+                    <div class="console-dot red"></div>
+                    <div class="console-dot yellow"></div>
+                    <div class="console-dot green"></div>
+                    <span class="console-title">SQL&gt; выбери запрос и нажми «Выполнить»</span>
+                </div>
+                <div class="console-body">
+                    <div class="query-row">
+                        <select id="sqlSelect">
+                            <option value="1">📊 Воронка продаж — CASE + GROUP BY</option>
+                            <option value="2">👥 Рейтинг менеджеров — CASE в SUM</option>
+                            <option value="3">📈 Динамика по месяцам — TO_CHAR</option>
+                            <option value="4">🔮 Прогноз — CTE + взвешенная сумма</option>
+                            <option value="5">🔄 Конверсия — LAG оконная</option>
+                            <option value="6">📉 Проигрыши — подзапрос IN</option>
+                        </select>
+                        <button class="run-btn" id="sqlRunBtn">▶ Выполнить</button>
+                    </div>
+                    <div class="result-inline" id="sqlResultInline">⚡ нажми «Выполнить»</div>
+                    <div id="sqlResultPanel" class="result-preview" style="margin-top: 0.8rem;"></div>
                 </div>
             </div>
-            <div id="diagramCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
-                📊 AS-IS: Менеджер вручную заполняет Excel → рассылка по email → отделы не видят друг друга → расхождения на стыках → клиент ждёт 3 дня
+        </div>
+    </div>
+</div>
+
+<!-- ===== Моделирование процессов ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">🔄</span>
+            <span class="skill-title">Моделирование процессов</span>
+        </div>
+        <div class="competence-list">
+            <span class="competence-chip">Draw.io / Miro</span>
+            <span class="competence-chip">AS-IS / TO-BE</span>
+            <span class="competence-chip">визуализация</span>
+        </div>
+        <div class="project-preview">
+            <strong>Логистика:</strong> расчёт КП с 3 дней → 4 часа
+        </div>
+        <button class="expand-btn">▶</button>
+    </div>
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="tab-group">
+                <button class="tab-btn active" data-diagram="asis">📋 AS-IS</button>
+                <button class="tab-btn" data-diagram="tobe">🚀 TO-BE</button>
+            </div>
+            <div id="diagramPlaceholder" class="preview-card" style="text-align: center;">
+                🖼️ Схема будет добавлена<br>
+                <span style="font-size:0.65rem;">AS-IS: Excel-рассылка, 3 отдела, 3 дня</span>
+            </div>
+            <div id="diagramCaption" class="preview-card" style="margin-top: 0.5rem;">
+                📊 AS-IS: Excel-рассылка → отделы не видят друг друга → расхождения на стыках → 3 дня
             </div>
         </div>
     </div>
 </div>
 
-<!-- ========== МОДЕЛИРОВАНИЕ ДАННЫХ (СКЛАДСКОЙ УЧЁТ) ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">🗄️ Моделирование данных (PostgreSQL)</div>
-            <span class="competence">DDL</span>
-            <span class="competence">нормализация (3НФ)</span>
-            <span class="competence">индексы</span>
-            <span class="competence">внешние ключи</span>
-            <span class="competence">материализованные представления</span>
+<!-- ===== Моделирование данных ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">🗄️</span>
+            <span class="skill-title">Моделирование данных</span>
         </div>
-        <div class="project-info">
-            <div class="project-title">Складской учёт: материалы + готовая продукция</div>
-            <div class="project-desc">Модель данных для учёта сырья и изделий, единиц измерения, движения по складу и расчёта остатков</div>
+        <div class="competence-list">
+            <span class="competence-chip">PostgreSQL</span>
+            <span class="competence-chip">DDL</span>
+            <span class="competence-chip">индексы</span>
+            <span class="competence-chip">MV</span>
         </div>
+        <div class="project-preview">
+            <strong>Складской учёт:</strong> материалы, поставки, остатки
+        </div>
+        <button class="expand-btn">▶</button>
     </div>
-    
-    <div style="padding: 0.5rem 1rem 0 1rem;">
-        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content; flex-wrap: wrap;">
-            <button class="schema-tab active" data-schema="tables" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: #3b82f6; color: white;">
-                📋 Структура таблиц
-            </button>
-            <button class="schema-tab" data-schema="relations" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
-                🔗 Связи и индексы
-            </button>
-            <button class="schema-tab" data-schema="sql" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
-                📝 SQL-схема
-            </button>
-        </div>
-    </div>
-    
-    <div style="padding: 1rem;">
-        <div id="schemaPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
-            <div id="schemaContent" style="padding: 1rem;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📦 Номенклатура (materials)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            id (PK) → bigint<br>
-                            article → varchar(50) <span style="color: #3b82f6;">UNIQUE INDEX</span><br>
-                            name → varchar(200)<br>
-                            type → varchar(20) <span style="color: #64748b;">(material / product)</span><br>
-                            unit_id (FK) → int<br>
-                            min_stock → numeric<br>
-                            current_stock → numeric<br>
-                            price → numeric<br>
-                            is_active → boolean<br>
-                            created_at → timestamp<br>
-                            updated_at → timestamp
-                        </div>
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="tab-group">
+                <button class="tab-btn active" data-schema="tables">📋 Таблицы</button>
+                <button class="tab-btn" data-schema="relations">🔗 Связи</button>
+                <button class="tab-btn" data-schema="sql">📝 SQL</button>
+            </div>
+            <div id="schemaContent">
+                <div class="schema-grid">
+                    <div class="schema-card">
+                        <div class="schema-card-header">📦 materials</div>
+                        <div class="schema-card-body">id (PK)<br>article UNIQUE<br>name<br>type (material/product)<br>unit_id (FK)<br>current_stock</div>
                     </div>
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📏 Единицы (units)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            id (PK) → int<br>
-                            name → varchar(50)<br>
-                            short_name → varchar(10)<br>
-                            dimension → varchar(20) <span style="color: #64748b;">(шт / м² / кг / м)</span><br>
-                            is_metric → boolean
-                        </div>
+                    <div class="schema-card">
+                        <div class="schema-card-header">📏 units</div>
+                        <div class="schema-card-body">id (PK)<br>name<br>short_name<br>dimension (шт/м²/кг)</div>
                     </div>
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">🚚 Движения (movements)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            id (PK) → bigint<br>
-                            material_id (FK) → bigint<br>
-                            type → varchar(20) <span style="color: #64748b;">(income/outcome)</span><br>
-                            quantity → numeric<br>
-                            document_number → varchar(50)<br>
-                            movement_date → date <span style="color: #3b82f6;">INDEX</span><br>
-                            created_by → varchar(100)
-                        </div>
+                    <div class="schema-card">
+                        <div class="schema-card-header">🚚 movements</div>
+                        <div class="schema-card-body">id (PK)<br>material_id (FK)<br>type (income/outcome)<br>quantity<br>movement_date INDEX</div>
                     </div>
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📊 Остатки (stock_mv)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            material_id (PK) → bigint<br>
-                            article → varchar(50)<br>
-                            name → varchar(200)<br>
-                            total_quantity → numeric<br>
-                            last_updated → timestamp<br>
-                            <span style="color: #eab308;">※ материализованное представление</span>
-                        </div>
+                    <div class="schema-card">
+                        <div class="schema-card-header">📊 stock_mv</div>
+                        <div class="schema-card-body">material_id (PK)<br>article<br>total_quantity<br>※ материализованное представление</div>
                     </div>
                 </div>
             </div>
-            <div id="schemaCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
-                📊 <strong>4 таблицы</strong> — номенклатура (артикул, тип, ед.изм.), справочник единиц, движения по складу, материализованное представление остатков
+            <div id="schemaCaption" class="preview-card" style="margin-top: 0.5rem;">
+                📊 4 таблицы: номенклатура, единицы, движения, MV остатков
             </div>
         </div>
     </div>
 </div>
 
-<!-- ========== УПРАВЛЕНИЕ ТРЕБОВАНИЯМИ ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">📋 Управление требованиями</div>
-            <span class="competence">SRS</span>
-            <span class="competence">User Stories</span>
-            <span class="competence">Use Cases</span>
-            <span class="competence">MoSCoW</span>
-            <span class="competence">матрица трассировки</span>
+<!-- ===== Управление требованиями ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">📋</span>
+            <span class="skill-title">Управление требованиями</span>
         </div>
-        <div class="project-info">
-            <div class="project-title">Учёт материалов КБ: требования к системе</div>
-            <div class="project-desc">Полный цикл: сбор → документация → приоритизация → трассировка</div>
+        <div class="competence-list">
+            <span class="competence-chip">SRS</span>
+            <span class="competence-chip">User Stories</span>
+            <span class="competence-chip">Use Cases</span>
+            <span class="competence-chip">MoSCoW</span>
         </div>
+        <div class="project-preview">
+            <strong>Учёт материалов КБ:</strong> полный цикл требований
+        </div>
+        <button class="expand-btn">▶</button>
     </div>
-    
-    <div style="padding: 0.5rem 1rem 0 1rem;">
-        <div style="display: flex; gap: 0.5rem; background: #f1f5f9; border-radius: 40px; padding: 0.25rem; width: fit-content; flex-wrap: wrap;">
-            <button class="req-tab active" data-req="user-stories" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: #3b82f6; color: white;">
-                📝 User Stories
-            </button>
-            <button class="req-tab" data-req="use-cases" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
-                🔄 Use Cases
-            </button>
-            <button class="req-tab" data-req="requirements" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
-                📋 Функциональные требования
-            </button>
-            <button class="req-tab" data-req="moscow" style="padding: 0.4rem 1.2rem; border: none; border-radius: 32px; font-size: 0.75rem; font-weight: 500; cursor: pointer; background: transparent; color: #475569;">
-                🎯 MoSCoW
-            </button>
-        </div>
-    </div>
-    
-    <div style="padding: 1rem;">
-        <div id="reqPreview" style="background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden;">
-            <div id="reqContent" style="padding: 1rem;">
-                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #3b82f6;">
-                        <div style="font-weight: 600; font-size: 0.8rem;">US-01 | Приоритет: HIGH</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
-                            <strong>Как</strong> конструктор, <strong>я хочу</strong> видеть текущие остатки материалов на складе, 
-                            <strong>чтобы</strong> понимать, что можно использовать в проекте без дополнительного заказа.
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: отображение остатков в реальном времени, фильтр по артикулу</div>
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="tab-group">
+                <button class="tab-btn active" data-req="stories">📝 User Stories</button>
+                <button class="tab-btn" data-req="usecase">🔄 Use Case</button>
+                <button class="tab-btn" data-req="moscow">🎯 MoSCoW</button>
+            </div>
+            <div id="reqContent">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <div class="preview-card" style="border-left-color:#3b82f6;">
+                        <strong>US-01 | HIGH</strong><br>
+                        Как конструктор, я хочу видеть остатки материалов, чтобы понимать, что можно использовать без доп. заказа.
                     </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #22c55e;">
-                        <div style="font-weight: 600; font-size: 0.8rem;">US-02 | Приоритет: MEDIUM</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
-                            <strong>Как</strong> кладовщик, <strong>я хочу</strong> фиксировать приход и расход материалов,
-                            <strong>чтобы</strong> остатки в системе всегда соответствовали реальному складу.
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: внесение движения за 30 секунд, автоматический пересчёт остатка</div>
+                    <div class="preview-card" style="border-left-color:#22c55e;">
+                        <strong>US-02 | MEDIUM</strong><br>
+                        Как кладовщик, я хочу фиксировать приход/расход, чтобы остатки соответствовали реальности.
                     </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #eab308;">
-                        <div style="font-weight: 600; font-size: 0.8rem;">US-03 | Приоритет: LOW</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
-                            <strong>Как</strong> руководитель, <strong>я хочу</strong> получать уведомление о снижении остатков ниже минимума,
-                            <strong>чтобы</strong> вовремя инициировать закупку.
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: email-уведомление при min_stock, настраиваемый порог</div>
+                    <div class="preview-card" style="border-left-color:#eab308;">
+                        <strong>US-03 | LOW</strong><br>
+                        Как руководитель, я хочу получать уведомления о снижении остатков ниже минимума.
                     </div>
                 </div>
             </div>
-            <div id="reqCaption" style="padding: 0.75rem 1rem; background: white; border-top: 1px solid #e2e8f0; font-size: 0.7rem; color: #475569;">
-                📝 <strong>User Stories</strong> — 3 ключевых сценария использования системы учёта материалов (конструктор, кладовщик, руководитель)
+            <div id="reqCaption" class="preview-card" style="margin-top: 0.5rem;">
+                📝 3 User Stories — конструктор, кладовщик, руководитель
             </div>
         </div>
     </div>
 </div>
 
-<!-- ========== REST API ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">🔌 REST API / OpenAPI</div>
-            <span class="competence">OpenAPI 3.0</span>
-            <span class="competence">Swagger</span>
-            <span class="competence">JSON</span>
-            <span class="competence">CRUD</span>
+<!-- ===== REST API ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">🔌</span>
+            <span class="skill-title">REST API / OpenAPI</span>
         </div>
-        <div class="project-info">
-            <div class="project-title">Учётная система КБ + склад</div>
-            <div class="project-desc">Интеграция с CRM через REST API</div>
+        <div class="competence-list">
+            <span class="competence-chip">OpenAPI 3.0</span>
+            <span class="competence-chip">Swagger</span>
+            <span class="competence-chip">JSON</span>
         </div>
+        <div class="project-preview">
+            <strong>КБ + склад:</strong> интеграция с CRM
+        </div>
+        <button class="expand-btn">▶</button>
     </div>
-    <div class="preview-card">
-        <code>POST /orders</code> создание заказа → 201 Created<br>
-        <code>GET /materials</code> получение остатков → JSON<br>
-        <code>PUT /status</code> обновление статуса отгрузки
-    </div>
-</div>
-
-<!-- ========== POSTMAN ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">📮 Postman</div>
-            <span class="competence">коллекции</span>
-            <span class="competence">env variables</span>
-            <span class="competence">тесты</span>
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="preview-card">
+                <code>POST /orders</code> создание заказа → 201 Created<br>
+                <code>GET /materials</code> получение остатков → JSON<br>
+                <code>PUT /status</code> обновление статуса отгрузки
+            </div>
         </div>
-        <div class="project-info">
-            <div class="project-title">Тестирование интеграций</div>
-            <div class="project-desc">Сценарии: создание заказа, обновление статуса, ошибки</div>
-        </div>
-    </div>
-    <div class="preview-card">
-        ✅ POST /order → 200 OK<br>
-        ❌ неверный ID → 404 Not Found<br>
-        🔄 переменная {{order_id}} передаётся между запросами
     </div>
 </div>
 
-<!-- ========== PYTHON ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">🐍 Python</div>
-            <span class="competence">requests</span>
-            <span class="competence">psycopg2</span>
-            <span class="competence">schedule</span>
+<!-- ===== Python ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">🐍</span>
+            <span class="skill-title">Python</span>
         </div>
-        <div class="project-info">
-            <div class="project-title">Автоматизация выгрузок</div>
-            <div class="project-desc">API → PostgreSQL по расписанию</div>
+        <div class="competence-list">
+            <span class="competence-chip">requests</span>
+            <span class="competence-chip">psycopg2</span>
+            <span class="competence-chip">schedule</span>
         </div>
+        <div class="project-preview">
+            <strong>Автоматизация:</strong> API → PostgreSQL по расписанию
+        </div>
+        <button class="expand-btn">▶</button>
     </div>
-    <div class="preview-card">
-        <code>requests.get(url, headers=api_key)</code><br>
-        → JSON → pandas → <code>df.to_sql('orders')</code><br>
-        ⏰ Еженощный запуск через schedule
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="preview-card">
+                <code>requests.get(url, headers=api_key)</code><br>
+                → JSON → pandas → <code>df.to_sql('orders')</code><br>
+                ⏰ Еженощный запуск через schedule
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- ========== GIT ========== -->
-<div class="skill-card">
-    <div class="skill-row">
-        <div class="skill-info">
-            <div class="skill-name">🐙 Git / GitHub</div>
-            <span class="competence">commits</span>
-            <span class="competence">branches</span>
-            <span class="competence">GitHub Pages</span>
+<!-- ===== Git ===== -->
+<div class="accordion-item">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+        <div class="skill-badge">
+            <span class="skill-icon">🐙</span>
+            <span class="skill-title">Git / GitHub</span>
         </div>
-        <div class="project-info">
-            <div class="project-title">Версионирование</div>
-            <div class="project-desc">Документация + скрипты + портфолио</div>
+        <div class="competence-list">
+            <span class="competence-chip">commits</span>
+            <span class="competence-chip">branches</span>
+            <span class="competence-chip">GitHub Pages</span>
         </div>
+        <div class="project-preview">
+            <strong>Версионирование:</strong> код + документация
+        </div>
+        <button class="expand-btn">▶</button>
     </div>
-    <div class="preview-card">
-        🌿 main → production<br>
-        🌿 dev → разработка<br>
-        🚀 GitHub Pages — этот сайт
+    <div class="accordion-content">
+        <div class="content-inner">
+            <div class="preview-card">
+                🌿 main → production<br>
+                🌿 dev → разработка<br>
+                🚀 GitHub Pages — этот сайт
+            </div>
+        </div>
     </div>
 </div>
 
 <h2>📬 Контакты</h2>
-<div class="skill-card" style="padding: 0.8rem;">
+<div class="accordion-item" style="border: 1px solid #e2e8f0; padding: 0.8rem;">
     📧 <a href="mailto:your@email.com">ksugont@email.com</a><br>
     💬 Telegram: <a href="#">@xenia_gontar</a><br>
     🐙 GitHub: <a href="https://github.com/ВАШ_USERNAME">github.com/xenia-gontar</a>
 </div>
 
-<footer>🚀 GitHub Pages | Интерактивное портфолио системного аналитика</footer>
+<footer>🚀 GitHub Pages | Нажми на навык → раскроется интерактив</footer>
 
 <script>
-    // ========== SQL ДАННЫЕ ==========
-    const results = {
-        1: { 
-            cols: ["Статус", "Сделок", "Сумма (₽)"], 
-            rows: [["В работе", 15, "5 500 000"], ["Успешно", 10, "2 750 000"], ["Проиграно", 6, "1 900 000"]],
-            sql: "SELECT CASE STAGE_SEMANTIC_ID\n      WHEN 'P' THEN 'В работе'\n      WHEN 'S' THEN 'Успешно'\n      ELSE 'Проиграно'\n   END AS status,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY), 0) AS amount\nFROM crm_deal\nGROUP BY STAGE_SEMANTIC_ID;"
-        },
-        2: { 
-            cols: ["Менеджер", "Сделок", "Выручка (₽)"], 
-            rows: [["Анна Смирнова", 6, "1 200 000"], ["Елена Козлова", 5, "1 100 000"], ["Иван Петров", 5, "500 000"], ["Ольга Новикова", 4, "400 000"], ["Дмитрий Сидоров", 3, "120 000"]],
-            sql: "SELECT ASSIGNED_BY_NAME AS manager,\n   COUNT(*) AS deals,\n   SUM(CASE WHEN STAGE_SEMANTIC_ID='S' THEN OPPORTUNITY ELSE 0 END) AS revenue\nFROM crm_deal\nGROUP BY ASSIGNED_BY_NAME\nORDER BY revenue DESC;"
-        },
-        3: { 
-            cols: ["Месяц", "Новых сделок", "Выручка (₽)"], 
-            rows: [["2025-01", 8, "1 500 000"], ["2025-02", 10, "1 000 000"], ["2025-03", 12, "250 000"]],
-            sql: "SELECT TO_CHAR(DATE_CREATE, 'YYYY-MM') AS month,\n   COUNT(*) AS new_deals,\n   SUM(OPPORTUNITY) AS revenue\nFROM crm_deal\nGROUP BY TO_CHAR(DATE_CREATE, 'YYYY-MM')\nORDER BY month;"
-        },
-        4: { 
-            cols: ["Период", "Сделок в работе", "Ожидаемая выручка"], 
-            rows: [["Апрель 2025", 15, "2 750 000 ₽"]],
-            sql: "WITH active_deals AS (\n   SELECT OPPORTUNITY, PROBABILITY/100 AS w\n   FROM crm_deal\n   WHERE STAGE_SEMANTIC_ID = 'P'\n)\nSELECT 'Апрель 2025' AS period,\n   COUNT(*) AS deals,\n   ROUND(SUM(OPPORTUNITY * w), 0) AS forecast\nFROM active_deals;"
-        },
-        5: { 
-            cols: ["Со стадии", "На стадию", "Переходов"], 
-            rows: [["Новая", "Контакт", 25], ["Контакт", "В работе", 20], ["В работе", "Переговоры", 15], ["Переговоры", "Успешно", 10], ["Переговоры", "Проиграно", 5]],
-            sql: "WITH transitions AS (\n   SELECT DEAL_ID, STAGE_NAME,\n      LAG(STAGE_NAME) OVER (PARTITION BY DEAL_ID ORDER BY DATE_CREATE) AS prev\n   FROM crm_deal_stage_history\n)\nSELECT prev AS from_stage,\n   STAGE_NAME AS to_stage,\n   COUNT(*) AS cnt\nFROM transitions\nWHERE prev IS NOT NULL\nGROUP BY prev, STAGE_NAME\nORDER BY cnt DESC;"
-        },
-        6: { 
-            cols: ["Стадия", "Потеряно сделок", "Среднее дней"], 
-            rows: [["Переговоры", 3, "7.2"], ["Счёт", 2, "5.5"], ["В работе", 1, "12.0"]],
-            sql: "SELECT STAGE_NAME,\n   COUNT(*) AS lose_count,\n   ROUND(AVG(DAYS_IN_STAGE), 1) AS avg_days\nFROM crm_deal_stage_history\nWHERE DEAL_ID IN (\n   SELECT DEAL_ID FROM crm_deal WHERE STAGE_SEMANTIC_ID = 'F'\n)\nGROUP BY STAGE_NAME\nORDER BY lose_count DESC;"
+    // Функция раскрытия аккордеона
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        const content = item.querySelector('.accordion-content');
+        const btn = header.querySelector('.expand-btn');
+        
+        if (content.classList.contains('active')) {
+            content.classList.remove('active');
+            btn.textContent = '▶';
+        } else {
+            content.classList.add('active');
+            btn.textContent = '▼';
         }
+    }
+    
+    // ===== SQL ЛОГИКА =====
+    const sqlResults = {
+        1: { cols: ["Статус", "Сделок", "Сумма (₽)"], rows: [["В работе", 15, "5.5M"], ["Успешно", 10, "2.75M"], ["Проиграно", 6, "1.9M"]] },
+        2: { cols: ["Менеджер", "Сделок", "Выручка (₽)"], rows: [["Анна Смирнова", 6, "1.2M"], ["Елена Козлова", 5, "1.1M"], ["Иван Петров", 5, "0.5M"]] },
+        3: { cols: ["Месяц", "Новых", "Выручка (₽)"], rows: [["2025-01", 8, "1.5M"], ["2025-02", 10, "1.0M"], ["2025-03", 12, "0.25M"]] },
+        4: { cols: ["Период", "В работе", "Прогноз"], rows: [["Апрель 2025", 15, "2.75M"]] },
+        5: { cols: ["Со стадии", "На стадию", "Переходов"], rows: [["Новая", "Контакт", 25], ["Контакт", "В работе", 20], ["В работе", "Переговоры", 15]] },
+        6: { cols: ["Стадия", "Потерь", "Дней"], rows: [["Переговоры", 3, "7.2"], ["Счёт", 2, "5.5"]] }
     };
-
-    function renderTable(cols, rows) {
+    
+    function renderSqlTable(cols, rows) {
         let html = '<table class="result-table"><thead><tr>';
         cols.forEach(c => html += `<th>${c}</th>`);
         html += '</tr></thead><tbody>';
@@ -760,419 +614,111 @@
         html += '</tbody></table>';
         return html;
     }
-
-    // SQL элементы
-    const select = document.getElementById('querySelect');
-    const runBtn = document.getElementById('runBtn');
-    const resultInline = document.getElementById('resultInline');
-    const resultPanel = document.getElementById('resultPanel');
-    const queryDisplay = document.getElementById('queryDisplay');
-    const resultTableArea = document.getElementById('resultTableArea');
-    const toggleBtn = document.getElementById('toggleBtn');
-
-    let isRunning = false;
-    let isPanelVisible = false;
-
-    async function executeQuery() {
-        if (isRunning) return;
-        isRunning = true;
-        runBtn.classList.add('running');
-        runBtn.textContent = '⏳ Выполнение...';
-        resultInline.innerHTML = '<div class="loading"><div class="spinner"></div> Выполняется...</div>';
-        
-        await new Promise(resolve => setTimeout(resolve, 600));
-        
-        const val = select.value;
-        const data = results[val];
-        
-        if (data) {
-            queryDisplay.innerHTML = data.sql.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>');
-            resultTableArea.innerHTML = renderTable(data.cols, data.rows) + `<div class="result-stats">📊 ${data.rows.length} строк возвращено</div>`;
-            resultPanel.style.display = 'block';
-            isPanelVisible = true;
-            toggleBtn.textContent = 'Скрыть';
-            resultInline.innerHTML = `✅ Готово — ${data.rows.length} строк`;
-        } else {
-            resultInline.innerHTML = '❌ Ошибка выполнения';
-        }
-        
-        runBtn.classList.remove('running');
-        runBtn.textContent = '▶ Выполнить';
-        isRunning = false;
-    }
-
-    function togglePanel() {
-        if (isPanelVisible) {
-            resultPanel.style.display = 'none';
-            toggleBtn.textContent = 'Раскрыть';
-            isPanelVisible = false;
-        } else {
-            resultPanel.style.display = 'block';
-            toggleBtn.textContent = 'Скрыть';
-            isPanelVisible = true;
-        }
-    }
-
-    runBtn.addEventListener('click', executeQuery);
-    toggleBtn.addEventListener('click', togglePanel);
     
-    select.addEventListener('change', () => {
-        if (isPanelVisible) {
-            resultPanel.style.display = 'none';
-            isPanelVisible = false;
-            toggleBtn.textContent = 'Раскрыть';
-        }
-        resultInline.innerHTML = '⚡ выбери запрос и нажми «Выполнить»';
-        queryDisplay.innerHTML = '';
-        resultTableArea.innerHTML = '';
+    document.getElementById('sqlRunBtn').addEventListener('click', () => {
+        const val = document.getElementById('sqlSelect').value;
+        const data = sqlResults[val];
+        const panel = document.getElementById('sqlResultPanel');
+        const inline = document.getElementById('sqlResultInline');
+        
+        inline.innerHTML = '⏳ Выполняется...';
+        setTimeout(() => {
+            panel.innerHTML = renderSqlTable(data.cols, data.rows) + `<div style="font-size:0.6rem; color:#94a3b8; margin-top:0.3rem;">📊 ${data.rows.length} строк</div>`;
+            inline.innerHTML = `✅ Готово — ${data.rows.length} строк`;
+        }, 300);
     });
-
-    // ========== ДИАГРАММЫ ==========
+    
+    // ===== ДИАГРАММЫ =====
     const diagramData = {
-        asis: {
-            src: "#",
-            caption: "📊 AS-IS: Менеджер вручную заполняет Excel → рассылка по email → отделы не видят друг друга → расхождения на стыках → клиент ждёт 3 дня",
-            placeholder: "AS-IS: Excel-рассылка, 3 отдела, 3 дня"
-        },
-        tobe: {
-            src: "#",
-            caption: "🚀 TO-BE: Единая форма → все логисты видят маршрут → параллельный расчёт → отметки о готовности → автоматическая проверка стыков → клиент получает КП за 4 часа",
-            placeholder: "TO-BE: единая форма, параллельный расчёт, 4 часа"
-        }
+        asis: { caption: "📊 AS-IS: Excel-рассылка → 3 отдела не видят друг друга → расхождения на стыках → клиент ждёт 3 дня" },
+        tobe: { caption: "🚀 TO-BE: единая форма → параллельный расчёт → отметки о готовности → автосвод → клиент получает КП за 4 часа" }
     };
-
+    
     function switchDiagram(type) {
-        const data = diagramData[type];
-        const imageContainer = document.getElementById('diagramImage');
-        const captionContainer = document.getElementById('diagramCaption');
-        
-        if (data.src && data.src !== '#') {
-            imageContainer.innerHTML = `<img src="${data.src}" alt="${type}" style="width: 100%; display: block; border-radius: 8px;">`;
-        } else {
-            imageContainer.innerHTML = `
-                <div style="text-align: center; padding: 2rem;">
-                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🖼️</div>
-                    <div style="font-size: 0.75rem; color: #64748b;">Схема будет добавлена</div>
-                    <div style="font-size: 0.65rem; color: #94a3b8; margin-top: 0.25rem;">${data.placeholder}</div>
-                </div>
-            `;
-        }
-        captionContainer.innerHTML = data.caption;
-        
-        document.querySelectorAll('.diagram-tab').forEach(btn => {
-            if (btn.dataset.diagram === type) {
-                btn.classList.add('active');
-                btn.style.background = '#3b82f6';
-                btn.style.color = 'white';
-            } else {
-                btn.classList.remove('active');
-                btn.style.background = 'transparent';
-                btn.style.color = '#475569';
-            }
+        document.getElementById('diagramCaption').innerHTML = diagramData[type].caption;
+        document.querySelectorAll('[data-diagram]').forEach(btn => {
+            if (btn.dataset.diagram === type) btn.classList.add('active');
+            else btn.classList.remove('active');
         });
     }
-
-    document.querySelectorAll('.diagram-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchDiagram(btn.dataset.diagram);
-        });
+    
+    document.querySelectorAll('[data-diagram]').forEach(btn => {
+        btn.addEventListener('click', () => switchDiagram(btn.dataset.diagram));
     });
-
-    // ========== СХЕМА ДАННЫХ ==========
+    
+    // ===== СХЕМА ДАННЫХ =====
     const schemaData = {
         tables: {
-            content: `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📦 Номенклатура (materials)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            id (PK) → bigint<br>
-                            article → varchar(50) <span style="color: #3b82f6;">UNIQUE INDEX</span><br>
-                            name → varchar(200)<br>
-                            type → varchar(20) <span style="color: #64748b;">(material / product)</span><br>
-                            unit_id (FK) → int<br>
-                            min_stock → numeric<br>
-                            current_stock → numeric<br>
-                            price → numeric<br>
-                            is_active → boolean<br>
-                            created_at → timestamp<br>
-                            updated_at → timestamp
-                        </div>
-                    </div>
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📏 Единицы (units)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            id (PK) → int<br>
-                            name → varchar(50)<br>
-                            short_name → varchar(10)<br>
-                            dimension → varchar(20) <span style="color: #64748b;">(шт / м² / кг / м)</span><br>
-                            is_metric → boolean
-                        </div>
-                    </div>
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">🚚 Движения (movements)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            id (PK) → bigint<br>
-                            material_id (FK) → bigint<br>
-                            type → varchar(20) <span style="color: #64748b;">(income/outcome)</span><br>
-                            quantity → numeric<br>
-                            document_number → varchar(50)<br>
-                            movement_date → date <span style="color: #3b82f6;">INDEX</span><br>
-                            created_by → varchar(100)
-                        </div>
-                    </div>
-                    <div style="background: white; border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden;">
-                        <div style="background: #1e3a5f; color: white; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; text-align: center;">📊 Остатки (stock_mv)</div>
-                        <div style="padding: 0.6rem; font-size: 0.65rem; font-family: monospace;">
-                            material_id (PK) → bigint<br>
-                            article → varchar(50)<br>
-                            name → varchar(200)<br>
-                            total_quantity → numeric<br>
-                            last_updated → timestamp<br>
-                            <span style="color: #eab308;">※ материализованное представление</span>
-                        </div>
-                    </div>
-                </div>
-            `,
-            caption: "📊 <strong>4 таблицы</strong> — номенклатура (артикул, тип, ед.изм.), справочник единиц, движения по складу, материализованное представление остатков"
+            content: `<div class="schema-grid">
+                <div class="schema-card"><div class="schema-card-header">📦 materials</div><div class="schema-card-body">id (PK)<br>article UNIQUE<br>name<br>type<br>unit_id (FK)<br>current_stock</div></div>
+                <div class="schema-card"><div class="schema-card-header">📏 units</div><div class="schema-card-body">id (PK)<br>name<br>short_name<br>dimension</div></div>
+                <div class="schema-card"><div class="schema-card-header">🚚 movements</div><div class="schema-card-body">id (PK)<br>material_id (FK)<br>type<br>quantity<br>movement_date INDEX</div></div>
+                <div class="schema-card"><div class="schema-card-header">📊 stock_mv</div><div class="schema-card-body">material_id (PK)<br>article<br>total_quantity<br>※ MV</div></div>
+            </div>`,
+            caption: "📊 4 таблицы: номенклатура, единицы, движения, MV остатков"
         },
         relations: {
-            content: `
-                <div style="font-family: monospace; font-size: 0.7rem; line-height: 1.8;">
-                    <div style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem;">
-                        <strong style="color: #1e3a5f;">🔗 Внешние ключи (FK):</strong><br>
-                        • materials.unit_id → units.id <span style="color: #64748b;">(материал → единица измерения)</span><br>
-                        • movements.material_id → materials.id <span style="color: #64748b;">(движение → материал)</span>
-                    </div>
-                    <div style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem;">
-                        <strong style="color: #1e3a5f;">⚡ Индексы:</strong><br>
-                        • materials.article — <span style="color: #3b82f6;">UNIQUE B-tree</span> (быстрый поиск по артикулу)<br>
-                        • movements.movement_date — <span style="color: #3b82f6;">B-tree index</span> (для отчётов по периодам)<br>
-                        • movements.material_id — <span style="color: #3b82f6;">foreign key index</span> (автоматический)
-                    </div>
-                    <div style="background: #f1f5f9; padding: 0.75rem; border-radius: 8px;">
-                        <strong style="color: #1e3a5f;">📈 Материализованное представление (stock_mv):</strong><br>
-                        • Обновляется ежедневно через REFRESH MATERIALIZED VIEW<br>
-                        • Хранит актуальные остатки по каждому материалу<br>
-                        • Ускоряет отчётность в 10+ раз по сравнению с агрегацией на лету
-                    </div>
-                </div>
-            `,
-            caption: "🔗 materials → units (справочник), movements → materials (движения), индексы на article и movement_date, MV для остатков"
+            content: `<div class="preview-card">🔗 materials.unit_id → units.id<br>🔗 movements.material_id → materials.id<br>⚡ Индексы: article (UNIQUE), movement_date (B-tree)<br>📈 Материализованное представление stock_mv обновляется ежедневно</div>`,
+            caption: "🔗 Внешние ключи, индексы и MV для ускорения отчётности"
         },
         sql: {
-            content: `
-                <div style="font-family: monospace; font-size: 0.65rem; line-height: 1.5; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto;">
-                    <span style="color: #94a3b8;">-- Таблица номенклатуры</span><br>
-                    CREATE TABLE materials (<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;article VARCHAR(50) UNIQUE NOT NULL,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;name VARCHAR(200) NOT NULL,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;type VARCHAR(20) CHECK (type IN ('material', 'product')),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;unit_id INT REFERENCES units(id),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;min_stock NUMERIC DEFAULT 0,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;current_stock NUMERIC DEFAULT 0,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;price NUMERIC,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;is_active BOOLEAN DEFAULT true,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;created_at TIMESTAMP DEFAULT NOW(),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;updated_at TIMESTAMP DEFAULT NOW()<br>
-                    );<br>
-                    <br>
-                    <span style="color: #94a3b8;">-- Таблица единиц измерения</span><br>
-                    CREATE TABLE units (<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;id SERIAL PRIMARY KEY,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;name VARCHAR(50) NOT NULL,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;short_name VARCHAR(10) NOT NULL,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;dimension VARCHAR(20),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;is_metric BOOLEAN DEFAULT true<br>
-                    );<br>
-                    <br>
-                    <span style="color: #94a3b8;">-- Таблица движений по складу</span><br>
-                    CREATE TABLE movements (<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;id BIGSERIAL PRIMARY KEY,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;material_id BIGINT REFERENCES materials(id),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;type VARCHAR(20) CHECK (type IN ('income', 'outcome')),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;quantity NUMERIC NOT NULL,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;document_number VARCHAR(50),<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;movement_date DATE NOT NULL,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;created_by VARCHAR(100)<br>
-                    );<br>
-                    <br>
-                    <span style="color: #94a3b8;">-- Индексы</span><br>
-                    CREATE INDEX idx_movements_date ON movements(movement_date);<br>
-                    <br>
-                    <span style="color: #94a3b8;">-- Материализованное представление остатков</span><br>
-                    CREATE MATERIALIZED VIEW stock_mv AS<br>
-                    SELECT <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;m.id AS material_id,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;m.article,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;m.name,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;COALESCE(SUM(CASE WHEN mv.type = 'income' THEN mv.quantity ELSE -mv.quantity END), 0) AS total_quantity,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;NOW() AS last_updated<br>
-                    FROM materials m<br>
-                    LEFT JOIN movements mv ON m.id = mv.material_id<br>
-                    GROUP BY m.id, m.article, m.name;<br>
-                    <br>
-                    <span style="color: #94a3b8;">-- Обновление материализованного представления</span><br>
-                    REFRESH MATERIALIZED VIEW stock_mv;
-                </div>
-            `,
-            caption: "📝 Полная SQL-схема базы данных складского учёта с индексами и материализованным представлением"
+            content: `<div style="background:#1e293b; color:#e2e8f0; padding:0.6rem; border-radius:8px; font-family:monospace; font-size:0.6rem; overflow-x:auto;">
+                CREATE TABLE materials (id BIGSERIAL PRIMARY KEY, article VARCHAR(50) UNIQUE, ...);<br>
+                CREATE MATERIALIZED VIEW stock_mv AS SELECT ...;<br>
+                CREATE INDEX idx_movements_date ON movements(movement_date);
+            </div>`,
+            caption: "📝 SQL-схема с индексами и материализованным представлением"
         }
     };
-
-    function switchSchemaView(type) {
-        const data = schemaData[type];
-        const schemaContent = document.getElementById('schemaContent');
-        const schemaCaption = document.getElementById('schemaCaption');
-        
-        if (schemaContent && schemaCaption) {
-            schemaContent.innerHTML = data.content;
-            schemaCaption.innerHTML = data.caption;
-        }
-        
-        document.querySelectorAll('.schema-tab').forEach(btn => {
-            if (btn.dataset.schema === type) {
-                btn.classList.add('active');
-                btn.style.background = '#3b82f6';
-                btn.style.color = 'white';
-            } else {
-                btn.classList.remove('active');
-                btn.style.background = 'transparent';
-                btn.style.color = '#475569';
-            }
+    
+    function switchSchema(type) {
+        document.getElementById('schemaContent').innerHTML = schemaData[type].content;
+        document.getElementById('schemaCaption').innerHTML = schemaData[type].caption;
+        document.querySelectorAll('[data-schema]').forEach(btn => {
+            if (btn.dataset.schema === type) btn.classList.add('active');
+            else btn.classList.remove('active');
         });
     }
-
-    document.querySelectorAll('.schema-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchSchemaView(btn.dataset.schema);
-        });
+    
+    document.querySelectorAll('[data-schema]').forEach(btn => {
+        btn.addEventListener('click', () => switchSchema(btn.dataset.schema));
     });
-
-    // ========== УПРАВЛЕНИЕ ТРЕБОВАНИЯМИ ==========
+    
+    // ===== ТРЕБОВАНИЯ =====
     const reqData = {
-        "user-stories": {
-            content: `
-                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #3b82f6;">
-                        <div style="font-weight: 600; font-size: 0.8rem;">US-01 | Приоритет: HIGH</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
-                            <strong>Как</strong> конструктор, <strong>я хочу</strong> видеть текущие остатки материалов на складе, 
-                            <strong>чтобы</strong> понимать, что можно использовать в проекте без дополнительного заказа.
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: отображение остатков в реальном времени, фильтр по артикулу</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #22c55e;">
-                        <div style="font-weight: 600; font-size: 0.8rem;">US-02 | Приоритет: MEDIUM</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
-                            <strong>Как</strong> кладовщик, <strong>я хочу</strong> фиксировать приход и расход материалов,
-                            <strong>чтобы</strong> остатки в системе всегда соответствовали реальному складу.
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: внесение движения за 30 секунд, автоматический пересчёт остатка</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #eab308;">
-                        <div style="font-weight: 600; font-size: 0.8rem;">US-03 | Приоритет: LOW</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 0.25rem;">
-                            <strong>Как</strong> руководитель, <strong>я хочу</strong> получать уведомление о снижении остатков ниже минимума,
-                            <strong>чтобы</strong> вовремя инициировать закупку.
-                        </div>
-                        <div style="margin-top: 0.5rem; font-size: 0.65rem; color: #64748b;">✅ Критерии приемки: email-уведомление при min_stock, настраиваемый порог</div>
-                    </div>
-                </div>
-            `,
-            caption: "📝 <strong>User Stories</strong> — 3 ключевых сценария использования системы учёта материалов (конструктор, кладовщик, руководитель)"
+        stories: {
+            content: `<div style="display:flex; flex-direction:column; gap:0.5rem;">
+                <div class="preview-card" style="border-left-color:#3b82f6;"><strong>US-01 | HIGH</strong><br>Как конструктор, я хочу видеть остатки материалов, чтобы понимать, что можно использовать без доп. заказа.</div>
+                <div class="preview-card" style="border-left-color:#22c55e;"><strong>US-02 | MEDIUM</strong><br>Как кладовщик, я хочу фиксировать приход/расход, чтобы остатки соответствовали реальности.</div>
+                <div class="preview-card" style="border-left-color:#eab308;"><strong>US-03 | LOW</strong><br>Как руководитель, я хочу получать уведомления о снижении остатков ниже минимума.</div>
+            </div>`,
+            caption: "📝 3 User Stories — конструктор, кладовщик, руководитель"
         },
-        "use-cases": {
-            content: `
-                <div style="background: white; border-radius: 8px; padding: 0.75rem;">
-                    <div style="font-weight: 600; font-size: 0.8rem; margin-bottom: 0.5rem;">🔄 Use Case: Создание заявки на материал</div>
-                    <div style="font-size: 0.7rem; display: grid; grid-template-columns: 1fr 2fr; gap: 0.3rem;">
-                        <span style="color: #64748b;">Актор:</span><span>Конструктор</span>
-                        <span style="color: #64748b;">Предусловие:</span><span>Пользователь авторизован в системе</span>
-                        <span style="color: #64748b;">Постусловие:</span><span>Заявка создана, ответственный уведомлён</span>
-                        <span style="color: #64748b;">Основной сценарий:</span><span>1. Выбрать материал из справочника<br>2. Указать необходимое количество<br>3. Выбрать дату потребности<br>4. Нажать «Создать заявку»</span>
-                        <span style="color: #64748b;">Альтернативы:</span><span>• Если остаток есть → резервирование<br>• Если остатка нет → создание заказа на закупку</span>
-                    </div>
-                </div>
-            `,
-            caption: "🔄 <strong>Use Case</strong> — детальное описание сценария создания заявки на материал"
+        usecase: {
+            content: `<div class="preview-card"><strong>🔄 Use Case: Создание заявки на материал</strong><br>Актор: Конструктор<br>Основной сценарий: выбрать материал → указать количество → выбрать дату → создать заявку<br>Альтернативы: если остаток есть — резервирование, если нет — заказ закупки</div>`,
+            caption: "🔄 Детальное описание сценария создания заявки"
         },
-        "requirements": {
-            content: `
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">FR-01 | Учёт остатков</div>
-                        <div style="font-size: 0.7rem;">Система должна хранить актуальный остаток каждого материала. При каждом движении остаток пересчитывается автоматически.</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">FR-02 | Поиск по артикулу</div>
-                        <div style="font-size: 0.7rem;">Система должна обеспечивать поиск материала по артикулу с автодополнением (по первым 3 символам).</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">FR-03 | История движений</div>
-                        <div style="font-size: 0.7rem;">Система должна хранить историю всех движений (приход/расход) с указанием даты, документа и автора.</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">NFR-01 | Производительность</div>
-                        <div style="font-size: 0.7rem;">Время отклика при поиске по артикулу — не более 0.5 секунд для 10 000+ записей.</div>
-                    </div>
-                </div>
-            `,
-            caption: "📋 <strong>Функциональные и нефункциональные требования</strong> — 4 ключевых требования к системе"
-        },
-        "moscow": {
-            content: `
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #ef4444;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">🔴 MUST HAVE (критически важно)</div>
-                        <div style="font-size: 0.7rem;">• Учёт остатков материалов в реальном времени<br>• Фиксация прихода и расхода<br>• Поиск по артикулу</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #eab308;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">🟡 SHOULD HAVE (важно, но можно позже)</div>
-                        <div style="font-size: 0.7rem;">• Уведомления о снижении остатков<br>• Экспорт отчётов в Excel<br>• История движений</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #3b82f6;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">🔵 COULD HAVE (было бы здорово)</div>
-                        <div style="font-size: 0.7rem;">• Автоматический заказ при мин. остатке<br>• Интеграция с 1С<br>• Мобильное приложение для кладовщика</div>
-                    </div>
-                    <div style="background: white; border-radius: 8px; padding: 0.75rem; border-left: 3px solid #22c55e;">
-                        <div style="font-weight: 600; font-size: 0.75rem;">🟢 WON'T HAVE (в текущей версии не делаем)</div>
-                        <div style="font-size: 0.7rem;">• Штрихкодирование<br>• Прогнозирование остатков на основе ИИ<br>• Интеграция с маркетплейсами</div>
-                    </div>
-                </div>
-            `,
-            caption: "🎯 <strong>MoSCoW</strong> — приоритизация требований для первой версии системы"
+        moscow: {
+            content: `<div style="display:flex; flex-direction:column; gap:0.5rem;">
+                <div class="preview-card" style="border-left-color:#ef4444;"><strong>🔴 MUST HAVE</strong> Учёт остатков, фиксация движений, поиск по артикулу</div>
+                <div class="preview-card" style="border-left-color:#eab308;"><strong>🟡 SHOULD HAVE</strong> Уведомления, экспорт в Excel, история движений</div>
+                <div class="preview-card" style="border-left-color:#3b82f6;"><strong>🔵 COULD HAVE</strong> Автозаказ, интеграция с 1С, мобильное приложение</div>
+            </div>`,
+            caption: "🎯 Приоритизация требований для первой версии системы"
         }
     };
-
-    function switchReqView(type) {
-        const data = reqData[type];
-        const reqContent = document.getElementById('reqContent');
-        const reqCaption = document.getElementById('reqCaption');
-        
-        if (reqContent && reqCaption) {
-            reqContent.innerHTML = data.content;
-            reqCaption.innerHTML = data.caption;
-        }
-        
-        document.querySelectorAll('.req-tab').forEach(btn => {
-            if (btn.dataset.req === type) {
-                btn.classList.add('active');
-                btn.style.background = '#3b82f6';
-                btn.style.color = 'white';
-            } else {
-                btn.classList.remove('active');
-                btn.style.background = 'transparent';
-                btn.style.color = '#475569';
-            }
+    
+    function switchReq(type) {
+        document.getElementById('reqContent').innerHTML = reqData[type].content;
+        document.getElementById('reqCaption').innerHTML = reqData[type].caption;
+        document.querySelectorAll('[data-req]').forEach(btn => {
+            if (btn.dataset.req === type) btn.classList.add('active');
+            else btn.classList.remove('active');
         });
     }
-
-    document.querySelectorAll('.req-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchReqView(btn.dataset.req);
-        });
+    
+    document.querySelectorAll('[data-req]').forEach(btn => {
+        btn.addEventListener('click', () => switchReq(btn.dataset.req));
     });
 </script>
 
