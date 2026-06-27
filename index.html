@@ -1,10 +1,657 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Test Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI-портфолио | Битрикс24 — полная аналитика</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI','Inter',system-ui,sans-serif; }
+        body { background:#eef3fa; padding:28px 20px; color:#1a2b44; }
+        .container { max-width:1600px; margin:0 auto; }
+
+        .main-header { margin-bottom:32px; }
+        .main-header h1 { font-size:2.5rem; font-weight:600; color:#0a1d39; }
+        .main-header h1 i { color:#2769c7; margin-right:14px; }
+        .main-header .sub { color:#34577c; font-size:1rem; border-left:4px solid #2f7de0; padding-left:20px; }
+
+        .dashboard-card {
+            background:#ffffff;
+            border-radius:28px;
+            box-shadow:0 10px 30px rgba(8,20,50,0.07);
+            padding:24px 28px 30px;
+            border:1px solid #e3ebf7;
+            margin-bottom:44px;
+        }
+        .dash-header {
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-between;
+            align-items:center;
+            border-bottom:2px solid #e4edfb;
+            padding-bottom:14px;
+            margin-bottom:20px;
+        }
+        .dash-header h2 { font-size:1.8rem; font-weight:600; color:#0f284a; }
+        .badge-dash { background:#e2ebfd; color:#1b5bb8; padding:6px 18px; border-radius:40px; font-weight:600; font-size:0.8rem; }
+
+        .group-block { margin-bottom:28px; }
+        .group-title {
+            font-size:1.15rem;
+            font-weight:700;
+            color:#1b3e68;
+            margin-bottom:10px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        .group-title i { color:#2f7de0; }
+        .group-desc {
+            font-size:0.85rem;
+            color:#3d5f82;
+            background:#f0f7ff;
+            padding:6px 16px;
+            border-radius:14px;
+            margin-bottom:14px;
+            border-left:4px solid #2f7de0;
+        }
+
+        .widget-grid {
+            display:grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap:22px 20px;
+        }
+        .widget {
+            background:#f8fbfe;
+            border-radius:18px;
+            border:1px solid #dee9f6;
+            padding:12px 14px 16px;
+        }
+        .widget-title {
+            font-weight:600;
+            font-size:0.78rem;
+            text-transform:uppercase;
+            letter-spacing:0.3px;
+            color:#274e78;
+            margin-bottom:6px;
+            border-bottom:1px solid #dce6f2;
+            padding-bottom:4px;
+            display:flex;
+            align-items:center;
+            gap:8px;
+        }
+        .widget-title i { color:#2f7de0; width:18px; }
+        .widget-desc {
+            font-size:0.65rem;
+            color:#4a6f94;
+            margin:2px 0 6px;
+            font-style:italic;
+        }
+
+        .chart-box { position:relative; height:140px; margin:4px 0 6px; }
+        .chart-box-sm { height:90px; }
+        .stat-row { display:flex; flex-wrap:wrap; gap:4px 12px; font-size:0.8rem; color:#1d375a; margin:4px 0 2px; }
+        .stat-badge { background:#dee9fa; border-radius:30px; padding:0 12px; font-weight:500; font-size:0.7rem; color:#0045a0; }
+        .chip { background:#eef4fd; border-radius:30px; padding:2px 12px; font-size:0.68rem; font-weight:500; color:#1d4b7a; }
+        .flex-chip { display:flex; flex-wrap:wrap; gap:4px 8px; margin-top:4px; }
+
+        .mini-table {
+            width:100%; font-size:0.75rem; border-collapse:collapse; margin:4px 0 2px;
+        }
+        .mini-table td { padding:2px 4px; border-bottom:1px solid #e1ebf6; }
+        .mini-table tr:last-child td { border-bottom:none; }
+        .mini-table .label { color:#2f5680; font-weight:500; }
+        .mini-table .value { text-align:right; font-weight:600; color:#0b2647; }
+
+        .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .drill-block {
+            background:#f4f9ff;
+            border-radius:16px;
+            padding:14px 16px;
+            margin-top:10px;
+            border:1px dashed #b8cce5;
+        }
+        .drill-block .drill-title {
+            font-weight:600;
+            color:#1b3e68;
+            margin-bottom:8px;
+            font-size:0.9rem;
+        }
+
+        .footer-note { margin-top:30px; text-align:right; color:#45678a; border-top:1px solid #d4e2f2; padding-top:18px; font-size:0.9rem; }
+
+        @media (max-width:700px) {
+            .dashboard-card { padding:16px; }
+            .dash-header h2 { font-size:1.3rem; }
+            .two-col { grid-template-columns:1fr; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>If you see this, GitHub Pages works.</p>
+<div class="container">
+    <div class="main-header">
+        <div>
+            <h1><i class="fas fa-chart-pie"></i>BI-портфолио · Битрикс24</h1>
+            <div class="sub">3 кейса с полной аналитикой — промышленная безопасность, ткани, логистика</div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- КЕЙС 1: ПРОМЫШЛЕННАЯ БЕЗОПАСНОСТЬ -->
+    <!-- ========================================================= -->
+    <div class="dashboard-card">
+        <div class="dash-header">
+            <h2><i class="fas fa-hard-hat" style="color:#2f6fbf;"></i> Промышленная безопасность</h2>
+            <span class="badge-dash"><i class="fas fa-table"></i> таблицы + графики</span>
+        </div>
+
+        <!-- ГРУППА 1: Общий отчет -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-clipboard-list"></i> 1. Общий отчет по текущим работам</div>
+            <div class="group-desc">Показывает общее количество работ, их статус (выполнено, в работе, просрочено) и процентное соотношение.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">📊 Распределение по статусам</div>
+                    <div class="widget-desc">Диаграмма: выполнено 64%, в работе 27%, просрочено 9%</div>
+                    <div class="chart-box"><canvas id="safetyGeneral" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">✅ Выполнено</td><td class="value">42</td></tr>
+                        <tr><td class="label">⏳ В работе</td><td class="value">18</td></tr>
+                        <tr><td class="label">⚠️ Просрочено</td><td class="value">6</td></tr>
+                        <tr><td class="label"><strong>Всего</strong></td><td class="value"><strong>66</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 2: Отчет по исполнителям -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-user-check"></i> 2. Отчет по исполнителям</div>
+            <div class="group-desc">Количество выполненных работ и начисленные баллы (за сложность) по каждому сотруднику.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">👤 Работы по исполнителям</div>
+                    <div class="widget-desc">Столбчатая диаграмма: кто сколько работ выполнил</div>
+                    <div class="chart-box"><canvas id="safetyExecutors" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">Иванов</td><td class="value">12 работ · 38 баллов</td></tr>
+                        <tr><td class="label">Петров</td><td class="value">8 работ · 24 балла</td></tr>
+                        <tr><td class="label">Сидоров</td><td class="value">6 работ · 17 баллов</td></tr>
+                        <tr><td class="label">Кузнецова</td><td class="value">8 работ · 27 баллов</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 3: Отчет по отделам -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-building"></i> 3. Отчет по отделам</div>
+            <div class="group-desc">Сводка по каждому отделу: количество работ и суммарные баллы.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">🏢 Работы по отделам</div>
+                    <div class="widget-desc">Сравнение загрузки отделов</div>
+                    <div class="chart-box"><canvas id="safetyDept" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">Отдел А</td><td class="value">24 работы · 68 баллов</td></tr>
+                        <tr><td class="label">Отдел Б</td><td class="value">20 работ · 55 баллов</td></tr>
+                        <tr><td class="label">Отдел В</td><td class="value">22 работы · 61 балл</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 4: Сроки по типам работ -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-clock"></i> 4. Сроки по типам работ</div>
+            <div class="group-desc">Средняя длительность выполнения для каждого типа работ (диагностика, ремонт, проверка, модернизация).</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">⏱️ Средний срок (дни)</div>
+                    <div class="widget-desc">Сравнение по типам работ</div>
+                    <div class="chart-box"><canvas id="safetyTypeTime" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">Диагностика</td><td class="value">4.2 дн</td></tr>
+                        <tr><td class="label">Ремонт</td><td class="value">6.8 дн</td></tr>
+                        <tr><td class="label">Проверка</td><td class="value">3.1 дн</td></tr>
+                        <tr><td class="label">Модернизация</td><td class="value">5.7 дн</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 5: Сроки по исполнителям -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-user-clock"></i> 5. Сроки по исполнителям</div>
+            <div class="group-desc">Средняя длительность выполнения работ в разрезе каждого сотрудника.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">⏱️ Средний срок (дни)</div>
+                    <div class="widget-desc">Сравнение эффективности исполнителей</div>
+                    <div class="chart-box"><canvas id="safetyExecTime" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">Иванов</td><td class="value">3.2 дн</td></tr>
+                        <tr><td class="label">Петров</td><td class="value">4.8 дн</td></tr>
+                        <tr><td class="label">Сидоров</td><td class="value">5.3 дн</td></tr>
+                        <tr><td class="label">Кузнецова</td><td class="value">3.9 дн</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 6: Сроки по отделам -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-calendar-alt"></i> 6. Сроки по отделам</div>
+            <div class="group-desc">Средняя длительность выполнения работ в разрезе каждого отдела.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">⏱️ Средний срок (дни)</div>
+                    <div class="widget-desc">Сравнение скорости работы отделов</div>
+                    <div class="chart-box"><canvas id="safetyDeptTime" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">Отдел А</td><td class="value">3.8 дн</td></tr>
+                        <tr><td class="label">Отдел Б</td><td class="value">5.1 дн</td></tr>
+                        <tr><td class="label">Отдел В</td><td class="value">4.3 дн</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- КЕЙС 2: ТКАНИ -->
+    <!-- ========================================================= -->
+    <div class="dashboard-card">
+        <div class="dash-header">
+            <h2><i class="fas fa-tshirt" style="color:#2b6fbf;"></i> Ткани · B2B продажи</h2>
+            <span class="badge-dash"><i class="fas fa-chart-simple"></i> лиды · продажи · отказы</span>
+        </div>
+
+        <!-- ГРУППА 1: Лиды -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-funnel-dollar"></i> 1. Лиды — детальная аналитика</div>
+            <div class="group-desc">Анализ входящих лидов: источники, стадии, соотношение первичных/повторных, динамика по месяцам.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">📊 Источники лидов</div>
+                    <div class="widget-desc">Круговая диаграмма: сайт, телефон, партнёры</div>
+                    <div class="chart-box"><canvas id="textileLeadSource" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">сайт: 28</span><span class="stat-badge">телефон: 15</span><span class="stat-badge">партнёры: 9</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Лиды по стадиям</div>
+                    <div class="widget-desc">Столбчатая диаграмма: новые, квалифицированные, переговоры</div>
+                    <div class="chart-box"><canvas id="textileLeadStage" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">новые: 12</span><span class="chip">квалиф.: 18</span><span class="chip">перегов.: 10</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Первичные / повторные</div>
+                    <div class="widget-desc">Соотношение новых и повторных обращений</div>
+                    <div class="chart-box"><canvas id="textileLeadPrimary" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">первичные: 32</span><span class="stat-badge">повторные: 20</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📈 Динамика лидов</div>
+                    <div class="widget-desc">Тренд по месяцам (январь-май)</div>
+                    <div class="chart-box"><canvas id="textileLeadTrend" width="200" height="140"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 2: Продажи -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-hand-holding-usd"></i> 2. Продажи — детальная аналитика</div>
+            <div class="group-desc">Оборот, маржинальность, распределение по направлениям и этапам сделок.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">📊 Продажи по направлениям</div>
+                    <div class="widget-desc">Оборот (тыс. ₽) по двум направлениям</div>
+                    <div class="chart-box"><canvas id="textileSalesDir" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">напр.1: 1.8M</span><span class="stat-badge">напр.2: 2.4M</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Сделки по этапам</div>
+                    <div class="widget-desc">Количество сделок на каждом этапе</div>
+                    <div class="chart-box"><canvas id="textileSalesStage" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">предопл.: 8</span><span class="chip">отгрузка: 6</span><span class="chip">закрыто: 4</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📈 Динамика оборота</div>
+                    <div class="widget-desc">Оборот по месяцам (тыс. ₽)</div>
+                    <div class="chart-box"><canvas id="textileSalesTrend" width="200" height="140"></canvas></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Маржинальность</div>
+                    <div class="widget-desc">По направлениям (%)</div>
+                    <div class="chart-box"><canvas id="textileMargin" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">напр.1: 22%</span><span class="stat-badge">напр.2: 18%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Секторы продаж</div>
+                    <div class="widget-desc">Распределение по отраслям клиентов</div>
+                    <div class="chart-box"><canvas id="textileSectors" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">🌾 Агропром: 34%</span><span class="chip">🏥 Медицина: 28%</span><span class="chip">🏭 Производство: 22%</span><span class="chip">🛍️ Ритейл: 16%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Дистрибьюторы</div>
+                    <div class="widget-desc">Оборот и количество заказов по дистрибьюторам</div>
+                    <div class="chart-box"><canvas id="textileDistrib" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">Оборот</td><td class="value">2.1M ₽</td></tr>
+                        <tr><td class="label">Кол-во заказов</td><td class="value">14</td></tr>
+                    </table>
+                    <div class="flex-chip"><span class="chip">дистр. А: 8</span><span class="chip">дистр. Б: 6</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 3: Отказы + Повторы -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-times-circle"></i> 3. Отказы и повторные продажи</div>
+            <div class="group-desc">Причины отказов, меры, которые сработали для возврата клиента, и статистика повторных продаж.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">❌ Причины отказов</div>
+                    <div class="widget-desc">Распределение по причинам (цена, условия, сервис)</div>
+                    <div class="chart-box"><canvas id="textileRefuse" width="200" height="140"></canvas></div>
+                    <table class="mini-table">
+                        <tr><td class="label">цена</td><td class="value">45%</td></tr>
+                        <tr><td class="label">условия</td><td class="value">30%</td></tr>
+                        <tr><td class="label">сервис</td><td class="value">25%</td></tr>
+                    </table>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">✅ Что сработало после отказа</div>
+                    <div class="widget-desc">Меры, которые помогли вернуть клиента</div>
+                    <div class="chart-box"><canvas id="textileRefuseFix" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">скидка: 40%</span><span class="chip">новые условия: 35%</span><span class="chip">сервис: 25%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">🔄 Повторные продажи</div>
+                    <div class="widget-desc">Количество повторных сделок через 3 и 6 месяцев</div>
+                    <div class="chart-box"><canvas id="textileRepeat" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">всего повторных: 18</span></div>
+                    <div class="flex-chip"><span class="chip">через 3 мес: 8</span><span class="chip">через 6 мес: 10</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- КЕЙС 3: ЛОГИСТИКА (без фильтров и сводной таблицы) -->
+    <!-- ========================================================= -->
+    <div class="dashboard-card">
+        <div class="dash-header">
+            <h2><i class="fas fa-ship" style="color:#1f6fbf;"></i> Логистика · Глубокая аналитика</h2>
+            <span class="badge-dash"><i class="fas fa-layer-group"></i> лиды · продажи · клиенты · регионы · отрасли</span>
+        </div>
+
+        <!-- ГРУППА 1: Лиды -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-flag"></i> 1. Лиды</div>
+            <div class="group-desc">Источники, стадии, конверсия по отделам, соотношение первичных/повторных.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">📊 Источники лидов</div>
+                    <div class="chart-box"><canvas id="logLeadSource" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">сайт: 34</span><span class="stat-badge">звонок: 22</span><span class="stat-badge">реклама: 15</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Лиды по стадиям</div>
+                    <div class="chart-box"><canvas id="logLeadStage" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">новые: 22</span><span class="chip">квал.: 31</span><span class="chip">перегов.: 19</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Конверсия по отделам</div>
+                    <div class="chart-box"><canvas id="logLeadConv" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">А: 41%</span><span class="stat-badge">Б: 28%</span><span class="stat-badge">В: 33%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Первичные / повторные</div>
+                    <div class="chart-box"><canvas id="logLeadPrimary" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">первич: 75</span><span class="stat-badge">повтор: 52</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 2: Продажи -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-hand-holding-usd"></i> 2. Продажи</div>
+            <div class="group-desc">Цикл сделки, конверсия, источники, оборот, маржинальность, стадии, причины отказов.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">⏳ Цикл сделки (дни)</div>
+                    <div class="chart-box"><canvas id="logSalesCycle" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">общий: 12</span><span class="stat-badge">менеджер А: 10</span><span class="stat-badge">менеджер Б: 14</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Конверсия в продажу</div>
+                    <div class="chart-box"><canvas id="logSalesConv" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">общая: 28%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Сделки по источникам</div>
+                    <div class="chart-box"><canvas id="logSalesSource" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">сайт: 18</span><span class="chip">звонок: 11</span><span class="chip">партнёры: 7</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📈 Оборот / Маржинальность</div>
+                    <div class="chart-box"><canvas id="logSalesMargin" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">оборот: 3.2M</span><span class="stat-badge">марж.: 24%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Сделки на стадиях</div>
+                    <div class="chart-box"><canvas id="logSalesStage" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">предопл.: 8</span><span class="chip">отгрузка: 6</span><span class="chip">закрыто: 4</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">❌ Причины отказов</div>
+                    <div class="chart-box"><canvas id="logSalesRefuse" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">цена: 40%</span><span class="chip">сроки: 35%</span><span class="chip">сервис: 25%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 3: Клиенты (детально) -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-building"></i> 3. Клиенты — детальная аналитика</div>
+            <div class="group-desc">Оборот, маржинальность, новые/повторные/переставшие, злостные неплательщики, популярные ТН ВЭД.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">📈 Оборот по месяцам</div>
+                    <div class="chart-box"><canvas id="logClientOborot" width="200" height="140"></canvas></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 Новые / Повторные / Переставшие</div>
+                    <div class="chart-box"><canvas id="logClientLife" width="200" height="140"></canvas></div>
+                    <div class="stat-row"><span class="stat-badge">сред. время жизни: 14 мес.</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">🚫 Злостные неплательщики</div>
+                    <div class="flex-chip"><span class="chip">ООО "Транс"</span><span class="chip">АО "Груз"</span><span class="chip">ООО "Логист"</span></div>
+                    <div class="stat-row"><span class="stat-badge">всего: 3</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📦 Популярные ТН ВЭД</div>
+                    <div class="flex-chip"><span class="chip">8703 (авто): 34%</span><span class="chip">7208 (прокат): 22%</span><span class="chip">3004 (мед.): 18%</span><span class="chip">8411 (турб.): 12%</span><span class="chip">3901 (полим.): 14%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 4: Менеджеры, Регионы, ОКВЭД, Маршруты -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-users"></i> 4. Менеджеры · Регионы · ОКВЭД · Маршруты</div>
+            <div class="group-desc">Оборот по менеджерам, регионам, кодам ОКВЭД и популярные маршруты перевозок.</div>
+            <div class="widget-grid">
+                <div class="widget">
+                    <div class="widget-title">👤 По менеджерам (оборот)</div>
+                    <div class="chart-box"><canvas id="logManagers" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">Иванов: 3.2M</span><span class="chip">Петров: 2.8M</span><span class="chip">Сидоров: 2.7M</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📍 По регионам (оборот)</div>
+                    <div class="chart-box"><canvas id="logRegions" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">Москва: 40%</span><span class="chip">СПб: 25%</span><span class="chip">Краснодар: 20%</span><span class="chip">Казань: 15%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">📊 По ОКВЭД (оборот)</div>
+                    <div class="chart-box"><canvas id="logOkved" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">45.2 (авто): 38%</span><span class="chip">46.3 (опт): 28%</span><span class="chip">52.2 (склад): 20%</span></div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">🗺️ Маршруты перевозок</div>
+                    <div class="chart-box"><canvas id="logRoutes" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">Мск-СПб: 34%</span><span class="chip">Мск-Краснодар: 22%</span><span class="chip">СПб-Казань: 18%</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 5: Регионы + грузы + маршруты (глубокий срез) -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-map-marked-alt"></i> 5. Региональная аналитика: регион → грузы → маршруты</div>
+            <div class="group-desc">Показывает, какие грузы перевозятся в каждом регионе и по каким маршрутам.</div>
+            <div class="two-col">
+                <div style="background:#f4f9ff; border-radius:16px; padding:14px;">
+                    <div class="drill-title"><i class="fas fa-cubes"></i> Грузы по регионам</div>
+                    <div class="chart-box"><canvas id="logRegionCargo" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">Москва: авто 40%</span><span class="chip">СПб: прокат 35%</span><span class="chip">Краснодар: мед. 30%</span></div>
+                </div>
+                <div style="background:#f4f9ff; border-radius:16px; padding:14px;">
+                    <div class="drill-title"><i class="fas fa-route"></i> Маршруты по регионам</div>
+                    <div class="chart-box"><canvas id="logRegionRoutes" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">Мск-СПб: 34%</span><span class="chip">Мск-Краснодар: 22%</span><span class="chip">СПб-Казань: 18%</span></div>
+                </div>
+            </div>
+            <div class="drill-block">
+                <div class="drill-title">📋 Детализация по регионам</div>
+                <div class="widget-grid" style="grid-template-columns:1fr 1fr 1fr;">
+                    <div><span class="stat-badge">Москва</span>
+                        <div class="flex-chip"><span class="chip">авто: 40% (1.2M)</span><span class="chip">прокат: 25% (0.8M)</span></div>
+                        <div class="flex-chip"><span class="chip">Мск-СПб, Мск-Краснодар</span></div>
+                    </div>
+                    <div><span class="stat-badge">СПб</span>
+                        <div class="flex-chip"><span class="chip">прокат: 35% (0.9M)</span><span class="chip">авто: 25% (0.6M)</span></div>
+                        <div class="flex-chip"><span class="chip">СПб-Мск, СПб-Казань</span></div>
+                    </div>
+                    <div><span class="stat-badge">Краснодар</span>
+                        <div class="flex-chip"><span class="chip">мед.: 30% (0.7M)</span><span class="chip">авто: 25% (0.6M)</span></div>
+                        <div class="flex-chip"><span class="chip">Краснодар-Мск</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ГРУППА 6: Отрасли + грузы + направления -->
+        <div class="group-block">
+            <div class="group-title"><i class="fas fa-layer-group"></i> 6. Отраслевая аналитика: ОКВЭД → грузы → направления</div>
+            <div class="group-desc">Для каждой отрасли (ОКВЭД) показано, какие грузы перевозятся и по каким маршрутам.</div>
+            <div class="two-col">
+                <div style="background:#f4f9ff; border-radius:16px; padding:14px;">
+                    <div class="drill-title"><i class="fas fa-cubes"></i> Грузы по отраслям (ОКВЭД)</div>
+                    <div class="chart-box"><canvas id="logOkvedCargo" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">45.2 (авто): авто 50%</span><span class="chip">46.3 (опт): прокат 40%</span></div>
+                </div>
+                <div style="background:#f4f9ff; border-radius:16px; padding:14px;">
+                    <div class="drill-title"><i class="fas fa-route"></i> Направления по отраслям</div>
+                    <div class="chart-box"><canvas id="logOkvedRoutes" width="200" height="140"></canvas></div>
+                    <div class="flex-chip"><span class="chip">45.2: Мск-СПб (40%)</span><span class="chip">46.3: Мск-Краснодар (35%)</span></div>
+                </div>
+            </div>
+            <div class="drill-block">
+                <div class="drill-title">📋 Детализация по отраслям</div>
+                <div class="widget-grid" style="grid-template-columns:1fr 1fr 1fr;">
+                    <div>
+                        <span class="stat-badge">45.2 (авто)</span>
+                        <div class="flex-chip"><span class="chip">грузы: авто 50%, турбины 20%</span></div>
+                        <div class="flex-chip"><span class="chip">маршруты: Мск-СПб, Мск-Краснодар</span></div>
+                    </div>
+                    <div>
+                        <span class="stat-badge">46.3 (опт)</span>
+                        <div class="flex-chip"><span class="chip">грузы: прокат 40%, полимеры 25%</span></div>
+                        <div class="flex-chip"><span class="chip">маршруты: Мск-Краснодар, СПб-Казань</span></div>
+                    </div>
+                    <div>
+                        <span class="stat-badge">52.2 (склад)</span>
+                        <div class="flex-chip"><span class="chip">грузы: мед. 35%, авто 20%</span></div>
+                        <div class="flex-chip"><span class="chip">маршруты: Мск-СПб, Краснодар-Мск</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">
+        <i class="fas fa-database"></i> BI-конструктор Битрикс24 · смарт-процессы · полная аналитика
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ---- КЕЙС 1: Промбезопасность ----
+        new Chart(document.getElementById('safetyGeneral'), { type:'doughnut', data:{ labels:['Выполнено','В работе','Просрочено'], datasets:[{ data:[42,18,6], backgroundColor:['#2a7f3d','#f0b341','#d45c4c'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('safetyExecutors'), { type:'bar', data:{ labels:['Иванов','Петров','Сидоров','Кузн.'], datasets:[{ data:[12,8,6,8], backgroundColor:['#2f7de0','#5a9af0','#87b9f5','#aac9f7'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('safetyDept'), { type:'bar', data:{ labels:['Отдел А','Отдел Б','Отдел В'], datasets:[{ data:[24,20,22], backgroundColor:['#2f7de0','#5a9af0','#87b9f5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('safetyTypeTime'), { type:'bar', data:{ labels:['Диагностика','Ремонт','Проверка','Модернизация'], datasets:[{ data:[4.2,6.8,3.1,5.7], backgroundColor:['#2f7de0','#5a9af0','#87b9f5','#aac9f7'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('safetyExecTime'), { type:'bar', data:{ labels:['Иванов','Петров','Сидоров','Кузн.'], datasets:[{ data:[3.2,4.8,5.3,3.9], backgroundColor:['#2f7de0','#5a9af0','#87b9f5','#aac9f7'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('safetyDeptTime'), { type:'bar', data:{ labels:['Отдел А','Отдел Б','Отдел В'], datasets:[{ data:[3.8,5.1,4.3], backgroundColor:['#2f7de0','#5a9af0','#87b9f5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+
+        // ---- КЕЙС 2: ТКАНИ ----
+        new Chart(document.getElementById('textileLeadSource'), { type:'pie', data:{ labels:['Сайт','Телефон','Партнёры'], datasets:[{ data:[28,15,9], backgroundColor:['#2f7de0','#5b9cf0','#8dbdf5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('textileLeadStage'), { type:'bar', data:{ labels:['Новые','Квалиф.','Перегов.'], datasets:[{ data:[12,18,10], backgroundColor:['#2f7de0','#5b9cf0','#8dbdf5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('textileLeadPrimary'), { type:'doughnut', data:{ labels:['Первичные','Повторные'], datasets:[{ data:[32,20], backgroundColor:['#2f7de0','#8dbdf5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('textileLeadTrend'), { type:'line', data:{ labels:['Янв','Фев','Мар','Апр','Май'], datasets:[{ data:[18,22,27,30,35], borderColor:'#2f7de0', tension:0.2 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('textileSalesDir'), { type:'bar', data:{ labels:['Напр.1','Напр.2'], datasets:[{ data:[1800,2400], backgroundColor:['#2f7de0','#5b9cf0'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('textileSalesStage'), { type:'pie', data:{ labels:['Предопл.','Отгрузка','Закрыто'], datasets:[{ data:[8,6,4], backgroundColor:['#2f7de0','#5b9cf0','#8dbdf5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('textileSalesTrend'), { type:'line', data:{ labels:['Янв','Фев','Мар','Апр','Май'], datasets:[{ data:[120,150,180,210,240], borderColor:'#2f7de0', tension:0.2 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('textileMargin'), { type:'bar', data:{ labels:['Напр.1','Напр.2'], datasets:[{ data:[22,18], backgroundColor:['#2f7de0','#5b9cf0'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('textileSectors'), { type:'pie', data:{ labels:['Агропром','Медицина','Производство','Ритейл'], datasets:[{ data:[34,28,22,16], backgroundColor:['#2f7de0','#5b9cf0','#8dbdf5','#b8d4f7'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('textileDistrib'), { type:'doughnut', data:{ labels:['Дистр. А','Дистр. Б','Дистр. В'], datasets:[{ data:[8,6,3], backgroundColor:['#2f7de0','#5b9cf0','#8dbdf5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('textileRefuse'), { type:'bar', data:{ labels:['Цена','Условия','Сервис'], datasets:[{ data:[45,30,25], backgroundColor:['#c74a3a','#d97a4a','#e09a5a'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('textileRefuseFix'), { type:'pie', data:{ labels:['Скидка','Новые условия','Сервис'], datasets:[{ data:[40,35,25], backgroundColor:['#2a7f3d','#3d8fc0','#6da0da'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('textileRepeat'), { type:'bar', data:{ labels:['Через 3 мес','Через 6 мес'], datasets:[{ data:[8,10], backgroundColor:['#2f7de0','#5b9cf0'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+
+        // ---- КЕЙС 3: ЛОГИСТИКА ----
+        new Chart(document.getElementById('logLeadSource'), { type:'pie', data:{ labels:['Сайт','Звонок','Реклама'], datasets:[{ data:[34,22,15], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('logLeadStage'), { type:'bar', data:{ labels:['Новые','Квалиф.','Перегов.'], datasets:[{ data:[22,31,19], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logLeadConv'), { type:'bar', data:{ labels:['Отдел А','Отдел Б','Отдел В'], datasets:[{ data:[41,28,33], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logLeadPrimary'), { type:'doughnut', data:{ labels:['Первичные','Повторные'], datasets:[{ data:[75,52], backgroundColor:['#1f6bc0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('logSalesCycle'), { type:'bar', data:{ labels:['Общий','Менеджер А','Менеджер Б'], datasets:[{ data:[12,10,14], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logSalesConv'), { type:'bar', data:{ labels:['Общая','Отдел А','Отдел Б','Отдел В'], datasets:[{ data:[28,32,24,29], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5','#a8c9f0'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logSalesSource'), { type:'pie', data:{ labels:['Сайт','Звонок','Партнёры'], datasets:[{ data:[18,11,7], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('logSalesMargin'), { type:'line', data:{ labels:['Янв','Фев','Мар','Апр','Май'], datasets:[{ data:[200,240,280,310,320], borderColor:'#1f6bc0', tension:0.2 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logSalesStage'), { type:'bar', data:{ labels:['Предопл.','Отгрузка','Закрыто'], datasets:[{ data:[8,6,4], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logSalesRefuse'), { type:'bar', data:{ labels:['Цена','Сроки','Сервис'], datasets:[{ data:[40,35,25], backgroundColor:['#c74a3a','#d97a4a','#e09a5a'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logClientOborot'), { type:'line', data:{ labels:['Янв','Фев','Мар','Апр'], datasets:[{ data:[1.2,1.8,2.1,2.4], borderColor:'#1f6bc0', tension:0.2 }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logClientLife'), { type:'bar', data:{ labels:['Новые','Повторные','Переставшие'], datasets:[{ data:[4,11,2], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logManagers'), { type:'bar', data:{ labels:['Иванов','Петров','Сидоров'], datasets:[{ data:[3.2,2.8,2.7], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logRegions'), { type:'doughnut', data:{ labels:['Москва','СПб','Краснодар','Казань'], datasets:[{ data:[40,25,20,15], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5','#a8c9f0'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('logOkved'), { type:'bar', data:{ labels:['45.2 (авто)','46.3 (опт)','52.2 (склад)'], datasets:[{ data:[38,28,20], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true, grid:{ display:false } }, x:{ grid:{ display:false } } } } });
+        new Chart(document.getElementById('logRoutes'), { type:'doughnut', data:{ labels:['Мск-СПб','Мск-Краснодар','СПб-Казань'], datasets:[{ data:[34,22,18], backgroundColor:['#1f6bc0','#4a8fd0','#7cb3e5'] }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10 } } } } });
+        new Chart(document.getElementById('logRegionCargo'), { type:'bar', data:{ labels:['Москва','СПб','Краснодар','Казань'], datasets:[
+            { label:'Авто', data:[40,25,25,20], backgroundColor:'#1f6bc0' },
+            { label:'Прокат', data:[25,35,20,30], backgroundColor:'#4a8fd0' },
+            { label:'Медикаменты', data:[20,20,30,25], backgroundColor:'#7cb3e5' },
+            { label:'Полимеры', data:[15,20,25,25], backgroundColor:'#a8c9f0' }
+        ] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ size:8 } } } }, scales:{ x:{ grid:{ display:false } }, y:{ grid:{ display:false }, beginAtZero:true } } } });
+        new Chart(document.getElementById('logRegionRoutes'), { type:'bar', data:{ labels:['Мск-СПб','Мск-Краснодар','СПб-Казань','Краснодар-Мск'], datasets:[
+            { label:'Москва', data:[40,30,15,20], backgroundColor:'#1f6bc0' },
+            { label:'СПб', data:[25,20,35,20], backgroundColor:'#4a8fd0' },
+            { label:'Краснодар', data:[20,35,20,30], backgroundColor:'#7cb3e5' }
+        ] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ size:8 } } } }, scales:{ x:{ grid:{ display:false } }, y:{ grid:{ display:false }, beginAtZero:true } } } });
+        new Chart(document.getElementById('logOkvedCargo'), { type:'bar', data:{ labels:['45.2 (авто)','46.3 (опт)','52.2 (склад)'], datasets:[
+            { label:'Авто', data:[50,20,20], backgroundColor:'#1f6bc0' },
+            { label:'Прокат', data:[20,40,25], backgroundColor:'#4a8fd0' },
+            { label:'Медикаменты', data:[15,25,35], backgroundColor:'#7cb3e5' },
+            { label:'Полимеры', data:[15,15,20], backgroundColor:'#a8c9f0' }
+        ] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ size:8 } } } }, scales:{ x:{ grid:{ display:false } }, y:{ grid:{ display:false }, beginAtZero:true } } } });
+        new Chart(document.getElementById('logOkvedRoutes'), { type:'bar', data:{ labels:['45.2 (авто)','46.3 (опт)','52.2 (склад)'], datasets:[
+            { label:'Мск-СПб', data:[40,25,35], backgroundColor:'#1f6bc0' },
+            { label:'Мск-Краснодар', data:[30,35,25], backgroundColor:'#4a8fd0' },
+            { label:'СПб-Казань', data:[20,25,20], backgroundColor:'#7cb3e5' },
+            { label:'Краснодар-Мск', data:[10,15,20], backgroundColor:'#a8c9f0' }
+        ] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:10, font:{ size:8 } } } }, scales:{ x:{ grid:{ display:false } }, y:{ grid:{ display:false }, beginAtZero:true } } } });
+    })();
+</script>
 </body>
 </html>
